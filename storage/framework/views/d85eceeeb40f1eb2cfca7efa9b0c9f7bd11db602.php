@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\report\resources\views\billKind\index.blade.php ENDPATH**/ ?>
