@@ -25,7 +25,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('heading'); ?>
-Add a Printer
+<?php echo e(__('message.Add New Printer')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -34,9 +35,9 @@ Add a Printer
         <div class="card ">
             <div class="card-header card-header-rose card-header-icon">
                 <div class="card-icon">
-                    <i class="material-icons">perm_identity</i>
+                    <i class="material-icons">perm_identity</i> 
                 </div>
-                <h4 class="card-title">Add a Printer</h4>
+                <h4 class="card-title"><?php echo e(__('message.Add New Printer')); ?></h4>
             </div>
             <div class="card-body ">
                     <?php if(count($errors) > 0): ?>
@@ -48,11 +49,11 @@ Add a Printer
                             </ul>
                         </div>
                     <?php endif; ?>
-                <form method="POST" action="<?php echo e(route('printer.create')); ?>">
+                <form method="POST" action="<?php echo e(route('printer.store')); ?>">
                     <?php echo csrf_field(); ?>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Arabic Name</label>
+                            <label class="bmd-label-floating" for="name"><?php echo e(__('message.Printer Arabic Name')); ?></label>
                             <input type="text" 
                                         name="name" 
                                             class="form-control" 
@@ -64,19 +65,19 @@ Add a Printer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="enName">English Name</label>
+                            <label class="bmd-label-floating" for="enName"><?php echo e(__('message.Printer English Name')); ?></label>
                             <input type="text" 
                                         class="form-control" 
                                             name="enName" 
                                                 id="enName" 
-                                                    required
+                                                    
                                                     >
                         </div>
                     </div>   
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="printer">Printer</label>
+                            <label class="bmd-label-floating" for="printer"><?php echo e(__('message.Printer')); ?></label>
                             <input type="text" 
                                         name="printer" 
                                             class="form-control" 
@@ -88,70 +89,63 @@ Add a Printer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="printerName">Printer Name</label>
+                            <label class="bmd-label-floating" for="printerName"><?php echo e(__('message.Printer Name')); ?></label>
                             <input type="text" 
                                         name="printerName" 
                                             class="form-control" 
                                                 id="printerName" 
-                                                    required
+                                                    
                                                     >
                         </div>
                     </div> 
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="printerIndex">Printer Index</label>
+                            <label class="bmd-label-floating" for="printerIndex"><?php echo e(__('message.Printer Index')); ?></label>
                             <input type="number" 
                                         name="printerIndex" 
                                             class="form-control" 
                                                 id="printerIndex" 
-                                                    required
+                                                    
                                                     >
                         </div>
                     </div> 
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="copiesNumber">Copies Number Times</label>
+                            <label class="bmd-label-floating" for="copiesNumber"><?php echo e(__('message.Copies Number')); ?></label>
                             <input type="number" 
                                         name="copiesNumber" 
                                             class="form-control" 
-                                                id="copiesNumber" 
-                                                    required
                                                     >
                         </div>
                     </div> 
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="note">Notes</label>
+                            <label class="bmd-label-floating" for="note"><?php echo e(__('message.Notes')); ?></label>
                             <input type="text" 
                                         name="note" 
                                             class="form-control" 
-                                                id="note" 
-                                                    required
-                                                    >
+                                                id="note" >
                         </div>
                     </div> 
                     <div class="row">
                         <div class="form-group col-md-6 mt-6"> 
-                            <label class="bmd-label-floating" for="branch">Branch</label>
-                            <select id="modifires" class="custom-select" name="branch_id" data-style="select-with-transition" title="modifires" data-size="7">
+                            <label class="bmd-label-floating" for="branch"><?php echo e(__('message.Branch')); ?></label>
+                            <select id="branch" class="custom-select" name="branch_id" data-style="select-with-transition" title="Branch" data-size="7" required>
                                 <option value=""> Choose ... Branch</option>
                                 <?php if(count($branches) > 0): ?>
                                 <?php $__currentLoopData = $branches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $branch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($branch->id); ?>"><?php echo e($branch->name); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                <?php else: ?>
-                                <option value="">Ther's No Branch To Add</option>
                                 <?php endif; ?>
                             </select>
                         </div>
                     </div>
 
                         <div class="card-footer ">
-                            <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                            <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                            <button type="submit" class="btn btn-fill btn-rose"><?php echo e(__('message.Submit')); ?></button>
                         </div>
                 </form>
             </div>

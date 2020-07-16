@@ -1,21 +1,7 @@
 @extends('theme.default')
 
-@section('head')
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-@endsection
-
 @section('heading')
-Add a Payment
+{{ __('message.Edit a Payment') }}
 @endsection
 
 @section('content')
@@ -26,7 +12,7 @@ Add a Payment
                 <div class="card-icon">
                     <i class="material-icons">power</i>
                 </div>
-                <h4 class="card-title">Add a Modifire</h4>
+                <h4 class="card-title">{{ __('message.Edit a Payment') }}</h4>
             </div>
             <div class="card-body ">
                     @if (count($errors) > 0)
@@ -43,7 +29,7 @@ Add a Payment
                     {{ method_field('PUT') }}
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Arabic Name</label>
+                            <label class="bmd-label-floating" for="name">{{ __('message.Payment Arabic Name') }}</label>
                             <input type="text" 
                                         class="form-control" 
                                             id="name" 
@@ -55,7 +41,8 @@ Add a Payment
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nameEn">English Name</label>
+                            <label class="bmd-label-floating" for="nameEn">
+                            {{ __('message.Payment English Name') }}</label>
                             <input type="text" 
                                         class="form-control" 
                                             id="nameEn" 
@@ -66,7 +53,7 @@ Add a Payment
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="note">Note</label>
+                            <label class="bmd-label-floating" for="note">{{ __('message.Note') }}</label>
                             <input type="text" 
                                         class="form-control" 
                                             id="note" 
@@ -77,7 +64,7 @@ Add a Payment
                     </div>
                     <div class="row">
                         <div class="form-group col-md-2 ">
-                            <label class="form-check-label" for="value">Value</label>
+                            <label class="form-check-label" for="value">{{ __('message.Payment Value') }}</label>
                             <input type="checkbox" 
                                         {{ $payment->value == 1 ? 'checked' : '' }} 
                                             id="value" 
@@ -85,14 +72,15 @@ Add a Payment
                                                     value="{{$payment->value}}"
                                                         >
                                         
-                            <label class="form-check-label" for="type">Type</label>
+                            <label class="form-check-label" for="type">
+                            {{ __('message.Payment Type') }}</label>
                             <input type="checkbox" 
                                         {{ $payment->type == 1 ? 'checked' : '' }}
                                                 id="type" 
                                                     name="type"
                                                         value="{{$payment->type}}"
                                                             >
-                            <label class="form-check-label" for="default">Default</label>
+                            <label class="form-check-label" for="default">{{ __('message.Payment Default') }}</label>
                             <input type="checkbox" 
                                         {{ $payment->default == 1 ? 'checked' : '' }}
                                             id="default" 
@@ -102,9 +90,8 @@ Add a Payment
                         </div>
                     </div>
 
-                    <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                        <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                    <div class="card-footer "> 
+                        <button type="submit" class="btn btn-fill btn-rose">{{ __('message.Submit') }}</button>
                     </div>
                 </form>
             </div>

@@ -1,26 +1,13 @@
-<?php $__env->startSection('head'); ?>
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-<?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('heading'); ?>
-Add a Role
+<?php echo e(__('message.Add a Role')); ?>
+
 <?php $__env->stopSection(); ?>
   
 <?php $__env->startSection('content'); ?>
 
 <div class='col-lg-4 col-lg-offset-4'>
 
-    <h1><i class='fa fa-key'></i> Add Role</h1>
+    <h3><i class='fa fa-key'></i> Add Role</h3>
     <hr>
 
     <?php echo e(Form::open(array('route' => 'roles.store'))); ?>

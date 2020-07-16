@@ -1,25 +1,12 @@
-<?php $__env->startSection('head'); ?>
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-<?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('heading'); ?>
-Edit Role
+<?php echo e(__('message.Edit Role')); ?>
+
 <?php $__env->stopSection(); ?>
   
 <?php $__env->startSection('content'); ?>
 
 <div class='col-lg-4 col-lg-offset-4'>
-    <h1><i class='fa fa-key'></i> Edit Role: <?php echo e($role->name); ?></h1>
+    <h3><i class='fa fa-key'></i> <?php echo e(__('message.Edit Role')); ?>: <?php echo e($role->name); ?></h3>
     <hr>
 
     <?php echo e(Form::model($role, array('route' => array('roles.update', $role->id), 'method' => 'PUT'))); ?>
@@ -32,7 +19,7 @@ Edit Role
 
     </div>
 
-    <h5><b>Assign Permissions</b></h5>
+    <h5><b><?php echo e(__('message.Assign Permissions')); ?></b></h5>
     <?php $__currentLoopData = $permissions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
         <?php echo e(Form::checkbox('permissions[]',  $permission->id, $role->permissions )); ?>

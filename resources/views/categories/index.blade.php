@@ -1,14 +1,15 @@
 @extends('theme.default')
 
 @section('heading')
-Categories
+{{ __('message.Categories') }}
 @endsection
 
 @section('content')
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="{{ route('category.create') }}"><i class="material-icons">add</i> Add New Category</a>
+        <a class="btn btn-primary" href="{{ route('category.create') }}">
+                <i class="material-icons">add</i>{{ __('message.Add New Category') }} </a>
     </div>
 </div>
 <div class="row">
@@ -18,7 +19,7 @@ Categories
                 <div class="card-icon">
                     <i class="material-icons">category</i>
                 </div>
-                <h4 class="card-title">Categories</h4>
+                <h4 class="card-title"><th>{{ __('message.Categories') }}</th></h4>
             </div>
         
             <div class="card-body ">
@@ -26,22 +27,22 @@ Categories
                     <table id="categories-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Icon</th>
-                                <th>Name</th>
-                                <th>SKU</th>
-                                <th>Parent Category</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Active</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th>{{ __('message.Icon') }}</th>
+                                <th>{{ __('message.Category Name') }}</th>
+                                <th>{{ __('message.SKU') }}</th>
+                                <th>{{ __('message.Parent Category') }}</th>
+                                <th>{{ __('message.From') }}</th>
+                                <th>{{ __('message.To') }}</th>
+                                <th>{{ __('message.Active') }}</th>
+                                <th class="disabled-sorting text-right">{{ __('message.Actions') }}</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($categories as $category)
+                        <tbody> 
+                            @foreach ($categories as $category) 
                                 <tr>
                                     <td width="9%">
                                     <img class="img-thumbnail" 
-                                        src="data:image/jpg;base64,{!!$category->image->image!!}">
+                                        src="{{ URL::asset('/storage/'.$branchname.'/category/'.$category->image) }}">
                                     </td>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->sku }}</td>
@@ -54,8 +55,15 @@ Categories
                                     <td>{{ $category->timedEventTo }}</td>
                                     <td>{{ $category->active ? 'Active' : 'Not Active' }}</td>
                                     <td class="text-right">
-                                        <a href="{{route('category.edit' ,$category->id)}}" class="btn btn-link btn-info btn-just-icon edit"><i class="material-icons">edit</i></a>
-                                        <a href="{{route('category.destroy' ,$category->id)}}" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">delete</i></a>
+                                        <a href="{{route('category.edit' ,$category->id)}}" 
+                                                class="btn btn-success btn-sm edit">
+                                            {{ __('message.edit') }}</a>
+                                    <form action="{{route('category.destroy' ,$category->id)}}" 
+                                                method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm">{{ __('message.delete') }}</button>
+                                    </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -72,6 +80,8 @@ Categories
 <script>
     $(document).ready(function() {
         $('#categories-table').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['print'],
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [10, 25, 50, -1],

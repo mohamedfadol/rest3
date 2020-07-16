@@ -19,7 +19,7 @@ class Floor extends Model
     protected $table = 'floors';
     protected $guarded = [];
     protected $casts = ['id' => 'string'];  
-    
+     
     protected static $logUnguarded = true; 
     protected static $logAttributes = ['*'];
     protected static $recordEvents = ['deleted','created','updated'];

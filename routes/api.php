@@ -4,95 +4,98 @@ use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| API Routes 
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+*/ 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
  
-
-
-/* Api for login to app */ 
-Route::post('login','API\UserController@login');
+ /* Api for login to app */ 
+Route::post('login','API\UserController@login'); 
 Route::post('register', 'API\UserController@register');
+
+Route::group(['middleware' => ['auth.employees','auth:api']], function() { 
+
  Route::get('getUser', 'API\UserController@getUser')->middleware('auth:api');
 // route for logout for user API session
 Route::get('logout','API\UserController@logout')->middleware('auth:api');
 
 
 // branch for auth user
-Route::get('getAllBranch','API\BranchController@getAllBranch')->middleware('auth:api');
+Route::get('getAllBranch','API\BranchController@getAllBranch'); 
 
 // Floor for auth user 
-Route::get('getFloor','API\FloorController@getFloor')->middleware('auth:api');
+Route::get('getFloor','API\FloorController@getFloor');
 
 // Table for auth user 
-Route::get('getTable','API\TableController@getTable')->middleware('auth:api');
+Route::get('getTable','API\TableController@getTable');
 
 // Menu for auth user 
-Route::get('getMenu','API\MenuController@getMenu')->middleware('auth:api');
+Route::get('getMenu','API\MenuController@getMenu');
 
 // category for auth user 
-Route::get('getCategory','API\CategoryController@getCategory')->middleware('auth:api');
+Route::get('getCategory','API\CategoryController@getCategory');
 
 // Product for auth user 
-Route::get('getProduct','API\ProductController@getProduct')->middleware('auth:api');
+Route::get('getProduct','API\ProductController@getProduct');
 
 // Ingrediant for auth user 
-Route::get('getIngrediant','API\IndrediantController@getIngrediant')->middleware('auth:api');
+Route::get('getIngrediant','API\IndrediantController@getIngrediant');
 
 // Modifier for auth user 
-Route::get('getModifier','API\ModefierController@getModifier')->middleware('auth:api');
+Route::get('getModifier','API\ModefierController@getModifier');
 
 // Class Products for auth user 
-Route::get('getClass','API\ClassController@getClass')->middleware('auth:api');
+Route::get('getClass','API\ClassController@getClass');
 
 
 //route order for auth user 
-Route::get('getAllOrder','API\OrderController@getAllOrder')->middleware('auth:api');
-Route::get('getOrderById/{id}','API\OrderController@getOrderById')->middleware('auth:api');
-Route::post('createOrder','API\OrderController@createOrder')->middleware('auth:api');
-Route::put('updateOrder/{id}','API\OrderController@updateOrder')->middleware('auth:api');
-Route::delete('destroyOrder/{id}','API\OrderController@destroyOrder')->middleware('auth:api');
+Route::get('getAllOrder','API\OrderController@getAllOrder');
+Route::get('getOrderById/{id}','API\OrderController@getOrderById');
+Route::post('createOrder','API\OrderController@createOrder');
+Route::put('updateOrder/{id}','API\OrderController@updateOrder');
+Route::delete('destroyOrder/{id}','API\OrderController@destroyOrder');
 
 //route Order Details for auth user 
-Route::get('getAllOrderDetails','API\OrderDetailsController@getAllOrderDetails')->middleware('auth:api');
-Route::get('getOrderDetailsById/{id}','API\OrderDetailsController@getOrderDetailsById')->middleware('auth:api');
-Route::post('createOrderDetails','API\OrderDetailsController@createOrderDetails')->middleware('auth:api');
-Route::put('updateOrderDetails/{id}','API\OrderDetailsController@updateOrderDetails')->middleware('auth:api');
-Route::delete('destroyOrderDetails/{id}','API\OrderDetailsController@destroyOrderDetails')->middleware('auth:api');
+Route::get('getAllOrderDetails','API\OrderDetailsController@getAllOrderDetails');
+Route::get('getOrderDetailsById/{id}','API\OrderDetailsController@getOrderDetailsById');
+Route::post('createOrderDetails','API\OrderDetailsController@createOrderDetails');
+Route::put('updateOrderDetails/{id}','API\OrderDetailsController@updateOrderDetails');
+Route::delete('destroyOrderDetails/{id}','API\OrderDetailsController@destroyOrderDetails');
 
 //route order for auth user 
-Route::get('getAllOrderVoid','API\OrderVoidController@getAllOrderVoid')->middleware('auth:api');
-Route::get('getOrderVoidById/{id}','API\OrderVoidController@getOrderVoidById')->middleware('auth:api');
-Route::post('createOrderVoid','API\OrderVoidController@createOrderVoid')->middleware('auth:api');
-Route::put('updateOrderVoid/{id}','API\OrderVoidController@updateOrderVoid')->middleware('auth:api');
-Route::delete('destroyOrderVoid/{id}','API\OrderVoidController@destroyOrderVoid')->middleware('auth:api');
+Route::get('getAllOrderVoid','API\OrderVoidController@getAllOrderVoid');
+Route::get('getOrderVoidById/{id}','API\OrderVoidController@getOrderVoidById');
+Route::post('createOrderVoid','API\OrderVoidController@createOrderVoid');
+Route::put('updateOrderVoid/{id}','API\OrderVoidController@updateOrderVoid');
+Route::delete('destroyOrderVoid/{id}','API\OrderVoidController@destroyOrderVoid');
 
 //route Table Reserve for auth user 
-Route::get('getAllTableReser','API\TableReserveController@getAllTableReser')->middleware('auth:api');
-Route::get('getTableReserById/{id}','API\TableReserveController@getTableReserById')->middleware('auth:api');
-Route::post('createTableReser','API\TableReserveController@createTableReser')->middleware('auth:api');
-Route::put('updateTableReser/{id}','API\TableReserveController@updateTableReser')->middleware('auth:api');
-Route::delete('destroyTableReser/{id}','API\TableReserveController@destroyTableReser')->middleware('auth:api');
+Route::get('getAllTableReser','API\TableReserveController@getAllTableReser');
+Route::get('getTableReserById/{id}','API\TableReserveController@getTableReserById');
+Route::post('createTableReser','API\TableReserveController@createTableReser');
+Route::put('updateTableReser/{id}','API\TableReserveController@updateTableReser');
+Route::delete('destroyTableReser/{id}','API\TableReserveController@destroyTableReser');
 
 //route Gift Card for auth user 
-Route::get('getAllG_Card','API\GiftCardController@getAllG_Card')->middleware('auth:api');
-Route::get('getG_CardById/{id}','API\GiftCardController@getG_CardById')->middleware('auth:api');
-Route::post('createG_Card','API\GiftCardController@createG_Card')->middleware('auth:api');
-Route::put('updateG_Card/{id}','API\GiftCardController@updateG_Card')->middleware('auth:api');
-Route::delete('destroyG_Card/{id}','API\GiftCardController@destroyG_Card')->middleware('auth:api');
+Route::get('getAllG_Card','API\GiftCardController@getAllG_Card');
+Route::get('getG_CardById/{id}','API\GiftCardController@getG_CardById');
+Route::post('createG_Card','API\GiftCardController@createG_Card');
+Route::put('updateG_Card/{id}','API\GiftCardController@updateG_Card');
+Route::delete('destroyG_Card/{id}','API\GiftCardController@destroyG_Card');
 
 //route Bill Kind for auth user 
-Route::get('getAllBill','API\BillKindController@getAllBill')->middleware('auth:api');
-Route::get('getBillById/{id}','API\BillKindController@getBillById')->middleware('auth:api');
-Route::post('createBill','API\BillKindController@createBill')->middleware('auth:api');
-Route::put('updateBill/{id}','API\BillKindController@updateBill')->middleware('auth:api');
-Route::delete('destroyBill/{id}','API\BillKindController@destroyBill')->middleware('auth:api');
+Route::get('getAllBill','API\BillKindController@getAllBill');
+Route::get('getBillById/{id}','API\BillKindController@getBillById');
+Route::post('createBill','API\BillKindController@createBill');
+Route::put('updateBill/{id}','API\BillKindController@updateBill');
+Route::delete('destroyBill/{id}','API\BillKindController@destroyBill');
+
+});

@@ -1,14 +1,14 @@
 @extends('theme.default')
 
 @section('heading')
-Customers
+{{ __('message.Customers') }}
 @endsection
 
 @section('head') 
 <style>
     .table thead tr th {
         font-size: 0.8rem;
-    }
+    } 
 </style>
 @endsection
 
@@ -16,7 +16,8 @@ Customers
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="{{ route('customer.create') }}"><i class="material-icons">add</i> Add New Customer</a>
+        <a class="btn btn-primary" href="{{ route('customer.create') }}"><i class="material-icons">add</i> 
+        {{ __('message.Add New Customer') }}</a>
     </div>
 </div>
 <div class="row">
@@ -26,7 +27,7 @@ Customers
                 <div class="card-icon">
                     <i class="material-icons">local_cafe</i>
                 </div>
-                <h4 class="card-title">Customers</h4>
+                <h4 class="card-title">{{ __('message.Customers') }}</h4>
             </div>
         
             <div class="card-body ">
@@ -34,20 +35,21 @@ Customers
                     <table id="customers-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Nationality</th>
-                                <th>E-mail</th>
-                                <th>Phone</th>
-                                <th>Country</th>
-                                <th>State</th>
-                                <th>City</th>
-                                <th>Area</th>
-                                <th>Street</th>
-                                <th>CreditCard</th>
-                                <th>Note</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th>{{ __('message.Customer Name') }}</th>
+                                <th>{{ __('message.Nationality') }}</th>
+                                <th>{{ __('message.E-mail') }}</th>
+                                <th>{{ __('message.Phone') }}</th>
+                                <th>{{ __('message.Country') }}</th>
+                                <th>{{ __('message.State') }}</th>
+                                <th>{{ __('message.City') }}</th>
+                                <th>{{ __('message.Area') }}</th>
+                                <th>{{ __('message.Street') }}</th>
+                                <th>{{ __('message.CreditCard') }}</th>
+                                <th>{{ __('message.Discount') }}</th>
+                                <th>{{ __('message.Note') }}</th>
+                                <th>{{ __('message.Created At') }}</th>
+                                <th>{{ __('message.Updated At') }}</th>
+                                <th class="disabled-sorting text-right">{{ __('message.Actions') }}</th>
                             </tr>
                         </thead>
                     @if(count($customers) > 0)
@@ -64,12 +66,19 @@ Customers
                                 <td>{{$customer->area}}</td>
                                 <td>{{$customer->street}}</td>
                                 <td>{{$customer->creditCard}}</td>
+                                <td>{{$customer->discount}}</td>
                                 <td>{{$customer->note}}</td>
                                 <td>{{$customer->created_at->diffForHumans()}}</td>
                                 <td>{{$customer->updated_at->diffForHumans()}}</td>
                                 <td class="text-right">
-                                    <a href="{{route('customer.edit',$customer->id)}}" class="btn btn-link btn-info btn-just-icon edit"><i class="material-icons">edit</i></a>
-                                    <a href="{{route('customer.destroy',$customer->id)}}" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">delete</i></a>
+                                    <a href="{{route('customer.edit',$customer->id)}}" 
+                                        class="btn btn-success btn-sm edit">{{ __('message.edit') }}</a>
+                                    <form action="{{route('customer.destroy' ,$customer->id)}}" 
+                                                method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm">{{ __('message.delete') }}</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -91,6 +100,8 @@ Customers
 <script>
     $(document).ready(function() {
         $('#customers-table').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['print'],
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [10, 25, 50, -1],

@@ -71,7 +71,7 @@ class ClassProductController extends Controller
         $Class->addByUserId = Auth::user()->id;
         $Class->save();
 
-        return  redirect()->route('class.home')->withSuccessMessage('Inserted Was Done');
+        return  redirect()->route('class.index')->withSuccessMessage('Inserted Was Done');
     }
 
     /**
@@ -91,9 +91,9 @@ class ClassProductController extends Controller
      * @param  \App\ClassProduct  $classProduct
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClassProduct $classProduct)
+    public function edit(ClassProduct $class)
     {
-        $classProduct = ClassProduct::find($classProduct->id);
+        $classProduct = ClassProduct::find($class->id);
         return view('class.edit')->with(['classProduct' => $classProduct]);
     }
 
@@ -104,25 +104,25 @@ class ClassProductController extends Controller
      * @param  \App\ClassProduct  $classProduct
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ClassProduct $classProduct)
+    public function update(Request $request, ClassProduct $class)
     {
-        $classProduct = ClassProduct::find($classProduct->id);
+        $class = ClassProduct::find($class->id);
              //dd($request->all()); 
         $this->validate($request,[
-            'nameAr' => 'required|string|unique:class_products,nameAr,'.$classProduct->id,
+            'nameAr' => 'required|string|unique:class_products,nameAr,'.$class->id,
             'nameEn' => 'required',
             'note'   => 'nullable|string'
         ]);   
 
         // create instance for model 
 
-        $classProduct->nameAr      = $request->input('nameAr');
-        $classProduct->nameEn      = $request->input('nameEn');
-        $classProduct->note        = $request->input('note');
-        $classProduct->addByUserId = Auth::user()->id;
-        $classProduct->save();
+        $class->nameAr      = $request->input('nameAr');
+        $class->nameEn      = $request->input('nameEn');
+        $class->note        = $request->input('note');
+        $class->addByUserId = Auth::user()->id;
+        $class->save();
 
-        return  redirect()->route('class.home')->withSuccessMessage('Inserted Was Done');
+        return  redirect()->route('class.index')->withSuccessMessage('Inserted Was Done');
     }
 
     /**
@@ -131,16 +131,16 @@ class ClassProductController extends Controller
      * @param  \App\ClassProduct  $classProduct
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClassProduct $classProduct)
+    public function destroy(ClassProduct $class)
     {
-        $classProduct = ClassProduct::findOrFail($classProduct->id);
+        $class = ClassProduct::findOrFail($class->id);
 
-            $products = Product::where('class_id' , '=' , $classProduct->id)->get();
+            $products = Product::where('class_id' , '=' , $class->id)->get();
             foreach ($products as $product) {
-            if($product->class_id == $classProduct->id)
+            if($product->class_id == $class->id)
                 return redirect()->back()->withWarningMessage(['Can Not Delete Has Parent']);
             }
-        $classProduct->delete();
-        return redirect()->route('class.home')->withSuccessMessage(['Deleted Has Been  Done']);
+        $class->delete();
+        return redirect()->route('class.index')->withSuccessMessage(['Deleted Has Been  Done']);
     }
 }

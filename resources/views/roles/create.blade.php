@@ -1,18 +1,15 @@
 @extends('theme.default')
 
-@section('head')
-
-@endsection
 
 @section('heading')
-Add a Role
+{{ __('message.Add a Role') }}
 @endsection
   
 @section('content')
 
 <div class='col-lg-4 col-lg-offset-4'>
 
-    <h1><i class='fa fa-key'></i> Add Role</h1>
+    <h3><i class='fa fa-key'></i> Add Role</h3>
     <hr>
 
     {{ Form::open(array('route' => 'roles.store')) }}

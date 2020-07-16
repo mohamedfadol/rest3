@@ -1,7 +1,7 @@
 @extends('theme.default')
 
 @section('heading')
-Printers
+{{ __('message.Printers') }}
 @endsection
 
 @section('head')
@@ -16,7 +16,8 @@ Printers
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="{{ route('printer.create') }}"><i class="material-icons">add</i> Add New Printer</a>
+        <a class="btn btn-primary" href="{{ route('printer.create') }}">
+            <i class="material-icons">add</i>{{ __('message.Add New Printer') }} </a>
     </div>
 </div>
 <div class="row">
@@ -26,7 +27,7 @@ Printers
                 <div class="card-icon">
                     <i class="material-icons">restaurant_menu</i>
                 </div>
-                <h4 class="card-title">Printers</h4>
+                <h4 class="card-title">{{ __('message.Printers') }}</h4>
             </div>
         
             <div class="card-body ">
@@ -34,15 +35,15 @@ Printers
                     <table id="printers-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>English Name</th>
-                                <th>Printer</th>
-                                <th>Printer Name</th>
-                                <th>Printer Index</th>
-                                <th>Copies Number</th>
-                                <th>The Branch</th>
-                                <th>Note</th> 
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th>{{ __('message.Printer Arabic Name') }}</th>
+                                <th>{{ __('message.Printer English Name') }}</th>
+                                <th>{{ __('message.Printer') }}</th>
+                                <th>{{ __('message.Printer Name') }}</th>
+                                <th>{{ __('message.Printer Index') }}</th>
+                                <th>{{ __('message.Copies Number') }}</th>
+                                <th>{{ __('message.Branch') }}</th>
+                                <th>{{ __('message.Note') }}</th> 
+                                <th class="disabled-sorting text-right">{{ __('message.Actions') }}</th>
                             </tr>
                         </thead>
                         @if(count($printers) > 0 )
@@ -62,13 +63,14 @@ Printers
                                             <a 
                                                 href="{{route('printer.edit',$printer->id)}}" 
                                                     class
-                                                    ="btn btn-link btn-info btn-just-icon edit">
-                                                    <i class="material-icons">edit</i></a>
-                                            <a 
-                                                href="{{route('printer.destroy',$printer->id)}}" 
-                                                    class
-                                                    ="btn btn-link btn-danger btn-just-icon remove">
-                                                    <i class="material-icons">delete</i></a>
+                                                    ="btn btn-success btn-sm edit">
+                                                    {{ __('message.edit') }}</a>
+                                            <form action="{{route('printer.destroy' ,$printer->id)}}" 
+                                                        method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm remove">{{ __('message.delete') }}</button>
+                                            </form>
                                         </td>
                                 </tr>
                                     @endforeach

@@ -1,7 +1,7 @@
 @extends('theme.default')
 
 @section('heading')
-Edit a Employee
+{{ __('message.Edit a Employee') }}
 @endsection
 
 @section('content')
@@ -47,7 +47,7 @@ Edit a Employee
                                 class="form-control">
     </div>
 
-    <h5><b>Give Role</b></h5>
+    <h5><b>{{ __('message.Give Role') }}</b></h5>
 
     <div class='form-group'>
         @foreach ($roles as $role)
@@ -60,7 +60,7 @@ Edit a Employee
 
 
     <div class="form-group">
-        <label class="bmd-label-floating" for="branch">Branch</label>
+        <label class="bmd-label-floating" for="branch">{{ __('message.Branch') }}</label>
         <select id="Branch" class="custom-select" name="branch_id" data-style="select-with-transition" title="Branch" data-size="7">
             @if(isset($branches))
                 @foreach($branches as $branch)
@@ -76,7 +76,7 @@ Edit a Employee
     </div>
 
     <div class="form-group">
-        <label class="bmd-label-floating" for="floor">Floor</label>
+        <label class="bmd-label-floating" for="floor">{{ __('message.Floor') }}</label>
         <select id="floor" class="custom-select" name="floor_id" data-style="select-with-transition" title="Floor" data-size="7">
             @if(isset($floors))
                 @foreach($floors as $floor)

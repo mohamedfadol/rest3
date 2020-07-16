@@ -1,8 +1,7 @@
 <?php
 
 namespace Spatie\Permission\Models;
-use App\Traits\Uuids;
-use Laravel\Passport\HasApiTokens;
+
 use Spatie\Permission\Guard;
 use Illuminate\Support\Collection;
 use Spatie\Permission\Traits\HasRoles;
@@ -17,14 +16,10 @@ use Spatie\Permission\Contracts\Permission as PermissionContract;
 
 class Permission extends Model implements PermissionContract
 {
-    use Uuids , HasApiTokens ;
+    use HasRoles;
     use RefreshesPermissionCache;
 
     protected $guarded = ['id'];
-    protected $primaryKey = 'id'; 
-    public $incrementing = false;
-    protected $casts = ['id' => 'string']; 
-    protected $guard_name = 'web';
 
     public function __construct(array $attributes = [])
     {

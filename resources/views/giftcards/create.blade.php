@@ -15,7 +15,7 @@
 @endsection
 
 @section('heading')
-Add a Giftcard
+{{ __('message.Add New Gift Card') }}
 @endsection
 
 @section('content') 
@@ -26,7 +26,7 @@ Add a Giftcard
                 <div class="card-icon">
                     <i class="material-icons">card_giftcard</i>
                 </div>
-                <h4 class="card-title">Add a Giftcard</h4>
+                <h4 class="card-title">{{ __('message.Add New Gift Card') }}</h4>
             </div>
             <div class="card-body ">
                     @if (count($errors) > 0)
@@ -38,17 +38,17 @@ Add a Giftcard
                             </ul>
                         </div>
                     @endif
-                <form method="Post" action="{{ route('giftcard.create') }}">
+                <form method="Post" action="{{ route('giftcard.store') }}">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Name</label>
+                            <label class="bmd-label-floating" for="name">{{ __('message.GiftCards Name') }}</label>
                             <input type="text" name="name" class="form-control" id="name">
                         </div>
                     </div>
 
                     <div class="row mt-4">
-                        <label class="col-sm-2 col-form-label label-checkbox">Type</label>
+                        <label class="col-sm-2 col-form-label label-checkbox">{{ __('message.GiftCards Type') }}</label>
                         <div class="col-sm-10 checkbox-radios">
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -71,7 +71,7 @@ Add a Giftcard
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="amount">Amount</label>
+                            <label class="bmd-label-floating" for="amount">{{ __('message.GiftCards Amount') }}</label>
                             <input type="text" name="amount" class="form-control" id="amount">
                         </div>
                     </div>
@@ -79,13 +79,13 @@ Add a Giftcard
                     <div class="row mt-4">
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="ValidFrom" class="col-form-label col-md-4">Valid From</label>
+                                <label for="ValidFrom" class="col-form-label col-md-4">{{ __('message.GiftCards Valid From') }}</label>
                                 <input type="text" name="ValidFrom" class="form-control datepicker col-md-4">
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="validTo" class="col-form-label col-md-4">Valid To</label>
+                                <label for="validTo" class="col-form-label col-md-4">{{ __('message.GiftCards Valid To') }}</label>
                                 <input type="text" name="validTo" class="form-control datepicker col-md-4">
                             </div>
                         </div>
@@ -93,19 +93,19 @@ Add a Giftcard
                     
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="couponNumber">Number of Coupons</label>
+                            <label class="bmd-label-floating" for="couponNumber">{{ __('message.GiftCards Number of Coupons') }}</label>
                             <input type="number" name="couponNumber" class="form-control" id="couponNumber">
                         </div>
                     </div>
 
                     <div class="row mt-4">
-                        <label class="col-sm-2 col-form-label label-checkbox">Valid on</label>
+                        <label class="col-sm-2 col-form-label label-checkbox">{{ __('message.GiftCards Valid On') }}</label>
                         <div class="col-sm-10 checkbox-radios">
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
-                                                value="monday"> Monday
+                                                value="monday"> {{ __('message.Monday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -115,7 +115,7 @@ Add a Giftcard
                                 <label class="form-check-label">
                                     <input class="form-check-input" 
                                                 type="checkbox" name="validOn" 
-                                                    value="tuesday"> Tuesday
+                                                    value="tuesday"> {{ __('message.Tuesday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -125,7 +125,7 @@ Add a Giftcard
                                 <label class="form-check-label">
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
-                                                value="wednesday"> Wednesday
+                                                value="wednesday"> {{ __('message.Wednesday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -135,7 +135,7 @@ Add a Giftcard
                                 <label class="form-check-label">
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
-                                                    value="thursday"> Thursday
+                                                    value="thursday"> {{ __('message.Thursday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -145,7 +145,7 @@ Add a Giftcard
                                 <label class="form-check-label">
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
-                                                value="friday"> Friday
+                                                value="friday"> {{ __('message.Friday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -155,7 +155,7 @@ Add a Giftcard
                                 <label class="form-check-label">
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
-                                                value="saturday"> Saturday
+                                                value="saturday"> {{ __('message.Saturday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -165,7 +165,7 @@ Add a Giftcard
                                 <label class="form-check-label">
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
-                                                value="sunday"> Sunday
+                                                value="sunday"> {{ __('message.Sunday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -174,24 +174,11 @@ Add a Giftcard
                         </div>
                     </div>
                     <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                        <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                        <button type="submit" class="btn btn-fill btn-rose">{{ __('message.Submit') }}</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-@endsection
-
-@section('script')
-<script>
-    $(document).ready(function() {
-        // initialise Datetimepicker and Sliders
-        md.initFormExtendedDatetimepickers();
-        if ($('.slider').length != 0) {
-            md.initSliders();
-        }
-    });
-</script>
 @endsection

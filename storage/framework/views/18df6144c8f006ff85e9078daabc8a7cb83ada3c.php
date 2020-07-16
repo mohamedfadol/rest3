@@ -1,5 +1,6 @@
 <?php $__env->startSection('heading'); ?>
-Gift Cards
+<?php echo e(__('message.Gift Cards')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('head'); ?>
@@ -14,7 +15,8 @@ Gift Cards
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="<?php echo e(route('giftcard.create')); ?>"><i class="material-icons">add</i> Add New Gift Card</a>
+        <a class="btn btn-primary" href="<?php echo e(route('giftcard.create')); ?>">
+            <i class="material-icons">add</i><?php echo e(__('message.Add New Gift Card')); ?> </a>
     </div>
 </div>
 <div class="row">
@@ -24,7 +26,7 @@ Gift Cards
                 <div class="card-icon">
                     <i class="material-icons">card_giftcard</i>
                 </div>
-                <h4 class="card-title">Gift Cards</h4>
+                <h4 class="card-title"><?php echo e(__('message.Gift Cards')); ?></h4>
             </div>
         
             <div class="card-body ">
@@ -32,14 +34,14 @@ Gift Cards
                     <table id="giftcards-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th>Amount</th>
-                                <th>Valid From</th>
-                                <th>Valid To</th>
-                                <th>Number of Coupons</th>
-                                <th>Valid On</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th><?php echo e(__('message.GiftCards Name')); ?></th>
+                                <th><?php echo e(__('message.GiftCards Type')); ?></th>
+                                <th><?php echo e(__('message.GiftCards Amount')); ?></th>
+                                <th><?php echo e(__('message.GiftCards Valid From')); ?></th>
+                                <th><?php echo e(__('message.GiftCards Valid To')); ?></th>
+                                <th><?php echo e(__('message.GiftCards Number of Coupons')); ?></th>
+                                <th><?php echo e(__('message.GiftCards Valid On')); ?></th>
+                                <th class="disabled-sorting text-right"><?php echo e(__('message.Actions')); ?></th>
                             </tr>
                         </thead>
 
@@ -55,8 +57,14 @@ Gift Cards
                             <td><?php echo e($giftcard->couponNumber); ?></td>
                             <td><?php echo e($giftcard->validOn); ?></td>
                             <td class="text-right">
-                                <a href="<?php echo e(route('giftcard.edit' ,$giftcard->id)); ?>" class="btn btn-link btn-info btn-just-icon edit"><i class="material-icons">edit</i></a>
-                                <a href="<?php echo e(route('giftcard.destroy' ,$giftcard->id)); ?>" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">delete</i></a>
+                                <a href="<?php echo e(route('giftcard.edit' ,$giftcard->id)); ?>" 
+                                    class="btn btn-success btn-sm edit"><?php echo e(__('message.edit')); ?></a>
+                                    <form action="<?php echo e(route('giftcard.destroy' ,$giftcard->id)); ?>" 
+                                                method="POST">
+                                        <?php echo method_field('DELETE'); ?>
+                                        <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-danger btn-sm"><?php echo e(__('message.delete')); ?></button>
+                                    </form>
                             </td>
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

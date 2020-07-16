@@ -4,14 +4,11 @@ namespace App;
 
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\MultipleInsertByUserId; 
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Customer extends Model
 {
     use Uuids  ,LogsActivity;
-    
-    //use MultipleInsertByUserId;
 
     protected $primaryKey = 'id'; 
     public $incrementing = false; 

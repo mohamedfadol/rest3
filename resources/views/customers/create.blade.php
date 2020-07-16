@@ -1,21 +1,8 @@
 @extends('theme.default')
 
-@section('head')
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-@endsection
 
 @section('heading')
-Add a Customer
+{{ __('message.Add New Customer') }}
 @endsection
 
 @section('content')
@@ -26,7 +13,7 @@ Add a Customer
                 <div class="card-icon">
                     <i class="material-icons">local_cafe</i>
                 </div>
-                <h4 class="card-title">Add a Customer </h4>
+                <h4 class="card-title">{{ __('message.Add New Customer') }} </h4>
             </div>
             <div class="card-body ">
                     @if (count($errors) > 0)
@@ -38,23 +25,23 @@ Add a Customer
                             </ul>
                         </div>
                     @endif
-                <form method="POST" action="{{ route('customer.create') }}">
+                <form method="POST" action="{{ route('customer.store') }}">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Name</label>
+                            <label class="bmd-label-floating" for="name">{{ __('message.Customer Name') }}</label>
                             <input 
                                 type="text" 
                                     class="form-control" 
                                         id="name" 
                                             name="name" 
-                                                required>
+                                                required />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nationality">Nationality</label>
+                            <label class="bmd-label-floating" for="nationality">{{ __('message.Nationality') }}</label>
                             <input class="form-control" 
                                             id="nationality" 
                                                 name="nationality" 
@@ -64,7 +51,7 @@ Add a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="email">E-mail</label>
+                            <label class="bmd-label-floating" for="email">{{ __('message.E-mail') }}</label>
                             <input class="form-control" 
                                             id="email" 
                                                 name="email" 
@@ -75,7 +62,7 @@ Add a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="phone">Phone</label>
+                            <label class="bmd-label-floating" for="phone">{{ __('message.Phone') }}</label>
                             <input class="form-control" 
                                             id="phone" 
                                                 name="phone"
@@ -85,7 +72,7 @@ Add a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="country">Country</label>
+                            <label class="bmd-label-floating" for="country">{{ __('message.Country') }}</label>
                             <input class="form-control" 
                                             id="country" 
                                                 name="country" 
@@ -95,7 +82,7 @@ Add a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="state">State</label>
+                            <label class="bmd-label-floating" for="state">{{ __('message.State') }}</label>
                             <input class="form-control" 
                                             id="state" 
                                                 name="state" 
@@ -104,7 +91,7 @@ Add a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="city">City</label>
+                            <label class="bmd-label-floating" for="city">{{ __('message.City') }}</label>
                             <input class="form-control" 
                                             id="city" 
                                                 name="city"
@@ -113,7 +100,7 @@ Add a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="area">Area</label>
+                            <label class="bmd-label-floating" for="area">{{ __('message.Area') }}</label>
                             <input class="form-control" 
                                             id="area" 
                                                 name="area"
@@ -122,7 +109,7 @@ Add a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="street">Street</label>
+                            <label class="bmd-label-floating" for="street">{{ __('message.Street') }}</label>
                             <input class="form-control" 
                                             id="street" 
                                                 name="street"  
@@ -131,7 +118,7 @@ Add a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="creditCard">Credit-Card</label>
+                            <label class="bmd-label-floating" for="creditCard">{{ __('message.CreditCard') }}</label>
                             <input class="form-control" 
                                             id="creditCard" 
                                                 name="creditCard" 
@@ -140,7 +127,7 @@ Add a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="discount">Discount</label>
+                            <label class="bmd-label-floating" for="discount">{{ __('message.Discount') }}</label>
                             <input class="form-control" 
                                             id="discount" 
                                                 name="discount"
@@ -149,7 +136,7 @@ Add a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="note">Note</label>
+                            <label class="bmd-label-floating" for="note">{{ __('message.Note') }}</label>
                             <input class="form-control" 
                                             id="note" 
                                                 name="note" 
@@ -158,8 +145,7 @@ Add a Customer
                     </div>
 
                             <div class="card-footer ">
-                                <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                                <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                                <button type="submit" class="btn btn-fill btn-rose">{{ __('message.Submit') }}</button>
                             </div>
 
                 </form>

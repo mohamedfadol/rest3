@@ -16,14 +16,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo asset('theme/img/apple-icon.png'); ?>">
     <link rel="icon" type="image/png" href="<?php echo asset('theme/img/favicon.png'); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-        Aurages Restaurant Administration System
-    </title>
+    <title> Aurages Restaurant Administration System </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
     <!-- Fonts and icons -->
@@ -31,22 +29,9 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="<?php echo asset('theme/css/material-dashboard.css?v=2.1.0'); ?>" rel="stylesheet" />
-    
-    
-    
-    
-    
-    
-<link href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.jqueryui.min.css" rel="stylesheet" />
-    
-    
-    
-    
-    
-    
-    
+    <link href="<?php echo asset('theme/css/material-dashboard.css?v=2.1.0'); ?>" rel="stylesheet" />    
+    <link href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.jqueryui.min.css" rel="stylesheet" />
     
     <?php echo $__env->yieldContent('head'); ?>
 </head>
@@ -102,8 +87,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <!-- Library for adding dinamically elements -->
     <script src="<?php echo asset('theme/js/plugins/arrive.min.js'); ?>"></script>
-    <!--  Google Maps Plugin    -->
-    <script src=" https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"> </script> <!-- Chartist JS -->
+    <!--  Google Maps Plugin    
+    <script src=" https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"> </script>  Chartist JS -->
         <script src="<?php echo asset('theme/js/plugins/chartist.min.js'); ?>">
     </script>
     <!--  Notifications Plugin    -->
@@ -111,18 +96,18 @@
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="<?php echo asset('theme/js/material-dashboard.js?v=2.1.0" type="text/javascript'); ?>"></script>
     
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script> 
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.dataTables.min.js"></script>  
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.js"></script>  
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.jqueryui.min.js"></script>  
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>  
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>  
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.flash.js"></script>  
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.js"></script>  
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>  
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.js"></script>  
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script> 
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.dataTables.min.js"></script>  
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.js"></script>  
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.jqueryui.min.js"></script>  
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>  
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>  
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.flash.js"></script>  
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.js"></script>  
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>  
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.js"></script>  
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     
     
     <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

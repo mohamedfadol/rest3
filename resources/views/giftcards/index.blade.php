@@ -1,7 +1,7 @@
 @extends('theme.default')
 
 @section('heading')
-Gift Cards
+{{ __('message.Gift Cards') }}
 @endsection
 
 @section('head')
@@ -16,7 +16,8 @@ Gift Cards
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="{{ route('giftcard.create') }}"><i class="material-icons">add</i> Add New Gift Card</a>
+        <a class="btn btn-primary" href="{{ route('giftcard.create') }}">
+            <i class="material-icons">add</i>{{ __('message.Add New Gift Card') }} </a>
     </div>
 </div>
 <div class="row">
@@ -26,7 +27,7 @@ Gift Cards
                 <div class="card-icon">
                     <i class="material-icons">card_giftcard</i>
                 </div>
-                <h4 class="card-title">Gift Cards</h4>
+                <h4 class="card-title">{{ __('message.Gift Cards') }}</h4>
             </div>
         
             <div class="card-body ">
@@ -34,14 +35,14 @@ Gift Cards
                     <table id="giftcards-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th>Amount</th>
-                                <th>Valid From</th>
-                                <th>Valid To</th>
-                                <th>Number of Coupons</th>
-                                <th>Valid On</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th>{{ __('message.GiftCards Name') }}</th>
+                                <th>{{ __('message.GiftCards Type') }}</th>
+                                <th>{{ __('message.GiftCards Amount') }}</th>
+                                <th>{{ __('message.GiftCards Valid From') }}</th>
+                                <th>{{ __('message.GiftCards Valid To') }}</th>
+                                <th>{{ __('message.GiftCards Number of Coupons') }}</th>
+                                <th>{{ __('message.GiftCards Valid On') }}</th>
+                                <th class="disabled-sorting text-right">{{ __('message.Actions') }}</th>
                             </tr>
                         </thead>
 
@@ -57,8 +58,14 @@ Gift Cards
                             <td>{{ $giftcard->couponNumber }}</td>
                             <td>{{ $giftcard->validOn }}</td>
                             <td class="text-right">
-                                <a href="{{route('giftcard.edit' ,$giftcard->id)}}" class="btn btn-link btn-info btn-just-icon edit"><i class="material-icons">edit</i></a>
-                                <a href="{{route('giftcard.destroy' ,$giftcard->id)}}" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">delete</i></a>
+                                <a href="{{route('giftcard.edit' ,$giftcard->id)}}" 
+                                    class="btn btn-success btn-sm edit">{{ __('message.edit') }}</a>
+                                    <form action="{{route('giftcard.destroy' ,$giftcard->id)}}" 
+                                                method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm">{{ __('message.delete') }}</button>
+                                    </form>
                             </td>
                         </tr>
                         @endforeach

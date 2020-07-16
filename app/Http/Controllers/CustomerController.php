@@ -84,7 +84,7 @@ class CustomerController extends Controller
         $customer->note        = $request->input('note');
         $customer->addByUserId = Auth::user()->id;
         $customer->save();   
-        return redirect()->route('customer.home')->withSuccessMessage(['Inserted Has Been  Done']);
+        return redirect()->route('customer.index')->withSuccessMessage(['Inserted Has Been  Done']);
     }
 
     /**
@@ -148,7 +148,7 @@ class CustomerController extends Controller
         $customer->note        = $request->input('note');
         $customer->addByUserId = Auth::user()->id;
         $customer->save();   
-        return redirect()->route('customer.home')->withSuccessMessage(['Inserted Has Been  Done']);
+        return redirect()->route('customer.index')->withSuccessMessage(['Inserted Has Been  Done']);
     }
 
     /**
@@ -167,7 +167,7 @@ class CustomerController extends Controller
                 return redirect()->back()->withWarningMessage(['Can Not Delete Has Parent']);
             }
         $customer->delete();
-        return  redirect()->route('customer.home')->withSuccessMessage('Deleted Was Done');
+        return  redirect()->route('customer.index')->withSuccessMessage('Deleted Was Done');
     
     }
 

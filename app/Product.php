@@ -39,7 +39,7 @@ class Product extends Model
 
     public function voidOrder(){return $this->hasMany(voidOrder::class , 'product_id');}
 
-    public function image(){return $this->hasOne(Image::class);}
+    public function image(){return $this->hasOne(Image::class);} 
     
     public function category(){return $this->belongsTo(Category::class);} 
 

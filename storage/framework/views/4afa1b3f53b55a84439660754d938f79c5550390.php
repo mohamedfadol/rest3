@@ -8,7 +8,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('heading'); ?>
-Daily Orders Report
+<?php echo e(__('message.Daily Orders Report')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -19,7 +20,7 @@ Daily Orders Report
                 <div class="card-icon">
                     <i class="material-icons">list</i>
                 </div>
-                <h4 class="card-title">Daily Orders Report</h4>
+                <h4 class="card-title"><?php echo e(__('message.Daily Orders Report')); ?></h4>
             </div>
             <div class="card-body ">
                 <?php if(count($errors) > 0): ?>
@@ -35,19 +36,19 @@ Daily Orders Report
                     <?php echo csrf_field(); ?>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label" for="from">From</label>
+                            <label class="bmd-label" for="from"><?php echo e(__('message.From')); ?></label>
                             <input type="date" class="form-control mt-2" id="from" name="from" value="<?php echo e($request ? $request->from : Carbon\Carbon::now()->subMonth()->format('Y-m-d')); ?>" required>
                         </div>
 
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label" for="to">To</label>
+                            <label class="bmd-label" for="to"><?php echo e(__('message.To')); ?></label>
                             <input type="date" class="form-control mt-2" id="to" name="to" value="<?php echo e($request ? $request->to : Carbon\Carbon::now()->format('Y-m-d')); ?>" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-4 mt-4">
-                            <label class="bmd-label" for="branch">Branch</label>
+                            <label class="bmd-label" for="branch"><?php echo e(__('message.Branch')); ?></label>
                             <select id="branch" class="custom-select" name="branch">
                                 <?php if(count($branches) > 0): ?>
                                     <option value="all">All</option>
@@ -61,14 +62,14 @@ Daily Orders Report
                         </div>
 
                         <div class="form-group col-md-4 mt-4">
-                            <label for="floor" class="bmd-label-floating">Floor</label>
+                            <label for="floor" class="bmd-label-floating"><?php echo e(__('message.Floor')); ?></label>
                             <select id="floor" class="custom-select" name="floor" data-old="<?php echo e($request ? $request->floor : ''); ?>" title="floor" data-size="7">
                                 <option value="all" <?php echo e($request ? ($request->floor == 'all' ? 'selected' : '') : ''); ?>>All</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4 mt-4">
-                            <label for="table" class="bmd-label-floating">Table</label>
+                            <label for="table" class="bmd-label-floating"><?php echo e(__('message.Table')); ?></label>
                             <select id="table" class="custom-select" name="table" title="table" data-old="<?php echo e($request ? $request->table : ''); ?>">
                                 <option value="all">All</option>
                             </select>
@@ -77,7 +78,7 @@ Daily Orders Report
 
                     <div class="row">
                         <div class="form-group col-md-4 mt-6 row">
-                            <label class="bmd-label-floating" for="employee">Added by</label>
+                            <label class="bmd-label-floating" for="employee"><?php echo e(__('message.Added By')); ?></label>
                             <select id="employee" class="custom-select" data-old="<?php echo e($request ? $request->employee : ''); ?>" name="employee">
                                 <option value="all">All</option>
                             </select>
@@ -85,37 +86,26 @@ Daily Orders Report
                     </div>
 
                     <div class="row">
-                        <label class="col-sm-2 mt-4 pt-1">Payment Type</label>
+                        <label class="col-sm-2 mt-4 pt-1"><?php echo e(__('message.Payment Type')); ?></label>
                         <div class="col-sm-10 mt-4 checkbox-radios">
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input class="form-check-input payment_type" type="checkbox" name="payment_types[]" value="cache" <?php echo e($request ? (in_array('cache', $request->payment_types) ? 'checked' : '') : 'checked'); ?>> Cache
-                                    <span class="form-check-sign">
-                                        <span class="check"></span>
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input class="form-check-input payment_type" type="checkbox" name="payment_types[]" value="visa card" <?php echo e($request ? (in_array('visa card', $request->payment_types) ? 'checked' : '') : 'checked'); ?>> Visa Card
-                                    <span class="form-check-sign">
-                                        <span class="check"></span>
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input class="form-check-input payment_type" type="checkbox" name="payment_types[]" value="receivables" <?php echo e($request ? (in_array('receivables', $request->payment_types) ? 'checked' : '') : 'checked'); ?>> Receivables
-                                    <span class="form-check-sign">
-                                        <span class="check"></span>
-                                    </span>
-                                </label>
-                            </div>
+                             <?php if(!empty($paymentTypes)): ?>
+                                <?php $__currentLoopData = $paymentTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input payment_type" type="checkbox" name="payment_types[]" value="<?php echo e($type->id); ?>" <?php echo e($request ? (in_array($type->id, $request->payment_types) ? 'checked' : '') : 'checked'); ?>> <?php echo e($type->name); ?>
+
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
                         </div>
                     </div>
 
                     <div class="row">
-                        <label class="col-sm-2 mt-4 pt-1">Order Type</label>
+                        <label class="col-sm-2 mt-4 pt-1"><?php echo e(__('message.Order Type')); ?></label>
                         <div class="col-sm-10 mt-4 checkbox-radios">
                             <?php $__currentLoopData = $orderTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="form-check form-check-inline">
@@ -131,7 +121,7 @@ Daily Orders Report
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-fill btn-rose">Submit</button>
+                    <button type="submit" class="btn btn-fill btn-rose"><?php echo e(__('message.Submit')); ?></button>
                 </form>
             </div>
         </div>
@@ -145,44 +135,24 @@ Daily Orders Report
                     <table id="orders-table" class="table table-striped table-hover table-responsive" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Number</th>
-                                <th>Daily Number</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Order Type</th>
-                                <th>Branch</th>
-                                <th>Floor</th>
-                                <th>Table</th>
-                                <th>Customer</th>
-                                <th>Added By</th>
-                                <th>Payment Type</th>
-                                <th>Notes</th>
-                                <th>Extra</th>
-                                <th>Discount</th>
-                                <th>Tax</th>
-                                <th>Total</th>
+                                <th><?php echo e(__('message.Number')); ?></th>
+                                <th><?php echo e(__('message.Daily Number')); ?></th>
+                                <th><?php echo e(__('message.Date')); ?></th>
+                                <th><?php echo e(__('message.Time')); ?></th>
+                                <th><?php echo e(__('message.Order Type')); ?></th>
+                                <th><?php echo e(__('message.Branch')); ?></th>
+                                <th><?php echo e(__('message.Floor')); ?></th>
+                                <th><?php echo e(__('message.Table')); ?></th>
+                                <th><?php echo e(__('message.Customer')); ?></th>
+                                <th><?php echo e(__('message.Added By')); ?></th>
+                                <th><?php echo e(__('message.Payment Type')); ?></th>
+                                <th><?php echo e(__('message.Notes')); ?></th>
+                                <th><?php echo e(__('message.Extra')); ?></th>
+                                <th><?php echo e(__('message.Discount')); ?></th>
+                                <th><?php echo e(__('message.Tax')); ?></th>
+                                <th><?php echo e(__('message.Total')); ?></th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Number</th>
-                                <th>Daily Number</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Order Type</th>
-                                <th>Branch</th>
-                                <th>Floor</th>
-                                <th>Table</th>
-                                <th>Customer</th>
-                                <th>Added By</th>
-                                <th>Payment Type</th>
-                                <th>Notes</th>
-                                <th>Extra</th>
-                                <th>Discount</th>
-                                <th>Tax</th>
-                                <th>Total</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
                             <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
@@ -223,7 +193,7 @@ Daily Orders Report
                     handleFloorChange();
                 }
             })
-            
+
             $('.payment_type').click(function() {
                 checked = $("input[name='payment_types[]']:checked").length;
                 if(!checked) {
@@ -255,7 +225,7 @@ Daily Orders Report
                     search: "_INPUT_",
                 searchPlaceholder: "Search",
                 }
-            });  
+            });
         });
 
 
@@ -274,7 +244,7 @@ Daily Orders Report
             $('#table').append('<option value="all">All</option>')
             $('#employee').empty()
             $('#employee').append('<option value="all">All</option>')
-            var selectedBranch = $("#branch option:selected").val() 
+            var selectedBranch = $("#branch option:selected").val()
             if(selectedBranch != 0) {
                 $.ajax({
                     url: 'branches/' + selectedBranch + '/floors',

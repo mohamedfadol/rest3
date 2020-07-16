@@ -17,8 +17,8 @@ class CreateTransTable extends Migration
             $table->uuid('id')->primary();
             $table->string('name')->nullable('null'); 
             $table->string('date')->nullable('null');
-            $table->float('debit')->defualt(0);
-            $table->float('credit')->defualt(0);
+            $table->float('debit')->default(0);
+            $table->float('credit')->default(0);
             $table->string('notes')->nullable('null');
             
             $table->uuid('addByUserId');

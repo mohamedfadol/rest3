@@ -8,7 +8,7 @@
 </style>
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('heading'); ?>
+<?php $__env->startSection('heading'); ?> 
 Activity Log Report
 <?php $__env->stopSection(); ?>
 
@@ -69,7 +69,7 @@ Activity Log Report
                     <h4 class="card-title">Results</h4>
                 </div>
                 <div class="card-body ">
-                    <table id="activities-table" class="table table-striped table-hover" cellspacing="0" width="100%" style="width:100%">
+                    <table id="activities-table" class="table table-striped table-hover table-responsive" cellspacing="0" width="100%" >
                         <thead>
                             <tr>
                                 <th>User</th>
@@ -104,7 +104,7 @@ Activity Log Report
                     url: "<?php echo e(route('reports.drawLogTable')); ?>",
                     type: "POST",
                     data: params
-                },
+                }, 
                 columns: [
                     { data: 'name', name: 'name' },
                     { data: 'description', name: 'description' },
@@ -114,8 +114,8 @@ Activity Log Report
                 ],
                 "pagingType": "full_numbers",
                 "lengthMenu": [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
+                    [5, 10, 20, -1],
+                    [5, 10, 20, "All"]
                 ],
                 responsive: true,
                 language: {

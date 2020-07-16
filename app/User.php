@@ -4,18 +4,17 @@ namespace App;
 
 use App\Traits\Uuids;
 use Laravel\Passport\HasApiTokens;
-use App\Traits\MultipleInsertByUserId;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
-use Spatie\Activitylog\Traits\LogsActivity;
+
 
 
 class User extends Authenticatable
 { 
     use Uuids , HasApiTokens ,LogsActivity;
-    //use MultipleInsertByUserId ;
     use Notifiable;
     use HasRoles; 
 
@@ -86,5 +85,8 @@ class User extends Authenticatable
     public function printers(){return $this->hasMany(Printer::class ,'addByUserId');}
 
     public function payments(){return $this->hasMany(Payment::class ,'addByUserId');}
+
+    public function deliveries(){return $this->hasMany(Delivery::class ,'addByUserId');}
+    
 
 }

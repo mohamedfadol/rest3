@@ -82,7 +82,7 @@ class TableController extends Controller
         $table->addByUserId     =  auth::user()->id;
         $table->save();
 
-        return  redirect()->route('table.home')->withSuccessMessage('Inserted Was Done');
+        return  redirect()->route('table.index')->withSuccessMessage('Inserted Was Done');
     }
 
     /**
@@ -143,7 +143,7 @@ class TableController extends Controller
         $table->addByUserId     =  auth::user()->id;
         $table->save();
 
-        return  redirect()->route('table.home')->withSuccessMessage('Inserted Was Done');
+        return  redirect()->route('table.index')->withSuccessMessage('Inserted Was Done');
 
     }
 
@@ -163,6 +163,6 @@ class TableController extends Controller
                 return redirect()->back()->withWarningMessage([' Can Not Delete Has Parent']);
             }
         $table->delete();
-        return  redirect()->route('table.home')->withSuccessMessage('Deleted Was Done');
+        return  redirect()->route('table.index')->withSuccessMessage('Deleted Was Done');
     }
 }

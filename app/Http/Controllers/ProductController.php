@@ -14,7 +14,7 @@ use App\Printer;
 use App\ClassProduct;
 use Auth;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
+use RealRashid\SweetAlert\Facades\Alert; 
 
 class ProductController extends Controller
 {
@@ -43,7 +43,10 @@ class ProductController extends Controller
     public function index()
     { 
         $products = Auth::user()->products;
-        return view('products.index')->with(['products' => $products]);
+        $branches = Auth::user()->branches;
+        $branchName = $branches->first();
+        $branchname =$branchName->slugable; 
+        return view('products.index')->with(['products' => $products,'branchname' => $branchname]);
     } 
 
     /**
@@ -53,12 +56,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('addByUserId'  , auth::user()->id)->get();
-        $modifires = Modifire::where('addByUserId'  , auth::user()->id)->get();
-        $ingredients = Ingredient::where('addByUserId'  , auth::user()->id)->get();
-        $printers = Printer::where('addByUserId'  , auth::user()->id)->get();
-        $classes = ClassProduct::where('addByUserId'  , auth::user()->id)->get();
-           // dd($printers);
+        $categories = Auth::user()->categories;
+        $modifires  = Auth::user()->modifires;
+        $ingredients  = Auth::user()->ingrediants;
+        $printers  = Auth::user()->printers;
+        $classes  = Auth::user()->classes;
         return view('products.create')
                 ->with([
                         'categories'  => $categories , 
@@ -95,15 +97,36 @@ class ProductController extends Controller
             'modifires'       => 'nullable',
             'printer_id'      => 'nullable',
             'ingredient_id'   => 'nullable',
-            'class_id'        => 'nullable',
+            'class_id'        => 'required|uuid',
             'quantity'        => 'nullable' 
         ]);  
 
+        if ($request->hasFile('image')) {
+            // Get File Name With Extenison
+            $fileNameWithEex = $request->file('image')->getClientOriginalName();
+            // Get fileName Only
+            $fileName = pathinfo($fileNameWithEex , PATHINFO_FILENAME);
+            // Get FileExtenison
+            $extension = $request->file('image')->getClientOriginalExtension();
+            // fileName To Store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            // Upload Image
+            $branches = Auth::user()->branches;
+            $branchName = $branches->first();
+            //dd($branchName->name);
+            $branchName =$branchName->slugable;
+            $folder = 'public/'.$branchName.'/product';
+            $path = $request->file('image')->storeAs($folder, $fileNameToStore);
+            // dd($path);
+        }else{
+            $fileNameToStore = 'No Images To Store In .jpg';
+        } 
         // create instance for model 
         $product = new Product;  
         $product->nameAr           =  $request->input('nameAr');
         $product->descriptionAr    =  $request->input('descriptionAr');
         $product->nameEn           =  $request->input('nameEn');
+        $product->image            = $fileNameToStore;
         $product->descriptionEn    =  $request->input('descriptionEn');
         $product->sku = str_slug('2-'.$request->input('sku'));
         $product->category_id      =  $request->input('category_id');
@@ -112,32 +135,27 @@ class ProductController extends Controller
         $product->timedEventFrom   =  $request->input('timedEventFrom');
         $product->timedEventTo     =  $request->input('timedEventTo');
         $product->price            = $request->price == null ? '0' : $request->input('price');
-
         $product->sellType         =  $request->input('sellType');
         $product->tax              =  $request->input('tax');
         $product->active           = $request->active == 'on' ? true : false;
         $product->addByUserId      = Auth::user()->id;
         $product->save(); 
-
         $Udatesku = Product::findOrFail($product->id);
         $product->sku = str_slug('1-'.$Udatesku->code.'-'.$request->input('sku')) ;
         $product->update();
 
-        if ($files = $request->hasFile('image')) {
-           $fileNameWithEex = $request->file('image')->getClientOriginalName();
-           $fileName = $request->file('image')->getRealPath();
-           $image = file_get_contents($fileName);
-           $fileNameToStoreBase64 = base64_encode($image);
-           $categoryImage = new Image;
-           $categoryImage->product_id  = $product->id; 
-           $categoryImage->image      = $fileNameToStoreBase64;
-           $categoryImage->save(); 
-
-
-        }else{ 
-
-            $fileNameToStoreBase64 = null ;
-        }
+        // if ($files = $request->hasFile('image')) {
+        //    $fileNameWithEex = $request->file('image')->getClientOriginalName();
+        //    $fileName = $request->file('image')->getRealPath();
+        //    $image = file_get_contents($fileName);
+        //    $fileNameToStoreBase64 = base64_encode($image);
+        //    $categoryImage = new Image;
+        //    $categoryImage->product_id  = $product->id; 
+        //    $categoryImage->image      = $fileNameToStoreBase64;
+        //    $categoryImage->save(); 
+        // }else{ 
+        //     $fileNameToStoreBase64 = null ;
+        // } 
 
           if (!empty($request->input('modifires')) ) {
                 $product->modifires()->sync($request->input('modifires') , false);
@@ -154,7 +172,7 @@ class ProductController extends Controller
           }
       }
 
-        return  redirect()->route('product.home')->withSuccessMessage('Inserted Was Done');
+        return  redirect()->route('product.index')->withSuccessMessage('Inserted Was Done');
 
         // if (!empty($request->input('ingredient_id') && $request->input('quantity')) ) {
         //         $product->ingredients()->sync($request->input('ingredient_id') , false);
@@ -235,11 +253,32 @@ class ProductController extends Controller
             'quantity'        => 'nullable' 
         ]);  
 
-        $product  = Product::findOrFail($product->id);  
 
+        if ($request->hasFile('image')) {
+            // Get File Name With Extenison
+            $fileNameWithEex = $request->file('image')->getClientOriginalName();
+            // Get fileName Only
+            $fileName = pathinfo($fileNameWithEex , PATHINFO_FILENAME);
+            // Get FileExtenison
+            $extension = $request->file('image')->getClientOriginalExtension();
+            // fileName To Store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            // Upload Image
+            $branches = Auth::user()->branches;
+            $branchName = $branches->first();
+            //dd($branchName->name);
+            $branchName =$branchName->slugable;
+            $folder = 'public/'.$branchName.'/product';
+            $path = $request->file('image')->storeAs($folder, $fileNameToStore);
+            // dd($path);
+        }else{
+            $fileNameToStore = 'No Images To Store In .jpg';
+        } 
+        $product  = Product::findOrFail($product->id);  
         $product->nameAr           =  $request->input('nameAr');
         $product->descriptionAr    =  $request->input('descriptionAr');
         $product->nameEn           =  $request->input('nameEn');
+        $product->image            = $fileNameToStore;
         $product->descriptionEn    =  $request->input('descriptionEn');
         $product->sku = str_slug('2-'.$request->input('sku'));
         $product->category_id      =  $request->input('category_id');
@@ -248,33 +287,26 @@ class ProductController extends Controller
         $product->timedEventFrom   =  $request->input('timedEventFrom');
         $product->timedEventTo     =  $request->input('timedEventTo');
         $product->price            = $request->price == null ? '0' : $request->input('price');
-
         $product->sellType         =  $request->input('sellType');
         $product->tax              =  $request->input('tax');
         $product->active           = $request->active == 'on' ? true : false;
         $product->addByUserId      = Auth::user()->id;
         $product->save(); 
-
-
         $Udatesku = Product::findOrFail($product->id);
         $product->sku = str_slug('1-'.$Udatesku->code.'-'.$request->input('sku')) ;
-        $product->update();
-        
-        if ($files = $request->hasFile('image')) {
-           $fileNameWithEex = $request->file('image')->getClientOriginalName();
-           $fileName = $request->file('image')->getRealPath();
-           $image = file_get_contents($fileName);
-           $fileNameToStoreBase64 = base64_encode($image);
-           $categoryImage = new Image;
-           $categoryImage->product_id  = $product->id; 
-           $categoryImage->image       = $fileNameToStoreBase64;
-           $categoryImage->save(); 
-
-
-        }else{
-
-            $fileNameToStoreBase64 = null ;
-        }
+        $product->update();        
+        // if ($files = $request->hasFile('image')) {
+        //    $fileNameWithEex = $request->file('image')->getClientOriginalName();
+        //    $fileName = $request->file('image')->getRealPath();
+        //    $image = file_get_contents($fileName);
+        //    $fileNameToStoreBase64 = base64_encode($image);
+        //    $categoryImage = new Image;
+        //    $categoryImage->product_id  = $product->id; 
+        //    $categoryImage->image       = $fileNameToStoreBase64;
+        //    $categoryImage->save(); 
+        // }else{
+        //     $fileNameToStoreBase64 = null ;
+        // }
 
           if (!empty($request->input('modifires')) ) {
                 $product->modifires()->detach();
@@ -293,7 +325,7 @@ class ProductController extends Controller
           }
       } 
 
-        return  redirect()->route('product.home')->withSuccessMessage('Updated Was Done');
+        return  redirect()->route('product.index')->withSuccessMessage('Updated Was Done');
     }
 
     /**
@@ -331,6 +363,6 @@ class ProductController extends Controller
         $product->modifires()->detach();
         $product->ingredients()->detach();
         $product->delete();
-        return redirect()->route('product.home')->withSuccessMessage(['Deleted Has Been  Done']);
+        return redirect()->route('product.index')->withSuccessMessage(['Deleted Has Been  Done']);
     }
 }

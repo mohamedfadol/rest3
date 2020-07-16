@@ -13,7 +13,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('heading'); ?>
-Add a Modifire
+<?php echo e(__('message.Add New modifire')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -24,7 +25,7 @@ Add a Modifire
                 <div class="card-icon">
                     <i class="material-icons">power</i>
                 </div>
-                <h4 class="card-title">Add a Modifire</h4>
+                <h4 class="card-title"><?php echo e(__('message.Add New modifire')); ?></h4>
             </div>
             <div class="card-body ">
                     <?php if(count($errors) > 0): ?>
@@ -36,47 +37,47 @@ Add a Modifire
                             </ul>
                         </div>
                     <?php endif; ?>
-                <form method="POST" action="<?php echo e(route('modifire.create')); ?>">
+                <form method="POST" action="<?php echo e(route('modifire.store')); ?>">
                     <?php echo csrf_field(); ?>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nameAr">Arabic Name</label>
-                            <input type="text" class="form-control" id="nameAr" name="nameAr">
+                            <label class="bmd-label-floating" for="nameAr"><?php echo e(__('message.modifire Arabic Name')); ?></label>
+                            <input type="text" class="form-control" id="nameAr" name="nameAr" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nameEn">English Name</label>
+                            <label class="bmd-label-floating" for="nameEn"><?php echo e(__('message.modifire English Name')); ?></label>
                             <input type="text" class="form-control" id="nameEn" name="nameEn">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="sku">SKU</label>
-                            <input type="text" class="form-control" id="sku" name="sku">
+                            <label class="bmd-label-floating" for="sku"><?php echo e(__('message.SKU')); ?></label>
+                            <input type="text" class="form-control" id="sku" name="sku" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="cost">Cost</label>
-                            <input type="number" class="form-control" id="cost" name="cost">
+                            <label class="bmd-label-floating" for="cost"><?php echo e(__('message.Cost')); ?></label>
+                            <input type="number" class="form-control" id="cost" name="cost" >
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-6">
-                            <label class="bmd-label-floating" for="tax">Tax</label>
+                            <label class="bmd-label-floating" for="tax"><?php echo e(__('message.Tax')); ?></label>
                             <input type="number" class="form-control" id="tax" name="tax">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="price">Price</label>
-                            <input type="number" class="form-control" id="price" name="price">
+                            <label class="bmd-label-floating" for="price"><?php echo e(__('message.Price')); ?></label>
+                            <input type="number" class="form-control" id="price" name="price" required>
                         </div>
                     </div>
 
@@ -103,8 +104,7 @@ Add a Modifire
                     </div>
                     
                     <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                        <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                        <button type="submit" class="btn btn-fill btn-rose"><?php echo e(__('message.Submit')); ?></button>
                     </div>
                 </form>
             </div>

@@ -1,55 +1,27 @@
-<?php $__env->startSection('head'); ?>
-    
-    
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('heading'); ?>
-Register
-<?php $__env->stopSection(); ?>
-
-
 <?php $__env->startSection('content'); ?>
-<div class="row">
-    <div class="col-md-12">
-        <div class="card ">
-            <div class="card-header card-header-rose card-header-icon">
-                <div class="card-icon">
-                    <i class="material-icons">perm_identity</i>
-                </div>
-                <h4 class="card-title">Registeration Form</h4>
-            </div>
 
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">    
+            <div class="card login">
+                
+                    <div class="card-header"><?php echo e(__('Registration Form')); ?></div>
+                                        
                 <div class="card-body">
                     <form method="POST" action="<?php echo e(route('register')); ?>">
                         <?php echo csrf_field(); ?>
-                        <div class="row">
-                            
-                        
-                        <div class="form-group col-md-4 mt-4">
-                            <label 
-                            for="firstName" class="col-md-4 col-form-label text-md-right"><?php echo e(__('First Name')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="firstName" type="text" class="form-control <?php $__errorArgs = ['firstName'];
+                        <div class="form-row">
+                            <div class="col-md-4">
+                                <label for="firstName" class=""><?php echo e(__('First Name')); ?></label>
+                                    <input id="firstName" type="text" class="form-control <?php $__errorArgs = ['firstName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="firstName" value="<?php echo e(old('firstName')); ?>" required autocomplete="firstName" autofocus>
-
+unset($__errorArgs, $__bag); ?>" name="firstName" value="<?php echo e(old('firstName')); ?>" required  autofocus>
                                 <?php $__errorArgs = ['firstName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -63,22 +35,16 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label 
-                            for="LastName" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Last Name')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="LastName" type="text" class="form-control <?php $__errorArgs = ['LastName'];
+                            <div class="col-md-4">
+                                <label for="LastName" class=""><?php echo e(__('Last Name')); ?></label>
+                                    <input id="LastName" type="text" class="form-control <?php $__errorArgs = ['LastName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="LastName" value="<?php echo e(old('LastName')); ?>" required autocomplete="LastName" autofocus>
-
+unset($__errorArgs, $__bag); ?>" name="LastName" value="<?php echo e(old('LastName')); ?>" required  >
                                 <?php $__errorArgs = ['LastName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -92,51 +58,42 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label 
-                            for="businessName" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Business Name')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="businessName" type="text" class="form-control <?php $__errorArgs = ['businessName'];
+                            <div class="col-md-4">
+                                <label for="businessName" class=""><?php echo e(__('Business Name')); ?></label>
+                                    <input id="businessName" type="text" class="form-control <?php $__errorArgs = ['businessName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="businessName" value="<?php echo e(old('businessName')); ?>" required autocomplete="businessName" autofocus>
-
-                                <?php $__errorArgs = ['businessName'];
+unset($__errorArgs, $__bag); ?>" name="businessName" value="<?php echo e(old('businessName')); ?>" required  >
+                            <?php $__errorArgs = ['businessName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong><?php echo e($message); ?></strong>
-                                    </span>
-                                <?php unset($message);
+                                <span class="invalid-feedback" role="alert">
+                                    <strong><?php echo e($message); ?></strong>
+                                </span>
+                            <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
 
-                        <div class="form-group col-md-4 mt-4">
-                            <label 
-                            for="branch_number" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Branch Number')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="branch_number" type="text" class="form-control <?php $__errorArgs = ['branch_number'];
+                        <div class="form-row">
+                            <div class="col-md-4">
+                                <label for="branch_number" class=""><?php echo e(__('Branch Number')); ?></label>
+                                    <input id="branch_number" type="text" class="form-control <?php $__errorArgs = ['branch_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="branch_number" value="<?php echo e(old('branch_number')); ?>" required autocomplete="branch_number" autofocus>
-
+unset($__errorArgs, $__bag); ?>" name="branch_number" value="<?php echo e(old('branch_number')); ?>" required  >
                                 <?php $__errorArgs = ['branch_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -150,22 +107,16 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label 
-                            for="user_number" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Number Of Users')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="user_number" type="text" class="form-control <?php $__errorArgs = ['user_number'];
+                            <div class="col-md-4">
+                                <label for="user_number" class=" "><?php echo e(__('Number Of Users')); ?></label>
+                                    <input id="user_number" type="text" class="form-control <?php $__errorArgs = ['user_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="user_number" value="<?php echo e(old('user_number')); ?>" required autocomplete="user_number" autofocus>
-
+unset($__errorArgs, $__bag); ?>" name="user_number" value="<?php echo e(old('user_number')); ?>" required  >
                                 <?php $__errorArgs = ['user_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -177,23 +128,18 @@ $message = $__bag->first($__errorArgs[0]); ?>
                                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?> 
+unset($__errorArgs, $__bag); ?>
                             </div>
-                        </div>
-                        <div class="form-group col-md-4 mt-4">
-                            <label 
-                            for="phone" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Phone Number')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control <?php $__errorArgs = ['phone'];
+                            <div class="col-md-4">
+                                <label for="phone" class=""><?php echo e(__('Phone Number')); ?></label>
+                                    <input id="phone" type="text" class="form-control <?php $__errorArgs = ['phone'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="phone" value="<?php echo e(old('phone')); ?>" required autocomplete="phone" autofocus>
-
+unset($__errorArgs, $__bag); ?>" name="phone" value="<?php echo e(old('phone')); ?>" required  >
                                 <?php $__errorArgs = ['phone'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -209,49 +155,17 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
 
-                        <div class="form-group col-md-4 mt-4">
-                            <label 
-                            for="phone" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Type')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="type" type="text" class="form-control <?php $__errorArgs = ['type'];
+                        <div class="form-row">
+                            <div class="col-md-4 ">
+                                <label for="country" class=""><?php echo e(__('Country')); ?></label>
+                                    <input id="country" type="text" class="form-control <?php $__errorArgs = ['country'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="type" value="<?php echo e(old('type')); ?>" required autocomplete="type" autofocus>
-
-                                <?php $__errorArgs = ['type'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong><?php echo e($message); ?></strong>
-                                    </span>
-                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label 
-                            for="country" class="col-md-4 col-form-label text-md-right"><?php echo e(__('country')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="country" type="text" class="form-control <?php $__errorArgs = ['country'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" name="country" value="<?php echo e(old('country')); ?>" required autocomplete="country" autofocus>
-
+unset($__errorArgs, $__bag); ?>" name="country" value="<?php echo e(old('country')); ?>" required >
                                 <?php $__errorArgs = ['country'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -265,22 +179,16 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label 
-                            for="state" class="col-md-4 col-form-label text-md-right"><?php echo e(__('state')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="state" type="text" class="form-control <?php $__errorArgs = ['state'];
+                            <div class="col-md-4 ">
+                                <label for="state" class=""><?php echo e(__('State')); ?></label>
+                                    <input id="state" type="text" class="form-control <?php $__errorArgs = ['state'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="state" value="<?php echo e(old('state')); ?>" required autocomplete="type" autofocus>
-
+unset($__errorArgs, $__bag); ?>" name="state" value="<?php echo e(old('state')); ?>" required >
                                 <?php $__errorArgs = ['state'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -294,22 +202,16 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label 
-                            for="city" class="col-md-4 col-form-label text-md-right"><?php echo e(__('city')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="city" type="text" class="form-control <?php $__errorArgs = ['city'];
+                            <div class="col-md-4 ">
+                                <label for="city" class=""><?php echo e(__('City')); ?></label>
+                                    <input id="city" type="text" class="form-control <?php $__errorArgs = ['city'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="city" value="<?php echo e(old('city')); ?>" required autocomplete="city" autofocus>
-
+unset($__errorArgs, $__bag); ?>" name="city" value="<?php echo e(old('city')); ?>" required >
                                 <?php $__errorArgs = ['city'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -322,13 +224,12 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                            </div>
+                            </div> 
                         </div>
 
-                        <div class="form-group col-md-4 mt-4">
-                            <label for="name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('User Name')); ?></label>
-
-                            <div class="col-md-6">
+                        <div class="form-row">
+                            <div class="col-md-4 ">
+                            <label for="name" class=""><?php echo e(__('User Name')); ?></label>
                                 <input id="name" type="text" class="form-control <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -336,8 +237,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="name" value="<?php echo e(old('name')); ?>" required autocomplete="name" autofocus>
-
+unset($__errorArgs, $__bag); ?>" name="name" value="<?php echo e(old('name')); ?>" required >
                                 <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -351,12 +251,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label for="email" class="col-md-4 col-form-label text-md-right"><?php echo e(__('E-Mail Address')); ?></label>
-
-                            <div class="col-md-6">
+                            <div class="col-md-4 ">
+                            <label for="email" class=""><?php echo e(__('E-Mail Address')); ?></label>
                                 <input id="email" type="email" class="form-control <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -364,8 +260,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="email" value="<?php echo e(old('email')); ?>" required autocomplete="email">
-
+unset($__errorArgs, $__bag); ?>" name="email" value="<?php echo e(old('email')); ?>" required autocomplete="off">
                                 <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -379,12 +274,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label for="password" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Password')); ?></label>
-
-                            <div class="col-md-6">
+                            <div class="col-md-4 ">
+                            <label for="password" class=""><?php echo e(__('Password')); ?></label>
                                 <input id="password" type="password" class="form-control <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -392,8 +283,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="new-password">
-
+unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="off">
                                 <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -406,98 +296,31 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                            </div> 
+                        </div>
+
+                        <div class="form-row ">
+                            <div class="col-md-4 ">
+                                <label for="password-confirm" class=""><?php echo e(__('Confirm Password')); ?></label>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required >
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Confirm Password')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <div class="col-md-4 mt-5">
+                                <label for="subscrib" class=""><?php echo e(__('Subscrib')); ?></label>
+                                    <input id="subscrib" type="checkbox"  name="subscrib" value="1">
                             </div>
+                            <div class="col-md-4 mt-5">
+                                <label for="agree" class=""><?php echo e(__('Agree')); ?></label>
+                                    <input id="agree" type="checkbox" name="agree" value="1">
+                            </div> 
                         </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block"><?php echo e(__('Registration')); ?></button>
 
-                        <div class="form-group col-md-4 mt-4">
-                            <label for="subscrib" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Subscrib')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="subscrib" type="checkbox"  name="subscrib" value="1">
-                             </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label for="agree" class="col-md-4 col-form-label text-md-right"><?php echo e(__('agree')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="agree" type="checkbox" name="agree" value="1">
-                             </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4 mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <?php echo e(__('Register')); ?>
-
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                     </form>
                 </div>
             </div>
+        </div>    
     </div>
 </div>
 <?php $__env->stopSection(); ?>
 
-
-<?php $__env->startSection('script'); ?>
-
-    
-    <script src="<?php echo asset('js/selectize.js'); ?>"></script>
-    
-    
-    <!-- <script>
-    $('#city').selectize();
-    </script> -->
-
-    <script>
-        $('#country').on('change', e => {
-            $('#state').empty()
-            $('#city').empty()
-            var selectedCountry = $("#country option:selected").val()
-            if(selectedCountry == 0) {
-                $('#state').append('<option value="">Select your country first</option>')
-                $('#city').append('<option value="">Select your state first</option>')
-            }else{
-                $.ajax({
-                    url: 'countries/' + selectedCountry + '/states',
-                    success: data => {
-                        $('#state').append('<option value="">Choose your state</option>')
-                        $('#city').append('<option disabled>Choose your state first</option>')
-                        data.states.forEach(state =>
-                            $('#state').append('<option value="'+ state.id +'">' + state.en_name + '</option>')
-                        )
-                    }
-                })
-            }
-        })
-
-        $('#state').on('change', e => {
-            $('#city').empty()
-            var selectedState = $("#state option:selected").val()
-            if(selectedState == 0) {
-                $('#city').append('<option value="">Select your state first</option>')
-            } else {
-                $.ajax({
-                    url: 'states/' + selectedState + '/cities',
-                    success: data => {
-                        data.cities.forEach(city =>
-                            $('#city').append('<option value="'+ city.id +'">' + city.en_name + '</option>')
-                        )
-                    }
-                })
-            }
-        })
-    </script>
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('theme.register', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\report\resources\views\auth\register.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\report\resources\views\auth\register.blade.php ENDPATH**/ ?>

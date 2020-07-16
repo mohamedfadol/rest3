@@ -55,6 +55,8 @@ class Branch extends Model
     
     public function employees(){return $this->hasMany(Employee::class ,'branch_id');}
 
+    public function deliveries(){return $this->hasMany(Delivery::class ,'branch_id');}
+
 
 
 

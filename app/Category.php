@@ -7,7 +7,7 @@ use App\Traits\MultipleInsertByUserId;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Category extends Model
+class Category extends Model 
 {
 
 

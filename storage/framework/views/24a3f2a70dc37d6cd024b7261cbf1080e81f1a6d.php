@@ -1,19 +1,6 @@
-<?php $__env->startSection('head'); ?>
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-<?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('heading'); ?>
-Add a Floor
+<?php echo e(__('message.Update Floor')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -24,7 +11,7 @@ Add a Floor
                 <div class="card-icon">
                     <i class="material-icons">local_cafe</i>
                 </div>
-                <h4 class="card-title">Update a Floor</h4>
+                <h4 class="card-title"><?php echo e(__('message.Update Floor')); ?></h4>
             </div>
             <div class="card-body ">
                     <?php if(count($errors) > 0): ?>
@@ -42,7 +29,7 @@ Add a Floor
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Name</label>
+                            <label class="bmd-label-floating" for="name"><?php echo e(__('message.Floor Name')); ?></label>
                             <input 
                                 type="text" 
                                     class="form-control" 
@@ -53,7 +40,7 @@ Add a Floor
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="description">Description</label>
+                            <label class="bmd-label-floating" for="description"><?php echo e(__('message.Description')); ?></label>
                             <textarea class="form-control" 
                                             id="description" 
                                                 name="description"><?php echo e($floor->description); ?></textarea>
@@ -62,10 +49,10 @@ Add a Floor
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-6">
-                            <label class="bmd-label-floating" for="branch">Branch</label>
-                            <select id="modifires" class="custom-select" name="branch_id" data-style="select-with-transition" title="modifires" data-size="7">
+                            <label class="bmd-label-floating" for="branch"><?php echo e(__('message.Branch')); ?></label>
+                            <select id="modifires" class="custom-select" name="branch_id" 
+                            data-style="select-with-transition" title="Choose ...Branche" data-size="7">
                                 <?php if(isset($branches)): ?>
-                                <option value="">Choose ...</option>
                                     <?php $__currentLoopData = $branches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $branch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <option value="<?php echo e($branch->id); ?>"><?php echo e($branch->name); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>    
@@ -76,10 +63,10 @@ Add a Floor
                     
                     <div class="row">
                         <div class="form-group col-md-6 mt-6">
-                            <label class="bmd-label-floating" for="menu">Menu</label>
-                            <select id="modifires" class="custom-select" name="menu_id" data-style="select-with-transition" title="modifires" data-size="7">
+                            <label class="bmd-label-floating" for="menu"><?php echo e(__('message.Menu')); ?></label>
+                            <select id="modifires" class="custom-select" name="menu_id" 
+                            data-style="select-with-transition" title="Choose ...Menus" data-size="7">
                                 <?php if(isset($menus)): ?>
-                                <option value="">Choose ...</option>
                                     <?php $__currentLoopData = $menus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $menu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <option value="<?php echo e($menu->id); ?>"><?php echo e($menu->name); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
@@ -88,8 +75,7 @@ Add a Floor
                         </div>
                     </div>
                             <div class="card-footer ">
-                                <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                                <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                                <button type="submit" class="btn btn-fill btn-rose"><?php echo e(__('message.Submit')); ?></button>
                             </div>
 
                 </form>

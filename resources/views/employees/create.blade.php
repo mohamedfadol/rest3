@@ -1,14 +1,14 @@
 @extends('theme.default')
 
 @section('heading') 
-Add a Employee
+{{ __('message.Add a Employee') }}
 @endsection
 
 @section('content')
 
 <div class='col-lg-4 col-lg-offset-4'>
 
-    <h1><i class='fa fa-user-plus'></i> Add Employee</h1>
+    <h1><i class='fa fa-user-plus'></i> {{ __('message.Add a Employee') }}</h1>
     
         @if (count($errors) > 0)
             <div class="alert alert-danger py-2">
@@ -19,7 +19,7 @@ Add a Employee
                 </ul>
             </div>
         @endif
-    <form action="{{route('employees.create')}}" method="POST" accept-charset="utf-8">
+    <form action="{{route('employees.store')}}" method="POST" accept-charset="utf-8">
         @csrf
     <div class="form-group">   
         <input type="text" 
@@ -54,7 +54,7 @@ Add a Employee
     </div>
 
     <div class="form-group">
-        <label class="bmd-label-floating" for="branch">Branch</label>
+        <label class="bmd-label-floating" for="branch">{{ __('message.Branch') }}</label>
         <select id="Branch" class="custom-select" name="branch_id" data-style="select-with-transition" title="Branch" data-size="7">
             @if(isset($branches))
             <option value="">Choose ... Branch</option>
@@ -66,7 +66,7 @@ Add a Employee
     </div>
 
     <div class="form-group">
-        <label class="bmd-label-floating" for="floor">Floor</label>
+        <label class="bmd-label-floating" for="floor">{{ __('message.Floor') }}</label>
         <select id="floor" class="custom-select" name="floor_id" data-style="select-with-transition" title="Floor" data-size="7">
             @if(isset($floors))
             <option value="">Choose ...Floor</option>

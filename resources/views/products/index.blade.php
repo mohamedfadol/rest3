@@ -1,7 +1,7 @@
 @extends('theme.default')
 
 @section('heading')
-Products
+{{ __('message.Products List') }}
 @endsection
 
 @section('head')
@@ -16,7 +16,8 @@ Products
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="{{ route('product.create') }}"><i class="material-icons">add</i> Add New Product</a>
+        <a class="btn btn-primary" href="{{ route('product.create') }}">
+            <i class="material-icons">add</i>{{ __('message.Add New Product') }} </a>
     </div>
 </div>
 <div class="row">
@@ -26,7 +27,7 @@ Products
                 <div class="card-icon">
                     <i class="material-icons">restaurant_menu</i>
                 </div>
-                <h4 class="card-title">Products</h4>
+                <h4 class="card-title">{{ __('message.Products List') }}</h4>
             </div>
         
             <div class="card-body ">
@@ -34,20 +35,20 @@ Products
                     <table id="products-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>SKU</th>
-                                <th>Category</th>
-                                <th>Class Product</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Price</th>
-                                <th>Selling Type</th>
-                                <th>Tax</th>
-                                <th>Active</th>
-                                <th>Modifires</th> 
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th>{{ __('message.Icon') }}</th>
+                                <th>{{ __('message.Product Arabic Name') }}</th>
+                                <th>{{ __('message.Description') }}</th>
+                                <th>{{ __('message.SKU') }}</th>
+                                <th>{{ __('message.Category') }}</th>
+                                <th>{{ __('message.Class Product') }}</th>
+                                <th>{{ __('message.From') }}</th>
+                                <th>{{ __('message.To') }}</th>
+                                <th>{{ __('message.Price') }}</th>
+                                <th>{{ __('message.Selling Type') }}</th>
+                                <th>{{ __('message.Tax') }}</th>
+                                <th>{{ __('message.Active') }}</th>
+                                <th>{{ __('message.modifires') }}</th> 
+                                <th class="disabled-sorting text-right">{{ __('message.Actions') }}</th>
                             </tr>
                         </thead>
                         @if(count($products) > 0 )
@@ -56,7 +57,7 @@ Products
                                 <tr>
                                         <td width="9%">
                                         <img class="img-thumbnail" 
-                                            src="data:image/jpg;base64,{!!$product->image->image!!}">
+                                            src="{{ URL::asset('/storage/'.$branchname.'/product/'.$product->image) }}">
                                         </td>
                                         <td>{{ $product->nameAr}}</td>
                                         <td>{{ $product->descriptionAr}}</td>
@@ -82,13 +83,14 @@ Products
                                             <a 
                                                 href="{{route('product.edit',$product->id)}}" 
                                                     class
-                                                    ="btn btn-link btn-info btn-just-icon edit">
-                                                    <i class="material-icons">edit</i></a>
-                                            <a 
-                                                href="{{route('product.destroy',$product->id)}}" 
-                                                    class
-                                                    ="btn btn-link btn-danger btn-just-icon remove">
-                                                    <i class="material-icons">delete</i></a>
+                                                    ="btn btn-success btn-sm edit">
+                                                    {{ __('message.edit') }}</a>
+                                    <form action="{{route('product.destroy' ,$product->id)}}" 
+                                                method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm remove">{{ __('message.delete') }}</button>
+                                    </form>
                                         </td>
                                 </tr>
                                     @endforeach
@@ -106,6 +108,8 @@ Products
 <script>
     $(document).ready(function() {
         $('#products-table').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['print'],
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [10, 25, 50, -1],

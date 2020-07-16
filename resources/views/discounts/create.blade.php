@@ -1,21 +1,8 @@
 @extends('theme.default')
 
-@section('head')
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-@endsection
 
 @section('heading')
-Add a Discount
+{{ __('message.Add New Discount') }} 
 @endsection
 
 @section('content')
@@ -26,7 +13,7 @@ Add a Discount
                 <div class="card-icon">
                     <i class="material-icons">local_offer</i>
                 </div>
-                <h4 class="card-title">Add a Discount</h4>
+                <h4 class="card-title">{{ __('message.Add New Discount') }} </h4>
             </div>
             <div class="card-body ">
                     @if (count($errors) > 0)
@@ -38,17 +25,17 @@ Add a Discount
                             </ul>
                         </div>
                     @endif
-                <form method="Post" action="{{ route('discount.create') }}">
+                <form method="Post" action="{{ route('discount.store') }}">
                       @csrf
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Name</label>
+                            <label class="bmd-label-floating" for="name">{{ __('message.Discount Name') }}</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                     </div>
 
                     <div class="row mt-4">
-                        <label class="col-sm-2 col-form-label label-checkbox">Type</label>
+                        <label class="col-sm-2 col-form-label label-checkbox">{{ __('message.Discount Type') }}</label>
                         <div class="col-sm-10 checkbox-radios">
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -71,14 +58,14 @@ Add a Discount
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="amount">Amount</label>
+                            <label class="bmd-label-floating" for="amount">{{ __('message.Discount Amount') }}</label>
                             <input type="text" class="form-control" id="amount" name="amount" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-6">
-                            <label class="bmd-label-floating" for="product_id">Product</label>
+                            <label class="bmd-label-floating" for="product_id">{{ __('message.Discount Product Name') }}</label>
                             <select id="product_id" class="custom-select" name="product_id" data-style="select-with-transition" title="product_id" data-size="7">
                                 @if(count($products) > 0)
                                 <option value="">Choose...Product</option>
@@ -91,8 +78,7 @@ Add a Discount
                     </div>
 
                     <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                        <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                        <button type="submit" class="btn btn-fill btn-rose">{{ __('message.Submit') }}</button>
                     </div>
                 </form>
             </div>

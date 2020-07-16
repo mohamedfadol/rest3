@@ -20,7 +20,7 @@ class OrdersTableSeeder extends Seeder
     public function run()  
     {
         //$paymentTypes = ['cache', 'visa card', 'receivables'];
-        for ($i=0; $i < 300; $i++) { 
+        for ($i=0; $i < 30; $i++) { 
             $order = new Order;
  
             $order->id = Str::random(36);

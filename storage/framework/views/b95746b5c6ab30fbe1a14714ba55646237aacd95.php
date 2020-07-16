@@ -1,5 +1,7 @@
 <?php $__env->startSection('heading'); ?>
-discounts
+
+<?php echo e(__('message.Discounts List')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('head'); ?>
@@ -14,7 +16,8 @@ discounts
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="<?php echo e(route('discount.create')); ?>"><i class="material-icons">add</i> Add New Discount</a>
+        <a class="btn btn-primary" href="<?php echo e(route('discount.create')); ?>">
+                <i class="material-icons">add</i><?php echo e(__('message.Add New Discount')); ?> </a>
     </div>
 </div>
 <div class="row">
@@ -24,7 +27,7 @@ discounts
                 <div class="card-icon">
                     <i class="material-icons">local_offer</i>
                 </div>
-                <h4 class="card-title">Discounts</h4>
+                <h4 class="card-title"><?php echo e(__('message.Discounts List')); ?></h4>
             </div>
         
             <div class="card-body ">
@@ -32,11 +35,11 @@ discounts
                     <table id="discounts-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th>Amount</th>
-                                <th>Product Name</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th><?php echo e(__('message.Discount Name')); ?></th>
+                                <th><?php echo e(__('message.Discount Type')); ?></th>
+                                <th><?php echo e(__('message.Discount Amount')); ?></th>
+                                <th><?php echo e(__('message.Discount Product Name')); ?></th>
+                                <th class="disabled-sorting text-right"><?php echo e(__('message.Actions')); ?></th>
                             </tr>
                         </thead>
                     <?php if(count($discounts) > 0 ): ?>
@@ -48,8 +51,14 @@ discounts
                             <td><?php echo e($discount->amount); ?></td>
                             <td><?php echo e($discount->product->nameAr); ?></td>
                             <td class="text-right">
-                                <a href="<?php echo e(route('discount.edit' ,$discount->id)); ?>" class="btn btn-link btn-info btn-just-icon edit"><i class="material-icons">edit</i></a>
-                                <a href="<?php echo e(route('discount.destroy' ,$discount->id)); ?>" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">delete</i></a>
+                                <a href="<?php echo e(route('discount.edit' ,$discount->id)); ?>" 
+                                    class="btn btn-success btn-sm edit"><?php echo e(__('message.edit')); ?></a>
+                                    <form action="<?php echo e(route('discount.destroy' ,$discount->id)); ?>" 
+                                                method="POST">
+                                        <?php echo method_field('DELETE'); ?>
+                                        <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-danger btn-sm"><?php echo e(__('message.delete')); ?></button>
+                                    </form>
                             </td>
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

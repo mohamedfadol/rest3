@@ -25,7 +25,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('heading'); ?>
-Edit a Permission
+<?php echo e(__('message.Edit a Permission')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>

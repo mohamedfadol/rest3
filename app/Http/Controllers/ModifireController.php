@@ -56,15 +56,16 @@ class ModifireController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request->all();
              //dd($request->all()); 
         $this->validate($request,[
             'nameAr'  => 'required|string',
             'nameEn'  => 'nullable|string',
             'sku'     => 'required',
-            'cost'    => 'nullable|numeric',
-            'tax'     => 'nullable|string',
-            'price'   => 'nullable|string',
-            'unit'    => 'nullable|string' 
+            'cost'    => 'nullable',
+            'tax'     => 'nullable',
+            'price'   => 'required',
+            'unit'    => 'nullable' 
         ]);
 
         // create instance for model 
@@ -73,9 +74,9 @@ class ModifireController extends Controller
         $modifire->nameAr  =  $request->input('nameAr');
         $modifire->nameEn  =  $request->input('nameEn');
         $modifire->sku     = str_slug('4-'.$request->input('sku'));
-        $modifire->cost    =  $request->input('cost');
-        $modifire->tax     =  $request->input('tax');
-        $modifire->price   =  $request->input('price');
+        $modifire->cost    =  $request->cost == null ? 0 : $request->cost ;
+        $modifire->tax     =  $request->tax == null ? 0 : $request->tax ;
+        $modifire->price   =  $request->price == null ? 0 : $request->price ;
         $modifire->unit    =  $request->input('unit');
         $modifire->addByUserId =  auth::user()->id;
         $modifire->save();
@@ -84,7 +85,7 @@ class ModifireController extends Controller
         $modifire->sku = str_slug('4-'.$Udatesku->code.'-'.$request->input('sku')) ;
         $modifire->update();
 
-        return  redirect()->route('modifire.home')->withSuccessMessage('Inserted Was Done');
+        return  redirect()->route('modifire.index')->withSuccessMessage('Inserted Was Done');
     }
 
     /**
@@ -124,10 +125,10 @@ class ModifireController extends Controller
             'nameAr'  => 'required|string',
             'nameEn'  => 'nullable|string',
             'sku'     => 'required',
-            'cost'    => 'nullable|numeric',
-            'tax'     => 'nullable|string',
-            'price'   => 'nullable|string',
-            'unit'    => 'nullable|string' 
+            'cost'    => 'nullable',
+            'tax'     => 'nullable',
+            'price'   => 'nullable',
+            'unit'    => 'nullable' 
         ]);
 
         // create instance for model 
@@ -136,9 +137,9 @@ class ModifireController extends Controller
         $modifire->nameAr  =  $request->input('nameAr');
         $modifire->nameEn  =  $request->input('nameEn');
         $modifire->sku     = str_slug('4-'.$request->input('sku'));
-        $modifire->cost    =  $request->input('cost');
-        $modifire->tax     =  $request->input('tax');
-        $modifire->price   =  $request->input('price');
+        $modifire->cost    =  $request->cost == null ? 0 : $request->cost ;
+        $modifire->tax     =  $request->tax == null ? 0 : $request->tax ;
+        $modifire->price   =  $request->price == null ? 0 : $request->price ;
         $modifire->unit    =  $request->input('unit');
         $modifire->addByUserId =  auth::user()->id;
         $modifire->save();
@@ -147,7 +148,7 @@ class ModifireController extends Controller
         $modifire->sku = str_slug('4-'.$Udatesku->code.'-'.$request->input('sku')) ;
         $modifire->update();
 
-        return  redirect()->route('modifire.home')->withSuccessMessage('Updated Was Done');
+        return  redirect()->route('modifire.index')->withSuccessMessage('Updated Was Done');
     }
 
     /**
@@ -161,6 +162,6 @@ class ModifireController extends Controller
         $modifire =  Modifire::findOrFail($modifire->id);
         $modifire->products()->detach();
         $modifire->delete();
-        return redirect()->route('modifire.home')->withSuccessMessage(['Deleted Has Been  Done']);
+        return redirect()->route('modifire.index')->withSuccessMessage(['Deleted Has Been  Done']);
     }
 }

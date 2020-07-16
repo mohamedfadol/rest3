@@ -1,5 +1,6 @@
 <?php $__env->startSection('heading'); ?>
-modifires
+<?php echo e(__('message.modifires')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('head'); ?>
@@ -14,7 +15,8 @@ modifires
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="<?php echo e(route('modifire.create')); ?>"><i class="material-icons">add</i> Add New modifire</a>
+        <a class="btn btn-primary" href="<?php echo e(route('modifire.create')); ?>">
+            <i class="material-icons">add</i> <?php echo e(__('message.Add New modifire')); ?></a>
     </div>
 </div>
 <div class="row">
@@ -24,7 +26,7 @@ modifires
                 <div class="card-icon">
                     <i class="material-icons">power</i>
                 </div>
-                <h4 class="card-title">Modifires</h4>
+                <h4 class="card-title"><?php echo e(__('message.modifires')); ?></h4>
             </div>
         
             <div class="card-body ">
@@ -32,14 +34,14 @@ modifires
                     <table id="modifires-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Arabic Name</th>
-                                <th>English Name</th>
-                                <th>SKU</th>
-                                <th>Cost</th>
-                                <th>tax</th>
-                                <th>Price</th>
-                                <th>Unit</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th><?php echo e(__('message.modifire Arabic Name')); ?></th>
+                                <th><?php echo e(__('message.modifire English Name')); ?></th>
+                                <th><?php echo e(__('message.SKU')); ?></th>
+                                <th><?php echo e(__('message.Cost')); ?></th>
+                                <th><?php echo e(__('message.Tax')); ?></th>
+                                <th><?php echo e(__('message.Price')); ?></th>
+                                <th><?php echo e(__('message.Unit')); ?></th>
+                                <th class="disabled-sorting text-right"><?php echo e(__('message.Actions')); ?></th>
                             </tr>
                         </thead>
                         <?php if(count($modifires) > 0): ?>
@@ -57,13 +59,14 @@ modifires
                                     <a 
                                         href="<?php echo e(route('modifire.edit',$modifire->id)); ?>" 
                                             class
-                                            ="btn btn-link btn-info btn-just-icon edit">
-                                            <i class="material-icons">edit</i></a>
-                                    <a 
-                                        href="<?php echo e(route('modifire.destroy',$modifire->id)); ?>" 
-                                            class
-                                            ="btn btn-link btn-danger btn-just-icon remove">
-                                            <i class="material-icons">delete</i></a>
+                                            ="btn btn-success btn-sm edit">
+                                            <?php echo e(__('message.edit')); ?></a>
+                                    <form action="<?php echo e(route('modifire.destroy' ,$modifire->id)); ?>" 
+                                                method="POST">
+                                        <?php echo method_field('DELETE'); ?>
+                                        <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-danger btn-sm"><?php echo e(__('message.delete')); ?></button>
+                                    </form>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -81,6 +84,8 @@ modifires
 <script>
     $(document).ready(function() {
         $('#modifires-table').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['print'],
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [10, 25, 50, -1],

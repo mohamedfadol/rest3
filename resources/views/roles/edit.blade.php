@@ -1,27 +1,13 @@
 @extends('theme.default')
 
-@section('head')
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-@endsection
-
 @section('heading')
-Edit Role
+{{ __('message.Edit Role') }}
 @endsection
   
 @section('content')
 
 <div class='col-lg-4 col-lg-offset-4'>
-    <h1><i class='fa fa-key'></i> Edit Role: {{$role->name}}</h1>
+    <h3><i class='fa fa-key'></i> {{ __('message.Edit Role') }}: {{$role->name}}</h3>
     <hr>
 
     {{ Form::model($role, array('route' => array('roles.update', $role->id), 'method' => 'PUT')) }}
@@ -31,7 +17,7 @@ Edit Role
         {{ Form::text('name', null, array('class' => 'form-control')) }}
     </div>
 
-    <h5><b>Assign Permissions</b></h5>
+    <h5><b>{{ __('message.Assign Permissions') }}</b></h5>
     @foreach ($permissions as $permission)
 
         {{Form::checkbox('permissions[]',  $permission->id, $role->permissions ) }}

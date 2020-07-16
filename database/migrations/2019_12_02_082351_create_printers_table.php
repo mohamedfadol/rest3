@@ -19,8 +19,8 @@ class CreatePrintersTable extends Migration
             $table->string('enName')->nullable('null');
             $table->string('printer')->nullable('null');
             $table->string('printerName')->nullable('null');
-            $table->integer('printerIndex')->defualt(0);
-            $table->integer('copiesNumber')->defualt(0);
+            $table->integer('printerIndex')->default(0);
+            $table->integer('copiesNumber')->default(0);
             $table->string('note')->nullable();
 
             $table->uuid('branch_id');

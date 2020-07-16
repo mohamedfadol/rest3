@@ -1,21 +1,7 @@
 @extends('theme.default')
 
-@section('head')
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-@endsection
-
 @section('heading')
-Update a Customer
+{{ __('message.Update a Customer') }}
 @endsection
 
 @section('content')
@@ -26,7 +12,7 @@ Update a Customer
                 <div class="card-icon">
                     <i class="material-icons">local_cafe</i>
                 </div>
-                <h4 class="card-title">Update a Customer</h4>
+                <h4 class="card-title">{{ __('message.Update a Customer') }}</h4>
             </div>
             <div class="card-body ">
                     @if (count($errors) > 0)
@@ -43,18 +29,18 @@ Update a Customer
                     {{ method_field('PUT') }}
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Name</label>
+                            <label class="bmd-label-floating" for="name">{{ __('message.Customer Name') }}</label>
                             <input 
                                 type="text" 
                                     class="form-control" 
                                         id="name" 
-                                            name="name" value="{{$customer->name}}" required>
+                                            name="name" value="{{$customer->name}}" required />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nationality">Nationality</label>
+                            <label class="bmd-label-floating" for="nationality">{{ __('message.Nationality') }}</label>
                             <input class="form-control" 
                                             id="nationality" 
                                                 name="nationality" 
@@ -64,7 +50,7 @@ Update a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="email">E-mail</label>
+                            <label class="bmd-label-floating" for="email">{{ __('message.E-mail') }}</label>
                             <input class="form-control" 
                                             id="email" 
                                                 name="email" 
@@ -76,7 +62,7 @@ Update a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="phone">Phone</label>
+                            <label class="bmd-label-floating" for="phone">{{ __('message.Phone') }}</label>
                             <input class="form-control" 
                                             id="phone" 
                                                 name="phone" 
@@ -87,7 +73,7 @@ Update a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="country">Country</label>
+                            <label class="bmd-label-floating" for="country">{{ __('message.Country') }}</label>
                             <input class="form-control" 
                                             id="country" 
                                                 name="country" 
@@ -98,7 +84,7 @@ Update a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="state">State</label>
+                            <label class="bmd-label-floating" for="state">{{ __('message.State') }}</label>
                             <input class="form-control" 
                                             id="state" 
                                                 name="state" 
@@ -108,7 +94,7 @@ Update a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="city">City</label>
+                            <label class="bmd-label-floating" for="city">{{ __('message.City') }}</label>
                             <input class="form-control" 
                                             id="city" 
                                                 name="city" 
@@ -118,7 +104,7 @@ Update a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="area">Area</label>
+                            <label class="bmd-label-floating" for="area">{{ __('message.Area') }}</label>
                             <input class="form-control" 
                                             id="area" 
                                                 name="area" 
@@ -126,9 +112,10 @@ Update a Customer
                                                         required />
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="street">Street</label>
+                            <label class="bmd-label-floating" for="street">{{ __('message.Street') }}</label>
                             <input class="form-control" 
                                             id="street" 
                                                 name="street" 
@@ -138,7 +125,7 @@ Update a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="creditCard">Credit-Card</label>
+                            <label class="bmd-label-floating" for="creditCard">{{ __('message.CreditCard') }}</label>
                             <input class="form-control" 
                                             id="creditCard" 
                                                 name="creditCard" 
@@ -148,7 +135,7 @@ Update a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="discount">Discount</label>
+                            <label class="bmd-label-floating" for="discount">{{ __('message.Discount') }}</label>
                             <input class="form-control" 
                                             id="discount" 
                                                 name="discount" 
@@ -158,7 +145,7 @@ Update a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="note">Note</label>
+                            <label class="bmd-label-floating" for="note">{{ __('message.Note') }}</label>
                             <input class="form-control" 
                                             id="note" 
                                                 name="note" 
@@ -167,8 +154,7 @@ Update a Customer
                         </div>
                     </div>
                             <div class="card-footer ">
-                                <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                                <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                                <button type="submit" class="btn btn-fill btn-rose">{{ __('message.Submit') }}</button>
                             </div>
 
                 </form>

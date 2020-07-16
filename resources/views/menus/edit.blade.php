@@ -1,21 +1,7 @@
 @extends('theme.default')
 
-@section('head')
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-@endsection
-
 @section('heading')
-Add a Menu
+{{ __('message.Update a Menu') }}
 @endsection
   
 @section('content')
@@ -26,7 +12,7 @@ Add a Menu
                 <div class="card-icon">
                     <i class="material-icons">list</i>
                 </div>
-                <h4 class="card-title">Update a Menu</h4>
+                <h4 class="card-title">{{ __('message.Update a Menu') }}</h4>
             </div>
             <div class="card-body ">
                     @if (count($errors) > 0)
@@ -43,14 +29,14 @@ Add a Menu
                     {{ method_field('PUT') }}
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Name</label>
+                            <label class="bmd-label-floating" for="name">{{ __('message.Menu Name') }}</label>
                             <input type="text" value="{{$menu->name}}" class="form-control" id="name" name="name" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="description">Description</label>
+                            <label class="bmd-label-floating" for="description">{{ __('message.Description') }}</label>
                             <textarea 
                                 class="form-control" 
                                     id="description" 
@@ -60,7 +46,7 @@ Add a Menu
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-6">
-                            <label class="bmd-label mr-2" for="categories">Categories</label>
+                            <label class="bmd-label mr-2" for="categories">{{ __('message.Categories') }}</label>
                             <select id="categories" class="selectpicker" multiple 
                                 name="categories[]" data-style="select-with-transition" title="categories" data-size="7">
                                     <option value="0">Choose... Categories</option>
@@ -74,8 +60,7 @@ Add a Menu
                         </div>
                     </div>
                     <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                        <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                        <button type="submit" class="btn btn-fill btn-rose">{{ __('message.Submit') }}</button>
                     </div>
                 </form>
             </div>

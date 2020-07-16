@@ -1,5 +1,6 @@
 <?php $__env->startSection('heading'); ?>
-Printers
+<?php echo e(__('message.Printers')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('head'); ?>
@@ -14,7 +15,8 @@ Printers
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="<?php echo e(route('printer.create')); ?>"><i class="material-icons">add</i> Add New Printer</a>
+        <a class="btn btn-primary" href="<?php echo e(route('printer.create')); ?>">
+            <i class="material-icons">add</i><?php echo e(__('message.Add New Printer')); ?> </a>
     </div>
 </div>
 <div class="row">
@@ -24,7 +26,7 @@ Printers
                 <div class="card-icon">
                     <i class="material-icons">restaurant_menu</i>
                 </div>
-                <h4 class="card-title">Printers</h4>
+                <h4 class="card-title"><?php echo e(__('message.Printers')); ?></h4>
             </div>
         
             <div class="card-body ">
@@ -32,15 +34,15 @@ Printers
                     <table id="printers-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>English Name</th>
-                                <th>Printer</th>
-                                <th>Printer Name</th>
-                                <th>Printer Index</th>
-                                <th>Copies Number</th>
-                                <th>The Branch</th>
-                                <th>Note</th> 
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th><?php echo e(__('message.Printer Arabic Name')); ?></th>
+                                <th><?php echo e(__('message.Printer English Name')); ?></th>
+                                <th><?php echo e(__('message.Printer')); ?></th>
+                                <th><?php echo e(__('message.Printer Name')); ?></th>
+                                <th><?php echo e(__('message.Printer Index')); ?></th>
+                                <th><?php echo e(__('message.Copies Number')); ?></th>
+                                <th><?php echo e(__('message.Branch')); ?></th>
+                                <th><?php echo e(__('message.Note')); ?></th> 
+                                <th class="disabled-sorting text-right"><?php echo e(__('message.Actions')); ?></th>
                             </tr>
                         </thead>
                         <?php if(count($printers) > 0 ): ?>
@@ -60,13 +62,14 @@ Printers
                                             <a 
                                                 href="<?php echo e(route('printer.edit',$printer->id)); ?>" 
                                                     class
-                                                    ="btn btn-link btn-info btn-just-icon edit">
-                                                    <i class="material-icons">edit</i></a>
-                                            <a 
-                                                href="<?php echo e(route('printer.destroy',$printer->id)); ?>" 
-                                                    class
-                                                    ="btn btn-link btn-danger btn-just-icon remove">
-                                                    <i class="material-icons">delete</i></a>
+                                                    ="btn btn-success btn-sm edit">
+                                                    <?php echo e(__('message.edit')); ?></a>
+                                            <form action="<?php echo e(route('printer.destroy' ,$printer->id)); ?>" 
+                                                        method="POST">
+                                                <?php echo method_field('DELETE'); ?>
+                                                <?php echo csrf_field(); ?>
+                                                <button type="submit" class="btn btn-danger btn-sm remove"><?php echo e(__('message.delete')); ?></button>
+                                            </form>
                                         </td>
                                 </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -1,28 +1,25 @@
 @extends('theme.default')
 
-@section('head')
-
-@endsection
 
 @section('heading')
-Roles
+{{ __('message.Roles') }}
 @endsection
 
 @section('content')
 
 <div class="col-lg-12 col-lg-offset-1">
-    <h1><i class="fa fa-key"></i> Roles
+    <h3><i class="fa fa-key"></i> {{ __('message.Roles') }}
 
-    <a href="{{ route('employees.index') }}" class="btn btn-default pull-right">Employee</a>
-    <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">Permissions</a></h1>
+    <a href="{{ route('employees.index') }}" class="btn btn-default pull-right">{{ __('message.Employee') }}</a>
+    <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">{{ __('message.Permissions') }}</a></h3>
     <hr>
     <div class="material-datatables">
         <table id="roles-table" class="table table-bordered table-hover" cellspacing="0"  style="width:100%">
             <thead>
                 <tr>
-                    <th>Role</th>
-                    <th>Permissions</th>
-                    <th>Operation</th>
+                    <th>{{ __('message.Roles') }}</th>
+                    <th>{{ __('message.Permissions') }}</th>
+                    <th>{{ __('message.Actions') }}</th>
                 </tr>
             </thead>
 
@@ -48,7 +45,7 @@ Roles
         </table>
     </div>
 
-    <a href="{{ URL::to('roles/create') }}" class="btn btn-success">Add Role</a>
+    <a href="{{ URL::to('roles/create') }}" class="btn btn-success">{{ __('message.Submit') }}</a>
 
 </div>
 

@@ -1,7 +1,7 @@
 @extends('theme.default')
 
 @section('heading')
-Payment Type
+{{ __('message.Payment Type') }}
 @endsection
 
 @section('head')
@@ -16,7 +16,8 @@ Payment Type
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="{{ route('payment.create') }}"><i class="material-icons">add</i> Add New Payment</a>
+        <a class="btn btn-primary" href="{{ route('payment.create') }}">
+            <i class="material-icons">add</i>{{ __('message.Add New Payment') }} </a>
     </div>
 </div>
 <div class="row">
@@ -26,7 +27,7 @@ Payment Type
                 <div class="card-icon">
                     <i class="material-icons">power</i>
                 </div>
-                <h4 class="card-title">Payment</h4>
+                <h4 class="card-title">{{ __('message.Payment Type') }}</h4>
             </div>
         
             <div class="card-body ">
@@ -34,13 +35,13 @@ Payment Type
                     <table id="payment-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Arabic Name</th>
-                                <th>English Name</th> 
-                                <th>Value</th>
-                                <th>Type</th> 
-                                <th>Default</th>
-                                <th>Note</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th>{{ __('message.Payment Arabic Name') }}</th>
+                                <th>{{ __('message.Payment English Name') }}</th> 
+                                <th>{{ __('message.Payment Value') }}</th>
+                                <th>{{ __('message.Payment Type') }}</th> 
+                                <th>{{ __('message.Payment Default') }}</th>
+                                <th>{{ __('message.Note') }}</th>
+                                <th class="disabled-sorting text-right">{{ __('message.Actions') }}</th>
                             </tr>
                         </thead>
 
@@ -52,19 +53,20 @@ Payment Type
                                 <td>{{$payment->nameEn}}</td>
                                 <td>{{$payment->value}}</td>
                                 <td>{{$payment->type}}</td>
-                                <td>{{$payment->default}}</td>
+                                <td>{{$payment->default}}</td> 
                                 <td>{{$payment->note}}</td>
                                 <td class="text-right">
                                     <a 
                                         href="{{route('payment.edit',$payment->id)}}" 
                                             class
-                                            ="btn btn-link btn-info btn-just-icon edit">
-                                            <i class="material-icons">edit</i></a>
-                                    <a 
-                                        href="{{route('payment.destroy',$payment->id)}}" 
-                                            class
-                                            ="btn btn-link btn-danger btn-just-icon remove">
-                                            <i class="material-icons">delete</i></a>
+                                            ="btn btn-success btn-sm edit">
+                                            {{ __('message.edit') }}</a>
+                                    <form action="{{route('payment.destroy' ,$payment->id)}}" 
+                                                method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm remove">{{ __('message.delete') }}</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

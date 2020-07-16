@@ -19,6 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->string('LastName')->nullable();
             $table->string('type')->default('app');
             $table->string('binCode')->unique();
+            $table->string('remember_token')->nullable();
 
             $table->uuid('branch_id')->nullable();
             $table->foreign('branch_id')->references('id')->on('branches');

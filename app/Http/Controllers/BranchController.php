@@ -26,7 +26,7 @@ class BranchController extends Controller
                 alert()->warning('WarningAlert !!',session('warning_message'));                
             }
 
-             return $next($request);
+             return $next($request); 
         });
 
     }    
@@ -42,8 +42,8 @@ class BranchController extends Controller
         // return $branches;
         //$branches = Branch::all();
         // this collection return only branch for authenticated owner 
-        $branches = Auth::user();
-        return $branches;
+        $branches = Auth::user()->branches;
+        // return $branches;
         return view('branches.index')->with(['branches' => $branches]);
          
     }    
@@ -93,6 +93,7 @@ class BranchController extends Controller
         $branch = new Branch; 
         
         $branch->name             = $request->input('name');
+        $branch->slugable         = str_slug($request->input('name'), '-');
         $branch->delivery_price   = $request->input('delivery_price');
         $branch->address_address  = $request->input('address_address');
         $branch->monday_from      = $request->input('monday_from');
@@ -115,7 +116,7 @@ class BranchController extends Controller
         //dd($request->name);
         $branch->save();
 
-        return  redirect()->route('branch.home')->withSuccessMessage('Inserted Was Done');
+        return  redirect()->route('branch.index')->withSuccessMessage('Inserted Was Done');
 
     }
 
@@ -177,6 +178,7 @@ class BranchController extends Controller
         $branch = Branch::findOrFail($branch->id);
         
         $branch->name             = $request->input('name');
+        $branch->slugable         = str_slug($request->input('name'), '-');
         $branch->delivery_price   = $request->input('delivery_price');
         $branch->address_address  = $request->input('address_address');
         $branch->monday_from      = $request->input('monday_from');
@@ -202,7 +204,7 @@ class BranchController extends Controller
 
 
 
-        return  redirect()->route('branch.home')->withSuccessMessage('Update Was Done');
+        return  redirect()->route('branch.index')->withSuccessMessage('Update Was Done');
 
     }
 
@@ -233,11 +235,11 @@ class BranchController extends Controller
             }
             $Orders = Order::where('branch_id' , '=' , $branch->id)->get();
             foreach ($Orders as $Order) {
-            if($Order->branch_id == $branch->id)
+            if($Order->branch_id == $branch->id) 
                 return redirect()->back()->withWarningMessage(['Can Not Delete Has Parent']);
             }
         $branch->floors()->detach();
         $branch->delete();
-        return redirect()->route('branch.home')->withSuccessMessage(['Deleted Has Been  Done']);
+        return redirect()->route('branch.index')->withSuccessMessage(['Deleted Has Been  Done']);
     }
 }

@@ -2,29 +2,53 @@
 
 namespace App\Http\Controllers\API;
 use App\User;
+use App\Employee;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Validator;
  
-class UserController extends Controller 
+class UserController extends Controller  
 {
 
-    public $successStatus = 200;
+
+    public $successStatus = 200; 
+
+    public function login(Request $request) {
+        $user = Employee::where(['firstName' => request()->firstName])->first();
+            if (!$user) {
+        		return response()->json(['error' => 'Unauthorized'], 401);
+        	}
+            if (!Hash::check(request()->binCode, $user->binCode)) {
+                // no they don't
+                return response()->json(['error' => 'Unauthorized'], 401);
+            }
+            // log the user in (needed for future requests)
+            Auth::login($user);
+            // get new token
+            // $success['token'] =  $user->createToken('AppName')->accessToken;
+            // return $user = Auth::user();
+            // return token in json response
+            return response()->json(['success' => true, 'user'=>$user] , 200);  
+
+    }
+
+    // public $successStatus = 200;
 
  
-    public function login(){ 
+    // public function login(){ 
 
-        if(Auth::attempt(['binCode' => request('binCode'), 'firstName' => request('firstName')])){ 
-            $user = Auth::user(); 
+    //     if(Auth::attempt(['binCode' => request('binCode'), 'firstName' => request('firstName')])){ 
+    //         $user = Auth::user(); 
 
-            $success['token'] =  $user->createToken('AppName')->accessToken; 
-            return response()->json(['result' => true, 'token' => $success['token']], $this->successStatus); 
-        } else{ 
-           return response()->json(['result'=> false, 'status' => 401]); 
-        } 
-    }
+    //         $success['token'] =  $user->createToken('AppName')->accessToken; 
+    //         return  $success['token'] ;
+    //         return response()->json(['result' => true, 'token' => $success['token']], $this->successStatus); 
+    //     } else{ 
+    //        return response()->json(['result'=> false, 'status' => 401]); 
+    //     } 
+    // }
 
 
     public function logout(Request $request)
@@ -53,27 +77,11 @@ class UserController extends Controller
     //      $success['token'] =  $user->createToken('AppName')->accessToken;
     //      return response()->json(['success'=>$success], $this->successStatus); 
     // }
-     
-    public function getUser() {
+      
+    public function getUser() { 
          $user = Auth::user();
          return response()->json(['success' => $user], $this->successStatus); 
      }
-
-    // public $successStatus = 200;
-
-    // public function login(Request $request) {
-    //     $user = User::where('email', $request->email)->first();
-        
-    //     if ($user) {
-    //         if (Hash::check($request->password, $user->password)) {
-    //             return response()->json(['success'] , $this->successStatus);
-    //         } else{
-
-    //             return response()->json(['error'] , 404);
-    //         }
-    //     }    
-
-    // }
 
 
 }

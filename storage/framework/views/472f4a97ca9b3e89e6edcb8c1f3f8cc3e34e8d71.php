@@ -1,5 +1,6 @@
 <?php $__env->startSection('heading'); ?>
-ingredients
+<?php echo e(__('message.Ingredients')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('head'); ?>
@@ -14,7 +15,8 @@ ingredients
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="<?php echo e(route('ingredient.create')); ?>"><i class="material-icons">add</i> Add New ingredient</a>
+        <a class="btn btn-primary" href="<?php echo e(route('ingredient.create')); ?>">
+            <i class="material-icons">add</i><?php echo e(__('message.Add New ingredient')); ?> </a>
     </div>
 </div>
 <div class="row">
@@ -24,7 +26,7 @@ ingredients
                 <div class="card-icon">
                     <i class="material-icons">kitchen</i>
                 </div>
-                <h4 class="card-title">ingredients</h4>
+                <h4 class="card-title"><?php echo e(__('message.Ingredients')); ?></h4>
             </div>
         
             <div class="card-body ">
@@ -32,12 +34,13 @@ ingredients
                     <table id="ingredients-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Arabic Name</th> 
-                                <th>English Name</th>
-                                <th>Note</th>
-                                <th>Unit</th>
-                                <th>Price</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th><?php echo e(__('message.ingredient Arabic Name')); ?></th> 
+                                <th><?php echo e(__('message.ingredient English Name')); ?></th>
+                                <th><?php echo e(__('message.Note')); ?></th>
+                                <th><?php echo e(__('message.SKU')); ?></th>
+                                <th><?php echo e(__('message.Unit')); ?></th>
+                                <th><?php echo e(__('message.Price')); ?></th>
+                                <th class="disabled-sorting text-right"><?php echo e(__('message.Actions')); ?></th>
                             </tr>
                         </thead>
                         <?php if(count($ingredients) > 0 ): ?>
@@ -47,19 +50,21 @@ ingredients
                                 <td><?php echo e($ingredient->nameAr); ?></td>
                                 <td><?php echo e($ingredient->nameEn); ?></td>
                                 <td><?php echo e($ingredient->note); ?></td>
+                                <td><?php echo e($ingredient->sku); ?></td>
                                 <td><?php echo e($ingredient->unit); ?></td>
                                 <td><?php echo e($ingredient->price); ?></td>
                                 <td class="text-right">
                                     <a 
                                         href="<?php echo e(route('ingredient.edit',$ingredient->id)); ?>" 
-                                            class
-                                            ="btn btn-link btn-info btn-just-icon edit">
-                                            <i class="material-icons">edit</i></a>
-                                    <a 
-                                        href="<?php echo e(route('ingredient.destroy',$ingredient->id)); ?>" 
-                                            class
-                                            ="btn btn-link btn-danger btn-just-icon remove">
-                                            <i class="material-icons">delete</i></a>
+                                            class="btn btn-success btn-sm  edit">
+                                            <?php echo e(__('message.edit')); ?></a>
+
+                                    <form action="<?php echo e(route('ingredient.destroy', $ingredient->id)); ?>" 
+                                                method="POST">
+                                        <?php echo method_field('DELETE'); ?>
+                                        <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-danger btn-sm"><?php echo e(__('message.delete')); ?></button>
+                                    </form>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -77,6 +82,8 @@ ingredients
 <script>
     $(document).ready(function() {
         $('#ingredients-table').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['print'],
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [10, 25, 50, -1],

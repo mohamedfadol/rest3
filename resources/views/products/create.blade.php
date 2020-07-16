@@ -1,33 +1,8 @@
 @extends('theme.default')
 
-@section('head')
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-
-    .dropdown.bootstrap-select.show-tick {
-        width: 100% !important
-    }
-
-    .dropdown-menu.show {
-        min-width: inherit !important
-    }
-
-    .filter-option {
-        color: white
-    }
-    </style>
-@endsection
 
 @section('heading')
-Add a Product
+{{ __('message.Add New Product') }}
 @endsection
 
 @section('content')
@@ -38,7 +13,7 @@ Add a Product
                 <div class="card-icon">
                     <i class="material-icons">perm_identity</i>
                 </div>
-                <h4 class="card-title">Add a Product</h4>
+                <h4 class="card-title">{{ __('message.Add New Product') }}</h4>
             </div>
             <div class="card-body ">
                     @if (count($errors) > 0)
@@ -52,92 +27,90 @@ Add a Product
                     @endif
                 <form 
                     enctype="multipart/form-data"  id="products-form" 
-                        method="POST" action="{{ route('product.create') }}">
+                        method="POST" action="{{ route('product.store') }}">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="logo">Image</label>
-                            <input type="file" name="image" class="form-control" id="logo">
+                            <label class="bmd-label-floating" for="image">{{ __('message.Product Image') }}</label>
+                            <input type="file" name="image" class="form-control" id="image" required>
+                            <img id="blah" src="#" alt="..." class="img-thumbnail">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nameAr">Arabic Name</label>
+                            <label class="bmd-label-floating" for="nameAr">
+                            {{ __('message.Product Arabic Name') }}</label>
                             <input type="text" name="nameAr" class="form-control" id="nameAr" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="descriptionAr">Arabic Description</label>
+                            <label class="bmd-label-floating" for="descriptionAr">
+                            {{ __('message.Arabic Description') }}</label>
                             <textarea class="form-control" name="descriptionAr" id="descriptionAr"></textarea>
                         </div>
                     </div> 
                     
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nameEn">English Name</label>
-                            <input type="text" class="form-control" name="nameEn" id="nameEn" required>
+                            <label class="bmd-label-floating" for="nameEn">
+                            {{ __('message.Product English Name') }}</label>
+                            <input type="text" class="form-control" name="nameEn" id="nameEn" >
                         </div>
                     </div>   
                     
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="descriptionEn">English Description</label>
+                            <label class="bmd-label-floating" for="descriptionEn">
+                                {{ __('message.English Description') }}</label>
                             <textarea class="form-control" name="descriptionEn" id="descriptionEn"></textarea>
                         </div>
                     </div> 
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="sku">SKU</label>
+                            <label class="bmd-label-floating" for="sku">{{ __('message.SKU') }}</label>
                             <input type="text" name="sku" class="form-control" id="sku" required>
                         </div>
                     </div> 
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="category">Category</label>
+                            <label class="bmd-label-floating" for="category">{{ __('message.Category') }}</label>
                             <select id="category_id" class="custom-select" onchange="handleChange()"
-                            name="category_id" data-style="select-with-transition" title="category_id" data-size="7">
-                                <option value=""> Choose ... Category</option>
+                            name="category_id" data-style="select-with-transition" title="Choose ... Category" data-size="7" required>
                                 @if(count($categories) > 0)
                                 @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
-                                @else
-                                <option value="">Ther's No Categories To Add</option>
                                 @endif
                             </select>
                         </div>
 
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="printer">Printer</label>
+                            <label class="bmd-label-floating" for="printer">
+                                {{ __('message.Printers') }}</label>
                             <select id="printer_id" class="custom-select" onchange="handleChange()"
-                            name="printer_id" data-style="select-with-transition" title="Printer" data-size="7">
-                                <option value=""> Choose ... Printer</option>
+                            name="printer_id" data-style="select-with-transition" title="Choose ... Printer" data-size="7" required>
                                 @if(count($printers) > 0)
                                 @foreach($printers as $printer)
                                 <option value="{{$printer->id}}">{{$printer->name}}</option>
                                 @endforeach
-                                @else
-                                <option value="0">Ther's No Printer To Add</option>
                                 @endif
                             </select>
                         </div>
 
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="class">Class</label>
+                            <label class="bmd-label-floating" for="class">
+                            {{ __('message.Class Product') }}</label>
                             <select id="class_id" class="custom-select" onchange="handleChange()"
-                            name="class_id" data-style="select-with-transition" title="Class" data-size="7">
-                                <option value=""> Choose ... Class</option>
+                            name="class_id" data-style="select-with-transition" title="Choose ... Class" data-size="7" required>
                                 @if(count($classes) > 0)
                                 @foreach($classes as $class)
                                 <option value="{{$class->id}}">{{$class->nameAr}}</option>
                                 @endforeach
-                                @else
-                                <option value="0">Ther's No Class To Add</option>
                                 @endif
                             </select>
                         </div>
@@ -146,7 +119,7 @@ Add a Product
 
                     <div class="form-check mt-4">
                         <label class="form-check-label">
-                            <input id="timed_event" name="timed_event" class="form-check-input" type="checkbox" onchange="handleEvent()"> Timed Event
+                            <input id="timed_event" name="timed_event" class="form-check-input" type="checkbox" onchange="handleEvent()"> {{ __('message.Timed Events') }}
                             <span class="form-check-sign">
                                 <span class="check"></span>
                             </span>
@@ -156,21 +129,21 @@ Add a Product
                     <div id="timed_event_section">
                         <div class="row">
                             <div class="form-group col-md-6 mt-4">
-                                <label class="bmd-label" for="timedEventFrom">From</label>
+                                <label class="bmd-label" for="timedEventFrom">{{ __('message.From') }}</label>
                                 <input type="text" name="timedEventFrom" class="form-control datetimepicker mt-2" id="timedEventFrom">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md-6 mt-4">
-                                <label class="bmd-label" for="timedEventTo">To</label>
+                                <label class="bmd-label" for="timedEventTo">{{ __('message.To') }}</label>
                                 <input type="text" name="timedEventTo" class="form-control datetimepicker mt-2" id="timedEventTo">
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <label class="col-sm-2 col-form-label label-checkbox">Price</label>
+                        <label class="col-sm-2 col-form-label label-checkbox">{{ __('message.Price') }}</label>
                         <div class="col-sm-10 checkbox-radios">
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -193,11 +166,11 @@ Add a Product
                     </div>
 
                     <div class="row mt-4">
-                        <label class="col-sm-2 col-form-label label-checkbox">Selling Type</label>
+                        <label class="col-sm-2 col-form-label label-checkbox">{{ __('message.Selling Type') }}</label>
                         <div class="col-sm-10 checkbox-radios">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" onchange="handleWeight()" type="radio" name="sellType" value="unit" checked> Unit
+                                    <input class="form-check-input" onchange="handleWeight()" type="radio" name="sellType" value="unit" checked> {{ __('message.Unit') }}
                                         <span class="circle">
                                     <span class="check"></span>
                                     </span>
@@ -205,7 +178,7 @@ Add a Product
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" onchange="handleWeight()" type="radio" name="sellType" value="weight"> Weight
+                                    <input class="form-check-input" onchange="handleWeight()" type="radio" name="sellType" value="weight">{{ __('message.Weight') }} 
                                     <span class="circle">
                                         <span class="check"></span>
                                     </span>
@@ -217,8 +190,8 @@ Add a Product
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="tax">TAX</label>
-                            <input type="text" name="tax" class="form-control" id="tax" required>
+                            <label class="bmd-label-floating" for="tax">{{ __('message.Tax') }}</label>
+                            <input type="number" name="tax" class="form-control" id="tax" >
                         </div>
                     </div>
                     
@@ -226,15 +199,14 @@ Add a Product
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-6">
-                            <!--label class="bmd-label mr-2" for="tax">Modifires</label-->
-                            <select id="modifires" class="selectpicker" multiple name="modifires[]" data-live-search="true" title="modifires" data-size="7">
-                                <option value=""> Choose ... Modifier</option>
+                            <label class="bmd-label mr-2" for="tax">{{ __('message.modifires') }}</label>
+                            <br>
+                            <select id="modifires" class="selectpicker text-white bg-white" multiple name="modifires[]" 
+                            data-live-search="true" title="Choose ... Modifier" data-size="7">
                                 @if(count($modifires) > 0)
                                 @foreach($modifires as $modifire)
                                 <option value="{{$modifire->id}}">{{$modifire->nameAr}}</option>
                                 @endforeach
-                                @else
-                                <option value="">Ther's No Modifiers To Add</option>
                                 @endif
                             </select>
                         </div>
@@ -249,11 +221,13 @@ Add a Product
 
                     <hr>
 
-                    <div class="text-muted">Product Ingredients</div>
+                    <div class="text-muted">{{ __('message.Product Ingredients') }}</div>
 
-                    <a id="add_ingredient" class="btn btn-success mr-4" style="color:white"><i class="material-icons">add</i> Add ingredient</a>
+                    <a id="add_ingredient" class="btn btn-success mr-4" style="color:white">
+                        <i class="material-icons">add</i> {{ __('message.Add ingredient') }}</a>
                     
-                    <a id="remove_ingredient" class="btn btn-danger ml-4" style="color:white"><i class="material-icons">remove</i> Remove ingredient</a>
+                    <a id="remove_ingredient" class="btn btn-danger ml-4" style="color:white">
+                        <i class="material-icons">remove</i>{{ __('message.Remove ingredient') }} </a>
 
                     <div id="ingredients">
                         
@@ -261,9 +235,7 @@ Add a Product
                         <div class="card-footer ">
                             <button type="submit" 
                                     class="btn btn-fill btn-rose" 
-                                        form="products-form">Submit</button>
-                            <button type="submit" 
-                                    class="btn btn-fill btn-rose">Submit and new</button>
+                                        form="products-form">{{ __('message.Submit') }}</button>
                         </div>
                 </form>
             </div>
@@ -273,6 +245,7 @@ Add a Product
 @endsection
 
 @section('script')
+
 <script>
     if ($('input[name=price]:checked').val() == 'pre') {
         $('#pre_price').slideDown();
@@ -390,4 +363,22 @@ $("#remove_ingredient").click(function(){
 });
 
 </script>
+
+<script>
+    /* function for perview image*/
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#image").change(function(){
+        readURL(this);
+    });
+    /* function for perview image*/    
+</script>
+
 @endsection

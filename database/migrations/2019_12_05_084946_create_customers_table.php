@@ -15,20 +15,20 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->nullable('null');
-            $table->string('nationality')->nullable('null');
-            $table->string('email')->nullable('null');
-            $table->string('phone')->nullable('null');
-            $table->string('country')->nullable('null');
-            $table->string('state')->nullable('null');
-            $table->string('city')->nullable('null');
-            $table->string('area')->nullable('null');
-            $table->string('street')->nullable('null');
-            $table->string('creditCard')->nullable('null');
-            $table->float('discount')->nullable('null');
-            $table->string('note')->nullable('null');
+            $table->string('name')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('country')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->string('area')->nullable();
+            $table->string('street')->nullable();
+            $table->string('creditCard')->nullable();
+            $table->float('discount')->nullable();
+            $table->string('note')->nullable();
             
-            $table->uuid('addByUserId');
+            $table->uuid('addByUserId')->nullable();
             $table->foreign('addByUserId')->references('id')->on('users');
             $table->timestamps();
         });

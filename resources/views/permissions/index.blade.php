@@ -1,50 +1,24 @@
 @extends('theme.default')
 
-@section('head')
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-
-    .dropdown.bootstrap-select.show-tick {
-        width: 100% !important
-    }
-
-    .dropdown-menu.show {
-        min-width: inherit !important
-    }
-
-    .filter-option {
-        color: white
-    }
-    </style>
-@endsection
-
 @section('heading')
-Permissions
+{{ __('message.Permissions') }}
 @endsection
 
 @section('content')
 
 <div class="col-lg-12 col-lg-offset-1">
-    <h1><i class="fa fa-key"></i>Available Permissions
+    <h3><i class="fa fa-key"></i>{{ __('message.Available Permissions') }}
 
-    <a href="{{ route('employees.index') }}" class="btn btn-default pull-right">Employee</a>
-    <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">Roles</a></h1>
+    <a href="{{ route('employees.index') }}" class="btn btn-default pull-right">{{ __('message.Employees') }}</a>
+    <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">{{ __('message.Roles') }}</a></h3>
     <hr>
     <div class="material-datatables">
         <table id="permissions-table" class="table table-bordered table-hover" cellspacing="1" width="100%" style="width:100%">
 
             <thead>
                 <tr>
-                    <th>Permissions</th>
-                    <th>Operation</th>
+                    <th>{{ __('message.Permissions') }}</th>
+                    <th>{{ __('message.Actions') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,7 +39,7 @@ Permissions
         </table>
     </div>
 
-    <a href="{{ URL::to('permissions/create') }}" class="btn btn-success">Add Permission</a>
+    <a href="{{ URL::to('permissions/create') }}" class="btn btn-success">{{ __('message.Submit') }}</a>
 
 </div>
 

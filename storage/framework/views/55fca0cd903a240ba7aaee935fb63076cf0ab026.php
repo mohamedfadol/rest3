@@ -1,5 +1,6 @@
 <?php $__env->startSection('heading'); ?>
-Floors
+<?php echo e(__('message.Floors')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('head'); ?> 
@@ -14,7 +15,8 @@ Floors
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="<?php echo e(route('floor.create')); ?>"><i class="material-icons">add</i> Add New Floor</a>
+        <a class="btn btn-primary" href="<?php echo e(route('floor.create')); ?>">
+            <i class="material-icons">add</i><?php echo e(__('message.Add New Floor')); ?> </a>
     </div>
 </div>
 <div class="row">
@@ -24,7 +26,7 @@ Floors
                 <div class="card-icon">
                     <i class="material-icons">local_cafe</i>
                 </div>
-                <h4 class="card-title">Floors</h4>
+                <h4 class="card-title"><?php echo e(__('message.Floors')); ?></h4>
             </div>
         
             <div class="card-body ">
@@ -32,11 +34,11 @@ Floors
                     <table id="floors-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Branch</th>
-                                <th>Menu</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th><?php echo e(__('message.Floor Name')); ?></th>
+                                <th><?php echo e(__('message.Description')); ?></th>
+                                <th><?php echo e(__('message.Branch')); ?></th>
+                                <th><?php echo e(__('message.Menu')); ?></th>
+                                <th class="disabled-sorting text-right"><?php echo e(__('message.Actions')); ?></th>
                             </tr>
                         </thead>
                     <?php if(count($floors) > 0): ?>
@@ -48,8 +50,14 @@ Floors
                                 <td><?php echo e($floor->branch->name); ?></td>
                                 <td><?php echo e($floor->menu->name); ?></td>
                                 <td class="text-right">
-                                    <a href="<?php echo e(route('floor.edit',$floor->id)); ?>" class="btn btn-link btn-info btn-just-icon edit"><i class="material-icons">edit</i></a>
-                                    <a href="<?php echo e(route('floor.destroy',$floor->id)); ?>" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">delete</i></a>
+                                    <a href="<?php echo e(route('floor.edit',$floor->id)); ?>" 
+                                        class="btn btn-success btn-sm edit"><?php echo e(__('message.edit')); ?></a>
+                                    <form action="<?php echo e(route('floor.destroy' ,$floor->id)); ?>" 
+                                                method="POST">
+                                        <?php echo method_field('DELETE'); ?>
+                                        <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-danger btn-sm"><?php echo e(__('message.delete')); ?></button>
+                                    </form>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

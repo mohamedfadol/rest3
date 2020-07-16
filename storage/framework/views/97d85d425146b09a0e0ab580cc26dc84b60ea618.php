@@ -1,5 +1,6 @@
 <?php $__env->startSection('heading'); ?>
-Payment Type
+<?php echo e(__('message.Payment Type')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('head'); ?>
@@ -14,7 +15,8 @@ Payment Type
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="<?php echo e(route('payment.create')); ?>"><i class="material-icons">add</i> Add New Payment</a>
+        <a class="btn btn-primary" href="<?php echo e(route('payment.create')); ?>">
+            <i class="material-icons">add</i><?php echo e(__('message.Add New Payment')); ?> </a>
     </div>
 </div>
 <div class="row">
@@ -24,7 +26,7 @@ Payment Type
                 <div class="card-icon">
                     <i class="material-icons">power</i>
                 </div>
-                <h4 class="card-title">Payment</h4>
+                <h4 class="card-title"><?php echo e(__('message.Payment Type')); ?></h4>
             </div>
         
             <div class="card-body ">
@@ -32,13 +34,13 @@ Payment Type
                     <table id="payment-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Arabic Name</th>
-                                <th>English Name</th> 
-                                <th>Value</th>
-                                <th>Type</th> 
-                                <th>Default</th>
-                                <th>Note</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th><?php echo e(__('message.Payment Arabic Name')); ?></th>
+                                <th><?php echo e(__('message.Payment English Name')); ?></th> 
+                                <th><?php echo e(__('message.Payment Value')); ?></th>
+                                <th><?php echo e(__('message.Payment Type')); ?></th> 
+                                <th><?php echo e(__('message.Payment Default')); ?></th>
+                                <th><?php echo e(__('message.Note')); ?></th>
+                                <th class="disabled-sorting text-right"><?php echo e(__('message.Actions')); ?></th>
                             </tr>
                         </thead>
 
@@ -50,19 +52,20 @@ Payment Type
                                 <td><?php echo e($payment->nameEn); ?></td>
                                 <td><?php echo e($payment->value); ?></td>
                                 <td><?php echo e($payment->type); ?></td>
-                                <td><?php echo e($payment->default); ?></td>
+                                <td><?php echo e($payment->default); ?></td> 
                                 <td><?php echo e($payment->note); ?></td>
                                 <td class="text-right">
                                     <a 
                                         href="<?php echo e(route('payment.edit',$payment->id)); ?>" 
                                             class
-                                            ="btn btn-link btn-info btn-just-icon edit">
-                                            <i class="material-icons">edit</i></a>
-                                    <a 
-                                        href="<?php echo e(route('payment.destroy',$payment->id)); ?>" 
-                                            class
-                                            ="btn btn-link btn-danger btn-just-icon remove">
-                                            <i class="material-icons">delete</i></a>
+                                            ="btn btn-success btn-sm edit">
+                                            <?php echo e(__('message.edit')); ?></a>
+                                    <form action="<?php echo e(route('payment.destroy' ,$payment->id)); ?>" 
+                                                method="POST">
+                                        <?php echo method_field('DELETE'); ?>
+                                        <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-danger btn-sm remove"><?php echo e(__('message.delete')); ?></button>
+                                    </form>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

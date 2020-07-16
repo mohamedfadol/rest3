@@ -17,29 +17,29 @@ class CreateOrdersTable extends Migration
 
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('number')->nullable('null');
-            $table->integer('dailyNumber')->nullable('null');
-            $table->string('date')->nullable('null'); 
-            $table->string('billDate')->nullable('null');
-            $table->string('delivaryDate')->nullable('null');
-            $table->integer('billSatate')->nullable('null');
-            $table->float('total')->nullable('null');
-            $table->float('discount')->nullable('null');
-            $table->float('discountPerCent')->nullable('null');
-            $table->float('extra')->nullable('null');
-            $table->float('tax')->nullable('null');
-            $table->float('sevice')->nullable('null');
-            $table->string('note')->nullable('null');
-            $table->integer('printredCount')->nullable('null');
-            //$table->float('rePayment')->nullable('null');
-            //$table->string('curancyType')->nullable('null'); to  order repayment
-            $table->float('remain')->nullable('null'); 
+            $table->integer('number')->nullable();
+            $table->integer('dailyNumber')->nullable();
+            $table->string('date')->nullable(); 
+            $table->string('billDate')->nullable();
+            $table->string('delivaryDate')->nullable();
+            $table->integer('billSatate')->nullable();
+            $table->float('total')->nullable();
+            $table->float('discount')->nullable();
+            $table->float('discountPerCent')->nullable();
+            $table->float('extra')->nullable();
+            $table->float('tax')->nullable();
+            $table->float('sevice')->nullable();
+            $table->string('note')->nullable();
+            $table->integer('printredCount')->nullable();
+            //$table->float('rePayment')->nullable();
+            //$table->string('curancyType')->nullable(); to  order repayment
+            $table->float('remain')->nullable(); 
 
 
             $table->uuid('branch_id');
             $table->foreign('branch_id')->references('id')->on('branches');
 
-            $table->uuid('customer_id');
+            $table->uuid('customer_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers');
 
 

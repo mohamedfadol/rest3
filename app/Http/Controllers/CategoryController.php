@@ -39,7 +39,10 @@ class CategoryController extends Controller
     {
         //$categories = Category::all();
         $categories =  Auth::user()->categories;
-        return view('categories.index', compact('categories'));
+        $branches = Auth::user()->branches;
+        $branchName = $branches->first();
+        $branchname =$branchName->slugable; 
+        return view('categories.index')->with(['categories'=>$categories,'branchname'=>$branchname]);
     }
 
     /**
@@ -63,7 +66,7 @@ class CategoryController extends Controller
     {
             //dd($request->all()); 
         $this->validate($request,[
-            'image'            => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'            => 'required|image',
             'name'             => 'required|string|unique:categories',
             'sku'              => 'required',
             'timedEventFrom'   => 'nullable|date',
@@ -71,8 +74,30 @@ class CategoryController extends Controller
             'cat_id'           => 'nullable'
         ]);  
  
+        if ($request->hasFile('image')) {
+            // Get File Name With Extenison
+            $fileNameWithEex = $request->file('image')->getClientOriginalName();
+            // Get fileName Only
+            $fileName = pathinfo($fileNameWithEex , PATHINFO_FILENAME);
+            // Get FileExtenison
+            $extension = $request->file('image')->getClientOriginalExtension();
+            // fileName To Store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            // Upload Image 
+            $branches = Auth::user()->branches;
+            $branchName = $branches->first();
+            //dd($branchName->name);
+            $branchName =$branchName->slugable;
+            $folder = 'public/'.$branchName.'/category';
+            $path = $request->file('image')->storeAs($folder, $fileNameToStore);
+            // dd($path);
+        }else{
+            $fileNameToStore = 'No Images To Store In .jpg';
+        }
+
         $category = new Category;
         $category->name = $request->input('name');
+        $category->image   = $fileNameToStore;
         $category->sku = str_slug('1-'.$request->input('sku'));
         $category->timedEventFrom = $request->input('timedEventFrom');
         $category->timedEventTo   = $request->input('timedEventTo');
@@ -89,25 +114,17 @@ class CategoryController extends Controller
         $category->sku = str_slug('1-'.$Udatesku->code.'-'.$request->input('sku')) ;
         $category->update();
 
- 
-       if ($files = $request->hasFile('image')) {
-           $fileNameWithEex = $request->file('image')->getClientOriginalName();
-           $fileName = $request->file('image')->getRealPath();
-           $image = file_get_contents($fileName);
-           $fileNameToStoreBase64 = base64_encode($image);
-
-           $categoryImage = new Image;
-           $categoryImage->category_id  = $category->id; 
-           $categoryImage->image = $fileNameToStoreBase64;
-           $categoryImage->save(); 
-
-
-        }else{
-
-            $fileNameToStoreBase64 = null ;
-        }
-
-        return redirect()->route('category.home')->withSuccessMessage(['Inserted Has Been  Done']);
+       // if ($files = $request->hasFile('image')) {
+       //     $fileNameWithEex = $request->file('image')->getClientOriginalName();
+       //     $fileName = $request->file('image')->getRealPath();
+       //     $image = file_get_contents($fileName);
+       //     $fileNameToStoreBase64 = base64_encode($image);
+       //     $categoryImage = new Image;
+       //     $categoryImage->category_id  = $category->id; 
+       //     $categoryImage->image = $fileNameToStoreBase64;
+       //     $categoryImage->save(); 
+       //  }else{$fileNameToStoreBase64 = null ;}
+        return redirect()->route('category.index')->withSuccessMessage(['Inserted Has Been  Done']);
     }
 
     /**
@@ -154,9 +171,29 @@ class CategoryController extends Controller
             'cat_id'           => 'nullable'
         ]);  
 
-
+        if ($request->hasFile('image')) {
+            // Get File Name With Extenison
+            $fileNameWithEex = $request->file('image')->getClientOriginalName();
+            // Get fileName Only
+            $fileName = pathinfo($fileNameWithEex , PATHINFO_FILENAME);
+            // Get FileExtenison
+            $extension = $request->file('image')->getClientOriginalExtension();
+            // fileName To Store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            // Upload Image
+            $branches = Auth::user()->branches;
+            $branchName = $branches->first();
+            //dd($branchName->name);
+            $branchName =$branchName->slugable;
+            $folder = 'public/'.$branchName.'/category';
+            $path = $request->file('image')->storeAs($folder, $fileNameToStore);
+            // dd($path);
+        }else{
+            $fileNameToStore = 'No Images To Store In .jpg';
+        } 
         $category =  Category::findOrFail($category->id); 
         $category->name           = $request->input('name');
+        $category->image   = $fileNameToStore;
         $category->sku = str_slug('1-'.$request->input('sku'));
         $category->timedEventFrom = $request->input('timedEventFrom');
         $category->timedEventTo   = $request->input('timedEventTo');
@@ -168,28 +205,24 @@ class CategoryController extends Controller
         $category->active         = $request->active == 'on' ? true : false;
         $category->addByUserId    = Auth::user()->id;
         $category->save();
- 
         $Udatesku = Category::findOrFail($category->id);
         $category->sku = str_slug('1-'.$Udatesku->code.'-'.$request->input('sku')) ;
         $category->update();
-        
-        if ($files = $request->hasFile('image')) {
-           $fileNameWithEex = $request->file('image')->getClientOriginalName();
-           $fileName = $request->file('image')->getRealPath();
-           $image = file_get_contents($fileName);
-           $fileNameToStoreBase64 = base64_encode($image);
-           $categoryImage = new Image;
-           $categoryImage->category_id  = $category->id; 
-           $categoryImage->image = $fileNameToStoreBase64;
-           $categoryImage->save(); 
+        return redirect()->route('category.index')->withSuccessMessage(['Updated Has Been  Done']);
+        // if ($files = $request->hasFile('image')) {
+        //    $fileNameWithEex = $request->file('image')->getClientOriginalName();
+        //    $fileName = $request->file('image')->getRealPath();
+        //    $image = file_get_contents($fileName);
+        //    $fileNameToStoreBase64 = base64_encode($image);
+        //    $categoryImage = new Image;
+        //    $categoryImage->category_id  = $category->id; 
+        //    $categoryImage->image = $fileNameToStoreBase64;
+        //    $categoryImage->save(); 
+        // }else{
 
+        //     $fileNameToStoreBase64 = null ;
+        // }
 
-        }else{
-
-            $fileNameToStoreBase64 = null ;
-        }
-
-        return redirect()->route('category.home')->withSuccessMessage(['Updated Has Been  Done']);
     }
 
     /**
@@ -202,7 +235,6 @@ class CategoryController extends Controller
     {
         $category =  Category::findOrFail($category->id);
             $products = Product::where('category_id' , '=' , $category->id)->get();
-
             foreach ($products as $product) {
                 //dd($product->category_id);
             if($product->category_id == $category->id)
@@ -222,6 +254,6 @@ class CategoryController extends Controller
             }
         $category->menus()->detach();
         $category->delete();
-        return redirect()->route('category.home')->withSuccessMessage(['Deleted Has Been  Done']);
+        return redirect()->route('category.index')->withSuccessMessage(['Deleted Has Been  Done']);
     }
 }

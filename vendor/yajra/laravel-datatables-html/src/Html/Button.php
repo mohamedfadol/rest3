@@ -143,6 +143,23 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
+     * Append a class name to column.
+     *
+     * @param string $class
+     * @return $this
+     */
+    public function addClass($class)
+    {
+        if (! isset($this->attributes['className'])) {
+            $this->attributes['className'] = $class;
+        } else {
+            $this->attributes['className'] .= " $class";
+        }
+
+        return $this;
+    }
+
+    /**
      * Set text option value.
      *
      * @param string $value
@@ -244,6 +261,19 @@ class Button extends Fluent implements Arrayable
     public function actionClose()
     {
         $this->attributes['action'] = 'function() { this.close(); }';
+
+        return $this;
+    }
+
+    /**
+     * Set button alignment.
+     *
+     * @param string $align
+     * @return \Yajra\DataTables\Html\Button
+     */
+    public function align($align = 'button-left')
+    {
+        $this->attributes['align'] = $align;
 
         return $this;
     }

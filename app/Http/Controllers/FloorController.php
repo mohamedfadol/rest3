@@ -69,7 +69,7 @@ class FloorController extends Controller
             //dd($request->all()); 
         $this->validate($request,[
             'name'             => 'required|string|unique:floors',
-            'description'      => 'required|string',
+            'description'      => 'nullable|string',
             'menu_id'          => 'required|uuid',
             'branch_id'        => 'required|uuid'
         ]);  
@@ -84,7 +84,7 @@ class FloorController extends Controller
         $floor->addByUserId  = Auth::user()->id;
         $floor->save();  
 
-        return  redirect()->route('floor.home')->withSuccessMessage('Inserted Was Done');
+        return  redirect()->route('floor.index')->withSuccessMessage('Inserted Was Done');
     }
 
     /**
@@ -130,7 +130,7 @@ class FloorController extends Controller
              //dd($request->all()); 
         $this->validate($request,[
             'name'             => 'required|string|unique:floors,name,'.$floor->id,
-            'description'      => 'required|string',
+            'description'      => 'nullable|string',
             'menu_id'          => 'required|uuid',
             'branch_id'        => 'required|uuid'
         ]);  
@@ -145,7 +145,7 @@ class FloorController extends Controller
         $floor->addByUserId  = Auth::user()->id;
         $floor->save();
 
-        return  redirect()->route('floor.home')->withSuccessMessage('Update Was Done');
+        return  redirect()->route('floor.index')->withSuccessMessage('Update Was Done');
     }
  
     /**
@@ -168,6 +168,6 @@ class FloorController extends Controller
                 return redirect()->back()->withWarningMessage([' Can Not Delete Has Parent']);
             }
         $floor->delete();
-        return redirect()->route('floor.home')->withSuccessMessage(['Deleted Has Been  Done']);
+        return redirect()->route('floor.index')->withSuccessMessage(['Deleted Has Been  Done']);
     }
 }

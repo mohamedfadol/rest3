@@ -1,7 +1,7 @@
 @extends('theme.default')
 
 @section('heading')
-Categories Sales Report
+{{ __('message.Categories Sales Report') }}
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@ Categories Sales Report
                 <div class="card-icon">
                     <i class="material-icons">list</i>
                 </div>
-                <h4 class="card-title">Categories Sales Report</h4>
+                <h4 class="card-title">{{ __('message.Categories Sales Report') }}</h4>
             </div>
             <div class="card-body ">
                 @if (count($errors) > 0)
@@ -28,19 +28,19 @@ Categories Sales Report
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label" for="from">From</label>
+                            <label class="bmd-label" for="from">{{ __('message.From') }}</label>
                             <input type="date" class="form-control mt-2" id="from" name="from" value="{{ $request ? $request->from : Carbon\Carbon::now()->subMonth()->format('Y-m-d')  }}" required>
                         </div>
 
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label" for="to">To</label>
+                            <label class="bmd-label" for="to">{{ __('message.To') }}</label>
                             <input type="date" class="form-control mt-2" id="to" name="to" value="{{ $request ? $request->to : Carbon\Carbon::now()->format('Y-m-d') }}" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-4 mt-4">
-                            <label class="bmd-label" for="branch">Branch</label>
+                            <label class="bmd-label" for="branch">{{ __('message.Branch') }}</label>
                             <select id="branch" class="custom-select" name="branch">
                                 @if(count($branches) > 0)
                                     <option value="all">All</option>
@@ -54,14 +54,14 @@ Categories Sales Report
                         </div>
 
                         <div class="form-group col-md-4 mt-4">
-                            <label for="floor" class="bmd-label-floating">Floor</label>
+                            <label for="floor" class="bmd-label-floating">{{ __('message.Floor') }}</label>
                             <select id="floor" class="custom-select" name="floor" data-old="{{ $request ? $request->floor : '' }}" title="floor" data-size="7">
                                 <option value="all" {{ $request ? ($request->floor == 'all' ? 'selected' : '') : '' }}>All</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4 mt-4">
-                            <label for="table" class="bmd-label-floating">Table</label>
+                            <label for="table" class="bmd-label-floating">{{ __('message.Table') }}</label>
                             <select id="table" class="custom-select" name="table" title="table" data-old="{{ $request ? $request->table : '' }}">
                                 <option value="all">All</option>
                             </select>
@@ -70,7 +70,7 @@ Categories Sales Report
                     
                     <div class="row">
                         <div class="form-group col-md-4 mt-4">
-                            <label class="bmd-label" for="category">Category</label>
+                            <label class="bmd-label" for="category">{{ __('message.Category') }}</label>
                             <select id="category" class="custom-select" name="category">
                                 <option value="all">All</option>
                                 @foreach($categories as $category)
@@ -82,7 +82,7 @@ Categories Sales Report
 
                     <div class="row">
                         <div class="form-group col-md-4 mt-6 row">
-                            <label class="bmd-label-floating" for="employee">Added by</label>
+                            <label class="bmd-label-floating" for="employee">{{ __('message.Added By') }}</label>
                             <select id="employee" class="custom-select" data-old="{{ $request ? $request->employee : '' }}" name="employee">
                                 <option value="all">All</option>
                             </select>
@@ -90,7 +90,7 @@ Categories Sales Report
                     </div>
 
                     <div class="row">
-                        <label class="col-sm-2 mt-4 pt-1">Payment Type</label>
+                        <label class="col-sm-2 mt-4 pt-1">{{ __('message.Payment Type') }}</label>
                         <div class="col-sm-10 mt-4 checkbox-radios">
                              @if(!empty($paymentTypes)) 
                                 @foreach($paymentTypes as $type)
@@ -108,7 +108,7 @@ Categories Sales Report
                     </div>
 
                     <div class="row">
-                        <label class="col-sm-2 mt-4 pt-1">Order Type</label>
+                        <label class="col-sm-2 mt-4 pt-1">{{ __('message.Order Type') }}</label>
                         <div class="col-sm-10 mt-4 checkbox-radios">
                             @foreach($orderTypes as $type)
                                 <div class="form-check form-check-inline">
@@ -142,12 +142,12 @@ Categories Sales Report
                     <table id="categories-table" class="table table-striped table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Category</th>
-                                <th>Total</th>
-                                <th>Products</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Total Price</th>
+                                <th>{{ __('message.Category') }}</th>
+                                <th>{{ __('message.Total') }}</th>
+                                <th>{{ __('message.Product') }}</th>
+                                <th>{{ __('message.Quantitiy') }}</th>
+                                <th>{{ __('message.Price') }}</th>
+                                <th>{{ __('message.Total Price') }}</th>
                             </tr>
                         </thead>
                         <tbody>

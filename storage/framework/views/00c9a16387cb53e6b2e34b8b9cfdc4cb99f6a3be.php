@@ -13,7 +13,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('heading'); ?>
-Update a Giftcard
+<?php echo e(__('message.Update a Giftcard')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?> 
@@ -24,7 +25,7 @@ Update a Giftcard
                 <div class="card-icon">
                     <i class="material-icons">card_giftcard</i>
                 </div>
-                <h4 class="card-title">Update a Giftcard</h4>
+                <h4 class="card-title"><?php echo e(__('message.Update a Giftcard')); ?></h4>
             </div>
             <div class="card-body ">
                     <?php if(count($errors) > 0): ?>
@@ -42,7 +43,7 @@ Update a Giftcard
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Name</label>
+                            <label class="bmd-label-floating" for="name"><?php echo e(__('message.GiftCards Name')); ?></label>
                             <input type="text" 
                                         name="name" value="<?php echo e($giftcard->name); ?>" 
                                             class="form-control" id="name">
@@ -50,7 +51,7 @@ Update a Giftcard
                     </div>
 
                     <div class="row mt-4">
-                        <label class="col-sm-2 col-form-label label-checkbox">Type</label>
+                        <label class="col-sm-2 col-form-label label-checkbox"><?php echo e(__('message.GiftCards Type')); ?></label>
                         <div class="col-sm-10 checkbox-radios">
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -83,7 +84,7 @@ Update a Giftcard
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="amount">Amount</label>
+                            <label class="bmd-label-floating" for="amount"><?php echo e(__('message.GiftCards Amount')); ?></label>
                             <input type="text" 
                                         name="amount" value="<?php echo e($giftcard->amount); ?>"
                                             class="form-control" id="amount">
@@ -93,7 +94,7 @@ Update a Giftcard
                     <div class="row mt-4">
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="ValidFrom" class="col-form-label col-md-4">Valid From</label>
+                                <label for="ValidFrom" class="col-form-label col-md-4"><?php echo e(__('message.GiftCards Valid From')); ?></label>
                                 <input type="text" 
                                         name="ValidFrom" value="<?php echo e($giftcard->ValidFrom); ?>"
                                             class="form-control datepicker col-md-4">
@@ -101,7 +102,7 @@ Update a Giftcard
                         </div>
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="validTo" class="col-form-label col-md-4">Valid To</label>
+                                <label for="validTo" class="col-form-label col-md-4"><?php echo e(__('message.GiftCards Valid To')); ?></label>
                                 <input type="text" 
                                         name="validTo" value="<?php echo e($giftcard->validTo); ?>"
                                             class="form-control datepicker col-md-4">
@@ -111,7 +112,7 @@ Update a Giftcard
                     
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="couponNumber">Number of Coupons</label>
+                            <label class="bmd-label-floating" for="couponNumber"><?php echo e(__('message.GiftCards Number of Coupons')); ?></label>
                             <input type="number" 
                                     name="couponNumber" value="<?php echo e($giftcard->couponNumber); ?>"
                                         class="form-control" id="couponNumber">
@@ -119,7 +120,7 @@ Update a Giftcard
                     </div>
 
                     <div class="row mt-4">
-                        <label class="col-sm-2 col-form-label label-checkbox">Valid on</label>
+                        <label class="col-sm-2 col-form-label label-checkbox"><?php echo e(__('message.GiftCards Valid On')); ?></label>
                         <div class="col-sm-10 checkbox-radios">
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -127,7 +128,8 @@ Update a Giftcard
                                             type="checkbox" name="validOn" 
                                                 <?php echo e($giftcard->validOn == 'monday' ? 'checked' :''); ?>
 
-                                                value="monday"> Monday
+                                                value="monday"> <?php echo e(__('message.Monday')); ?>
+
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -139,7 +141,8 @@ Update a Giftcard
                                                 type="checkbox" name="validOn" 
                                                 <?php echo e($giftcard->validOn == 'tuesday' ? 'checked' :''); ?>
 
-                                                    value="tuesday"> Tuesday
+                                                    value="tuesday"> <?php echo e(__('message.Tuesday')); ?>
+
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -151,7 +154,8 @@ Update a Giftcard
                                             type="checkbox" name="validOn" 
                                             <?php echo e($giftcard->validOn == 'wednesday' ? 'checked' :''); ?>
 
-                                                value="wednesday"> Wednesday
+                                                value="wednesday"> <?php echo e(__('message.Wednesday')); ?>
+
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -163,7 +167,8 @@ Update a Giftcard
                                             type="checkbox" name="validOn" 
                                             <?php echo e($giftcard->validOn == 'thursday' ? 'checked' :''); ?>
 
-                                                    value="thursday"> Thursday
+                                                    value="thursday"> <?php echo e(__('message.Thursday')); ?>
+
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -175,7 +180,8 @@ Update a Giftcard
                                             type="checkbox" name="validOn" 
                                             <?php echo e($giftcard->validOn == 'friday' ? 'checked' :''); ?>
 
-                                                value="friday"> Friday
+                                                value="friday"> <?php echo e(__('message.Friday')); ?>
+
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -187,7 +193,8 @@ Update a Giftcard
                                             type="checkbox" name="validOn" 
                                             <?php echo e($giftcard->validOn == 'saturday' ? 'checked' :''); ?>
 
-                                                value="saturday"> Saturday
+                                                value="saturday"> <?php echo e(__('message.Saturday')); ?>
+
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -199,7 +206,8 @@ Update a Giftcard
                                             type="checkbox" name="validOn" 
                                             <?php echo e($giftcard->validOn == 'sunday' ? 'checked' :''); ?>
 
-                                                value="sunday"> Sunday
+                                                value="sunday"> <?php echo e(__('message.Sunday')); ?>
+
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -208,8 +216,7 @@ Update a Giftcard
                         </div>
                     </div>
                     <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                        <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                        <button type="submit" class="btn btn-fill btn-rose"><?php echo e(__('message.Submit')); ?></button>
                     </div>
                 </form>
             </div>
@@ -218,15 +225,4 @@ Update a Giftcard
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('script'); ?>
-<script>
-    $(document).ready(function() {
-        // initialise Datetimepicker and Sliders
-        md.initFormExtendedDatetimepickers();
-        if ($('.slider').length != 0) {
-            md.initSliders();
-        }
-    });
-</script>
-<?php $__env->stopSection(); ?>
 <?php echo $__env->make('theme.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\report\resources\views\giftcards\edit.blade.php ENDPATH**/ ?>

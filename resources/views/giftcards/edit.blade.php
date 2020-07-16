@@ -15,7 +15,7 @@
 @endsection
 
 @section('heading')
-Update a Giftcard
+{{ __('message.Update a Giftcard') }}
 @endsection
 
 @section('content') 
@@ -26,7 +26,7 @@ Update a Giftcard
                 <div class="card-icon">
                     <i class="material-icons">card_giftcard</i>
                 </div>
-                <h4 class="card-title">Update a Giftcard</h4>
+                <h4 class="card-title">{{ __('message.Update a Giftcard') }}</h4>
             </div>
             <div class="card-body ">
                     @if (count($errors) > 0)
@@ -43,7 +43,7 @@ Update a Giftcard
                     {{ method_field('PUT') }}
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Name</label>
+                            <label class="bmd-label-floating" for="name">{{ __('message.GiftCards Name') }}</label>
                             <input type="text" 
                                         name="name" value="{{$giftcard->name}}" 
                                             class="form-control" id="name">
@@ -51,7 +51,7 @@ Update a Giftcard
                     </div>
 
                     <div class="row mt-4">
-                        <label class="col-sm-2 col-form-label label-checkbox">Type</label>
+                        <label class="col-sm-2 col-form-label label-checkbox">{{ __('message.GiftCards Type') }}</label>
                         <div class="col-sm-10 checkbox-radios">
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -82,7 +82,7 @@ Update a Giftcard
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="amount">Amount</label>
+                            <label class="bmd-label-floating" for="amount">{{ __('message.GiftCards Amount') }}</label>
                             <input type="text" 
                                         name="amount" value="{{$giftcard->amount}}"
                                             class="form-control" id="amount">
@@ -92,7 +92,7 @@ Update a Giftcard
                     <div class="row mt-4">
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="ValidFrom" class="col-form-label col-md-4">Valid From</label>
+                                <label for="ValidFrom" class="col-form-label col-md-4">{{ __('message.GiftCards Valid From') }}</label>
                                 <input type="text" 
                                         name="ValidFrom" value="{{$giftcard->ValidFrom}}"
                                             class="form-control datepicker col-md-4">
@@ -100,7 +100,7 @@ Update a Giftcard
                         </div>
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="validTo" class="col-form-label col-md-4">Valid To</label>
+                                <label for="validTo" class="col-form-label col-md-4">{{ __('message.GiftCards Valid To') }}</label>
                                 <input type="text" 
                                         name="validTo" value="{{$giftcard->validTo}}"
                                             class="form-control datepicker col-md-4">
@@ -110,7 +110,7 @@ Update a Giftcard
                     
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="couponNumber">Number of Coupons</label>
+                            <label class="bmd-label-floating" for="couponNumber">{{ __('message.GiftCards Number of Coupons') }}</label>
                             <input type="number" 
                                     name="couponNumber" value="{{$giftcard->couponNumber}}"
                                         class="form-control" id="couponNumber">
@@ -118,14 +118,14 @@ Update a Giftcard
                     </div>
 
                     <div class="row mt-4">
-                        <label class="col-sm-2 col-form-label label-checkbox">Valid on</label>
+                        <label class="col-sm-2 col-form-label label-checkbox">{{ __('message.GiftCards Valid On') }}</label>
                         <div class="col-sm-10 checkbox-radios">
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
                                                 {{$giftcard->validOn == 'monday' ? 'checked' :''}}
-                                                value="monday"> Monday
+                                                value="monday"> {{ __('message.Monday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -136,7 +136,7 @@ Update a Giftcard
                                     <input class="form-check-input" 
                                                 type="checkbox" name="validOn" 
                                                 {{$giftcard->validOn == 'tuesday' ? 'checked' :''}}
-                                                    value="tuesday"> Tuesday
+                                                    value="tuesday"> {{ __('message.Tuesday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -147,7 +147,7 @@ Update a Giftcard
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
                                             {{$giftcard->validOn == 'wednesday' ? 'checked' :''}}
-                                                value="wednesday"> Wednesday
+                                                value="wednesday"> {{ __('message.Wednesday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -158,7 +158,7 @@ Update a Giftcard
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
                                             {{$giftcard->validOn == 'thursday' ? 'checked' :''}}
-                                                    value="thursday"> Thursday
+                                                    value="thursday"> {{ __('message.Thursday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -169,7 +169,7 @@ Update a Giftcard
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
                                             {{$giftcard->validOn == 'friday' ? 'checked' :''}}
-                                                value="friday"> Friday
+                                                value="friday"> {{ __('message.Friday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -180,7 +180,7 @@ Update a Giftcard
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
                                             {{$giftcard->validOn == 'saturday' ? 'checked' :''}}
-                                                value="saturday"> Saturday
+                                                value="saturday"> {{ __('message.Saturday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -191,7 +191,7 @@ Update a Giftcard
                                     <input class="form-check-input" 
                                             type="checkbox" name="validOn" 
                                             {{$giftcard->validOn == 'sunday' ? 'checked' :''}}
-                                                value="sunday"> Sunday
+                                                value="sunday"> {{ __('message.Sunday') }}
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -200,24 +200,11 @@ Update a Giftcard
                         </div>
                     </div>
                     <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                        <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                        <button type="submit" class="btn btn-fill btn-rose">{{ __('message.Submit') }}</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-@endsection
-
-@section('script')
-<script>
-    $(document).ready(function() {
-        // initialise Datetimepicker and Sliders
-        md.initFormExtendedDatetimepickers();
-        if ($('.slider').length != 0) {
-            md.initSliders();
-        }
-    });
-</script>
 @endsection

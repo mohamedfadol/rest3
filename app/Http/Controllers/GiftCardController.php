@@ -76,7 +76,7 @@ class GiftCardController extends Controller
         $giftcard->validOn      = $request->input('validOn');
         $giftcard->addByUserId  = Auth::user()->id;
         $giftcard->save();   
-        return redirect()->route('giftcard.home')->withSuccessMessage(['Inserted Has Been  Done']);
+        return redirect()->route('giftcard.index')->withSuccessMessage(['Inserted Has Been  Done']);
     }
 
     /**
@@ -132,7 +132,7 @@ class GiftCardController extends Controller
         $giftcard->validOn      = $request->input('validOn');
         $giftcard->addByUserId  = Auth::user()->id;
         $giftcard->save();   
-        return redirect()->route('giftcard.home')->withSuccessMessage(['Updated Has Been  Done']);
+        return redirect()->route('giftcard.index')->withSuccessMessage(['Updated Has Been  Done']);
     }
 
     /**
@@ -145,7 +145,7 @@ class GiftCardController extends Controller
     {
         $giftcard  = giftCard::findOrFail($giftCard->id);
         $giftcard->delete();
-        return redirect()->route('giftcard.home')->withSuccessMessage(['Deleted Has Been  Done']);
+        return redirect()->route('giftcard.index')->withSuccessMessage(['Deleted Has Been  Done']);
 
     }
 }

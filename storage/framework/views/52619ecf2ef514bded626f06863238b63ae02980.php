@@ -1,5 +1,6 @@
 <?php $__env->startSection('heading'); ?>
-Menus
+<?php echo e(__('message.Menus')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('head'); ?>
@@ -14,7 +15,8 @@ Menus
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="<?php echo e(route('menu.create')); ?>"><i class="material-icons">add</i> Add New Menu</a>
+        <a class="btn btn-primary" href="<?php echo e(route('menu.create')); ?>">
+                <i class="material-icons">add</i><?php echo e(__('message.Add New Menu')); ?> </a>
     </div>
 </div>
 <div class="row">
@@ -24,7 +26,7 @@ Menus
                 <div class="card-icon">
                     <i class="material-icons">list</i>
                 </div>
-                <h4 class="card-title">Menus</h4>
+                <h4 class="card-title"><?php echo e(__('message.Menus')); ?></h4>
             </div>
         
             <div class="card-body ">
@@ -32,10 +34,10 @@ Menus
                     <table id="menus-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Categories</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th><?php echo e(__('message.Menu Name')); ?></th>
+                                <th><?php echo e(__('message.Description')); ?></th>
+                                <th><?php echo e(__('message.Categories')); ?></th>
+                                <th class="disabled-sorting text-right"><?php echo e(__('message.Actions')); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,8 +51,14 @@ Menus
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </td>
                                 <td class="text-right">
-                                    <a href="<?php echo e(route('menu.edit' ,$menu->id)); ?>" class="btn btn-link btn-info btn-just-icon edit"><i class="material-icons">edit</i></a>
-                                    <a href="<?php echo e(route('menu.destroy' ,$menu->id)); ?>" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">delete</i></a>
+                                    <a href="<?php echo e(route('menu.edit' ,$menu->id)); ?>" 
+                                        class="btn btn-success btn-sm edit"><?php echo e(__('message.edit')); ?></a>
+                                    <form action="<?php echo e(route('menu.destroy' ,$menu->id)); ?>" 
+                                                method="POST">
+                                        <?php echo method_field('DELETE'); ?>
+                                        <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-danger btn-sm"><?php echo e(__('message.delete')); ?></button>
+                                    </form>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

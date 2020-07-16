@@ -1,19 +1,6 @@
-<?php $__env->startSection('head'); ?>
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-<?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('heading'); ?>
-Add a Category
+<?php echo e(__('message.Edit Category')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -24,7 +11,8 @@ Add a Category
                 <div class="card-icon">
                     <i class="material-icons">perm_identity</i>
                 </div>
-                <h4 class="card-title">Add a Category</h4>
+
+                <h4 class="card-title"><?php echo e(__('message.Edit Category')); ?></h4>
             </div>
             <div class="card-body "> 
                     <?php if(count($errors) > 0): ?>
@@ -47,18 +35,20 @@ Add a Category
                     
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="image">Icon</label>
+                            <label class="bmd-label-floating" for="image"><?php echo e(__('message.Icon')); ?></label>
                             <input value="<?php echo e($category->image); ?>" 
                                 id="image" 
                                     class="form-control" 
                                         name="image" 
                                             type="file">
+                        <img id="blah" src="#" alt="..." class="img-thumbnail">
+
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Category Name</label>
+                            <label class="bmd-label-floating" for="name"><?php echo e(__('message.Category Name')); ?></label>
                             <input value="<?php echo e($category->name); ?>" 
                                 id="name" 
                                     type="text" 
@@ -69,9 +59,9 @@ Add a Category
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="sku">SKU</label>
+                            <label class="bmd-label-floating" for="sku"><?php echo e(__('message.SKU')); ?></label>
                             <input value="<?php echo e($category->sku); ?>" 
-                                type="number" class="form-control" 
+                                type="text" class="form-control" 
                                     id="sku" 
                                         name="sku">
                         </div>
@@ -79,7 +69,7 @@ Add a Category
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="parent_category">Parent Category</label>
+                            <label class="bmd-label-floating" for="parent_category"><?php echo e(__('message.Parent Category')); ?></label>
                             <select id="parent_category" class="custom-select" name="cat_id" data-style="select-with-transition" title="parent_category" data-size="7">
                                     <option value="0">Parent Categories</option>
                                 <?php if($categories->isEmpty()): ?>
@@ -94,7 +84,8 @@ Add a Category
 
                     <div class="form-check mt-4">
                         <label class="form-check-label">
-                            <input id="timed_event" name="timed_event" class="form-check-input" type="checkbox" onchange="handleEvent()"> Timed Event
+                            <input id="timed_event" name="timed_event" class="form-check-input" type="checkbox" onchange="handleEvent()"><?php echo e(__('message.Active')); ?>
+
                             <span class="form-check-sign">
                                 <span class="check"></span>
                             </span>
@@ -104,7 +95,7 @@ Add a Category
                     <div id="timed_event_section">
                         <div class="row">
                             <div class="form-group col-md-6 mt-4">
-                                <label class="bmd-label" for="timedEventFrom">From</label>
+                                <label class="bmd-label" for="timedEventFrom"><?php echo e(__('message.From')); ?></label>
                                 <input type="text" 
                                     value="<?php echo e($category->timedEventFrom); ?>"  
                                         name="timedEventFrom" 
@@ -115,7 +106,7 @@ Add a Category
 
                         <div class="row">
                             <div class="form-group col-md-6 mt-4">  
-                                <label class="bmd-label" for="timedEventTo">To</label>
+                                <label class="bmd-label" for="timedEventTo"><?php echo e(__('message.To')); ?></label>
                                 <input type="text" 
                                     value="<?php echo e($category->timedEventTo); ?>" 
                                         name="timedEventTo" 
@@ -141,8 +132,7 @@ Add a Category
                 </form>
             </div>
             <div class="card-footer ">
-                <button type="submit" class="btn btn-fill btn-rose" form="categories-form">Submit</button>
-                <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                <button type="submit" class="btn btn-fill btn-rose" form="categories-form"><?php echo e(__('message.Submit')); ?></button>
             </div>
         </div>
     </div>
@@ -187,6 +177,24 @@ Add a Category
             $('#timed_event_section').slideUp();
         }
     }
+    
+    /* function for perview image*/
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#image").change(function(){
+        readURL(this);
+    });
+    /* function for perview image*/
 </script>
 
 <?php $__env->stopSection(); ?>

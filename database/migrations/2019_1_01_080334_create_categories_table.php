@@ -19,9 +19,9 @@ class CreateCategoriesTable extends Migration
             $table->string('sku')->nullable();
             $table->string('timedEventFrom')->nullable('null');
             $table->string('timedEventTo')->nullable('null');
-            $table->integer('active')->defualt(0);
+            $table->integer('active')->default(0);
             $table->string('cat_id')->nullable('null');
-            
+            $table->longText('image')->nullable('null');
             $table->uuid('addByUserId');
             $table->foreign('addByUserId')->references('id')->on('users');
             $table->timestamps();

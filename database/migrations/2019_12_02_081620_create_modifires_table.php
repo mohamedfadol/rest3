@@ -15,12 +15,12 @@ class CreateModifiresTable extends Migration
     {
         Schema::create('modifires', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('nameAr')->nullable('null');
-            $table->string('nameEn')->nullable('null');
+            $table->string('nameAr')->nullable();
+            $table->string('nameEn')->nullable();
             $table->string('sku')->nullable();
-            $table->float('cost')->defualt(0);
-            $table->float('tax')->defualt(0);
-            $table->float('price')->defualt(0);
+            $table->float('cost')->default(0);
+            $table->float('tax')->default(0);
+            $table->float('price')->default(0);
             $table->enum('unit', ['Kg','Pices']);
 
             $table->uuid('addByUserId');

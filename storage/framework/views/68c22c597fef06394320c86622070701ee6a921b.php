@@ -15,7 +15,7 @@
     <body>
         <table class="table table-bordered table-condensed table-striped">
             <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php if($row == reset($data)): ?> 
+                <?php if($loop->first): ?>
                     <tr>
                         <?php $__currentLoopData = $row; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <th><?php echo $key; ?></th>

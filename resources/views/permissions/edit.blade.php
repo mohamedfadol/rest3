@@ -27,7 +27,7 @@
 @endsection
 
 @section('heading')
-Edit a Permission
+{{ __('message.Edit a Permission') }}
 @endsection
 
 @section('content')

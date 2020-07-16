@@ -1,19 +1,10 @@
 <?php $__env->startSection('head'); ?> 
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('heading'); ?>
-Add an Ingredient
+<?php echo e(__('message.Add New ingredient')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -24,7 +15,7 @@ Add an Ingredient
                 <div class="card-icon">
                     <i class="material-icons">kitchen</i>
                 </div>
-                <h4 class="card-title">Add an Ingredient</h4>
+                <h4 class="card-title"><?php echo e(__('message.Add New ingredient')); ?></h4>
             </div>
             <div class="card-body ">
                     <?php if(count($errors) > 0): ?>
@@ -36,32 +27,39 @@ Add an Ingredient
                             </ul>
                         </div>
                     <?php endif; ?>
-                <form method="POST" action="<?php echo e(route('ingredient.create')); ?>">
+                <form method="POST" action="<?php echo e(route('ingredient.store')); ?>">
                     <?php echo csrf_field(); ?>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nameAr">Arabic Name</label>
+                            <label class="bmd-label-floating" for="nameAr"><?php echo e(__('message.ingredient Arabic Name')); ?></label>
                             <input type="text" name="nameAr" class="form-control" id="nameAr" required>
                         </div>
                     </div>
                     
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nameEn">English Name</label>
-                            <input type="text" name="nameEn" class="form-control" id="nameEn" required>
+                            <label class="bmd-label-floating" for="nameEn"><?php echo e(__('message.ingredient English Name')); ?></label>
+                            <input type="text" name="nameEn" class="form-control" id="nameEn" >
                         </div>
                     </div>   
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="note">Note</label>
-                            <input type="text" name="note" class="form-control" id="note" required>
+                            <label class="bmd-label-floating" for="note"><?php echo e(__('message.Note')); ?></label>
+                            <input type="text" name="note" class="form-control" id="note" >
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="category">Unit</label>
+                            <label class="bmd-label-floating" for="sku"><?php echo e(__('message.SKU')); ?></label>
+                            <input type="text" name="sku" class="form-control" id="sku" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 mt-4">
+                            <label class="bmd-label-floating" for="category"><?php echo e(__('message.Unit')); ?></label>
                             <select id="type" class="custom-select" name="unit" data-style="select-with-transition" title="type" data-size="7">
                                 <option value="Pices">Pices</option>
                                 <option value="Kg">Kg</option>
@@ -71,14 +69,13 @@ Add an Ingredient
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="price">Price</label>
-                            <input type="text" name="price" class="form-control" id="price" required>
+                            <label class="bmd-label-floating" for="price"><?php echo e(__('message.Price')); ?></label>
+                            <input type="number" name="price" class="form-control" id="price" required>
                         </div>
                     </div>
 
                     <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                        <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                        <button type="submit" class="btn btn-fill btn-rose"><?php echo e(__('message.Submit')); ?></button>
                     </div>
                 </form>
             </div>

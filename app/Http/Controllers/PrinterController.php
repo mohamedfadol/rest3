@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Printer;
+use App\Product;
 use Illuminate\Http\Request;
 use Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -84,7 +85,7 @@ class PrinterController extends Controller
         $printer->addByUserId  = Auth::user()->id;
         $printer->save();  
 
-        return  redirect()->route('printer.home')->withSuccessMessage('Inserted Was Done');
+        return  redirect()->route('printer.index')->withSuccessMessage('Inserted Was Done');
     }
 
     /**
@@ -146,7 +147,7 @@ class PrinterController extends Controller
         $printer->addByUserId  = Auth::user()->id;
         $printer->save();  
 
-        return  redirect()->route('printer.home')->withSuccessMessage('Updated Was Done');
+        return  redirect()->route('printer.index')->withSuccessMessage('Updated Was Done');
     }
 
     /**
@@ -158,8 +159,14 @@ class PrinterController extends Controller
     public function destroy(Printer $printer)
     {
         $printer = Printer::findOrFail($printer->id); 
+        $products = Product::where('printer_id' , '=' , $printer->id)->get();
+            foreach ($products as $product) {
+                //dd($product->printer_id);
+            if($product->printer_id == $printer->id)
+              return redirect()->back()->withWarningMessage([' Can Not Delete Has Parent']);
+        }
         $printer->delete();
-        return  redirect()->route('printer.home')->withSuccessMessage('Deleted Was Done');
+        return  redirect()->route('printer.index')->withSuccessMessage('Deleted Was Done');
 
     }
 }

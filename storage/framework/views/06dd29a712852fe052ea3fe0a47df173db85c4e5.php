@@ -1,19 +1,6 @@
-<?php $__env->startSection('head'); ?>
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-<?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('heading'); ?>
-Update a Customer
+<?php echo e(__('message.Update a Customer')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -24,7 +11,7 @@ Update a Customer
                 <div class="card-icon">
                     <i class="material-icons">local_cafe</i>
                 </div>
-                <h4 class="card-title">Update a Customer</h4>
+                <h4 class="card-title"><?php echo e(__('message.Update a Customer')); ?></h4>
             </div>
             <div class="card-body ">
                     <?php if(count($errors) > 0): ?>
@@ -42,18 +29,18 @@ Update a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Name</label>
+                            <label class="bmd-label-floating" for="name"><?php echo e(__('message.Customer Name')); ?></label>
                             <input 
                                 type="text" 
                                     class="form-control" 
                                         id="name" 
-                                            name="name" value="<?php echo e($customer->name); ?>" required>
+                                            name="name" value="<?php echo e($customer->name); ?>" required />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nationality">Nationality</label>
+                            <label class="bmd-label-floating" for="nationality"><?php echo e(__('message.Nationality')); ?></label>
                             <input class="form-control" 
                                             id="nationality" 
                                                 name="nationality" 
@@ -63,7 +50,7 @@ Update a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="email">E-mail</label>
+                            <label class="bmd-label-floating" for="email"><?php echo e(__('message.E-mail')); ?></label>
                             <input class="form-control" 
                                             id="email" 
                                                 name="email" 
@@ -75,7 +62,7 @@ Update a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="phone">Phone</label>
+                            <label class="bmd-label-floating" for="phone"><?php echo e(__('message.Phone')); ?></label>
                             <input class="form-control" 
                                             id="phone" 
                                                 name="phone" 
@@ -86,7 +73,7 @@ Update a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="country">Country</label>
+                            <label class="bmd-label-floating" for="country"><?php echo e(__('message.Country')); ?></label>
                             <input class="form-control" 
                                             id="country" 
                                                 name="country" 
@@ -97,7 +84,7 @@ Update a Customer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="state">State</label>
+                            <label class="bmd-label-floating" for="state"><?php echo e(__('message.State')); ?></label>
                             <input class="form-control" 
                                             id="state" 
                                                 name="state" 
@@ -107,7 +94,7 @@ Update a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="city">City</label>
+                            <label class="bmd-label-floating" for="city"><?php echo e(__('message.City')); ?></label>
                             <input class="form-control" 
                                             id="city" 
                                                 name="city" 
@@ -117,7 +104,7 @@ Update a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="area">Area</label>
+                            <label class="bmd-label-floating" for="area"><?php echo e(__('message.Area')); ?></label>
                             <input class="form-control" 
                                             id="area" 
                                                 name="area" 
@@ -125,9 +112,10 @@ Update a Customer
                                                         required />
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="street">Street</label>
+                            <label class="bmd-label-floating" for="street"><?php echo e(__('message.Street')); ?></label>
                             <input class="form-control" 
                                             id="street" 
                                                 name="street" 
@@ -137,7 +125,7 @@ Update a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="creditCard">Credit-Card</label>
+                            <label class="bmd-label-floating" for="creditCard"><?php echo e(__('message.CreditCard')); ?></label>
                             <input class="form-control" 
                                             id="creditCard" 
                                                 name="creditCard" 
@@ -147,7 +135,7 @@ Update a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="discount">Discount</label>
+                            <label class="bmd-label-floating" for="discount"><?php echo e(__('message.Discount')); ?></label>
                             <input class="form-control" 
                                             id="discount" 
                                                 name="discount" 
@@ -157,7 +145,7 @@ Update a Customer
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="note">Note</label>
+                            <label class="bmd-label-floating" for="note"><?php echo e(__('message.Note')); ?></label>
                             <input class="form-control" 
                                             id="note" 
                                                 name="note" 
@@ -166,8 +154,7 @@ Update a Customer
                         </div>
                     </div>
                             <div class="card-footer ">
-                                <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                                <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                                <button type="submit" class="btn btn-fill btn-rose"><?php echo e(__('message.Submit')); ?></button>
                             </div>
 
                 </form>

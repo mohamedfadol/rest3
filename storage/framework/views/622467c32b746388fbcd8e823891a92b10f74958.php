@@ -1,56 +1,27 @@
-<?php $__env->startSection('head'); ?>
-    
-    
-    <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    </style>
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('heading'); ?>
-Register
-<?php $__env->stopSection(); ?>
-
-
 <?php $__env->startSection('content'); ?>
-<div class="row">
-    <div class="col-md-12">
-        <div class="card ">
-            <div class="card-header card-header-rose card-header-icon">
-                <div class="card-icon">
-                    <i class="material-icons">perm_identity</i>
-                </div>
-                <h4 class="card-title">Admin Registeration Form</h4>
-            </div>
 
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">    
+            <div class="card login">
+                
+                    <div class="card-header"><?php echo e(__('Admin Registeration Form')); ?></div>
+                                        
                 <div class="card-body">
                     <form method="POST" action="<?php echo e(route('admin.register.submit')); ?>">
                         <?php echo csrf_field(); ?>
-                        <div class="row">
-                            
-                        
-
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label for="name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('User Name')); ?></label>
-
+                        <div class="form-row">
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control <?php $__errorArgs = ['name'];
+                                <label for="name" class=""><?php echo e(__('User Name')); ?></label>
+                                    <input id="name" type="text" class="form-control <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="name" value="<?php echo e(old('name')); ?>" required autocomplete="name" autofocus>
-
+unset($__errorArgs, $__bag); ?>" name="name" value="<?php echo e(old('name')); ?>" required  autofocus>
                                 <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -64,21 +35,16 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label for="email" class="col-md-4 col-form-label text-md-right"><?php echo e(__('E-Mail Address')); ?></label>
-
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control <?php $__errorArgs = ['email'];
+                                <label for="email" class=""><?php echo e(__('E-Mail Address')); ?></label>
+                                    <input id="email" type="text" class="form-control <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="email" value="<?php echo e(old('email')); ?>" required autocomplete="email">
-
+unset($__errorArgs, $__bag); ?>" name="email" value="<?php echo e(old('email')); ?>" required  >
                                 <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -93,61 +59,63 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
-
-                        <div class="form-group col-md-4 mt-4">
-                            <label for="password" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Password')); ?></label>
-
+                        <div class="form-row">
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control <?php $__errorArgs = ['password'];
+                                <label for="password" class=""><?php echo e(__('Password')); ?></label>
+                                    <input id="password" type="text" class="form-control <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="new-password">
-
-                                <?php $__errorArgs = ['password'];
+unset($__errorArgs, $__bag); ?>" name="password" value="<?php echo e(old('password')); ?>" required  >
+                            <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong><?php echo e($message); ?></strong>
-                                    </span>
-                                <?php unset($message);
+                                <span class="invalid-feedback" role="alert">
+                                    <strong><?php echo e($message); ?></strong>
+                                </span>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="password-confirm" class=""><?php echo e(__('Confirm Password')); ?></label>
+                                    <input id="password-confirm" type="text" class="form-control <?php $__errorArgs = ['password-confirm'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="password-confirm" value="<?php echo e(old('password-confirm')); ?>" required  >
+                            <?php $__errorArgs = ['password-confirm'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong><?php echo e($message); ?></strong>
+                                </span>
+                            <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block"><?php echo e(__('Registration')); ?></button>
 
-                        <div class="form-group col-md-4 mt-4">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Confirm Password')); ?></label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group col-md-4 mt-4 mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <?php echo e(__('Register')); ?>
-
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                     </form>
                 </div>
             </div>
+        </div>    
     </div>
 </div>
 <?php $__env->stopSection(); ?>
 
-
-
-<?php echo $__env->make('theme.register', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\report\resources\views\auth\admin-register-form.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.adminApp', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\report\resources\views\auth\admin-register-form.blade.php ENDPATH**/ ?>

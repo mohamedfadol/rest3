@@ -10,7 +10,7 @@
 @endsection
 
 @section('heading')
-Daily Orders Report
+{{ __('message.Daily Orders Report') }}
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@ Daily Orders Report
                 <div class="card-icon">
                     <i class="material-icons">list</i>
                 </div>
-                <h4 class="card-title">Daily Orders Report</h4>
+                <h4 class="card-title">{{ __('message.Daily Orders Report') }}</h4>
             </div>
             <div class="card-body ">
                 @if (count($errors) > 0)
@@ -37,19 +37,19 @@ Daily Orders Report
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label" for="from">From</label>
+                            <label class="bmd-label" for="from">{{ __('message.From') }}</label>
                             <input type="date" class="form-control mt-2" id="from" name="from" value="{{ $request ? $request->from : Carbon\Carbon::now()->subMonth()->format('Y-m-d')  }}" required>
                         </div>
 
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label" for="to">To</label>
+                            <label class="bmd-label" for="to">{{ __('message.To') }}</label>
                             <input type="date" class="form-control mt-2" id="to" name="to" value="{{ $request ? $request->to : Carbon\Carbon::now()->format('Y-m-d') }}" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-4 mt-4">
-                            <label class="bmd-label" for="branch">Branch</label>
+                            <label class="bmd-label" for="branch">{{ __('message.Branch') }}</label>
                             <select id="branch" class="custom-select" name="branch">
                                 @if(count($branches) > 0)
                                     <option value="all">All</option>
@@ -63,14 +63,14 @@ Daily Orders Report
                         </div>
 
                         <div class="form-group col-md-4 mt-4">
-                            <label for="floor" class="bmd-label-floating">Floor</label>
+                            <label for="floor" class="bmd-label-floating">{{ __('message.Floor') }}</label>
                             <select id="floor" class="custom-select" name="floor" data-old="{{ $request ? $request->floor : '' }}" title="floor" data-size="7">
                                 <option value="all" {{ $request ? ($request->floor == 'all' ? 'selected' : '') : '' }}>All</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4 mt-4">
-                            <label for="table" class="bmd-label-floating">Table</label>
+                            <label for="table" class="bmd-label-floating">{{ __('message.Table') }}</label>
                             <select id="table" class="custom-select" name="table" title="table" data-old="{{ $request ? $request->table : '' }}">
                                 <option value="all">All</option>
                             </select>
@@ -79,7 +79,7 @@ Daily Orders Report
 
                     <div class="row">
                         <div class="form-group col-md-4 mt-6 row">
-                            <label class="bmd-label-floating" for="employee">Added by</label>
+                            <label class="bmd-label-floating" for="employee">{{ __('message.Added By') }}</label>
                             <select id="employee" class="custom-select" data-old="{{ $request ? $request->employee : '' }}" name="employee">
                                 <option value="all">All</option>
                             </select>
@@ -87,9 +87,9 @@ Daily Orders Report
                     </div>
 
                     <div class="row">
-                        <label class="col-sm-2 mt-4 pt-1">Payment Type</label>
+                        <label class="col-sm-2 mt-4 pt-1">{{ __('message.Payment Type') }}</label>
                         <div class="col-sm-10 mt-4 checkbox-radios">
-                             @if(!empty($paymentTypes)) 
+                             @if(!empty($paymentTypes))
                                 @foreach($paymentTypes as $type)
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">
@@ -101,11 +101,11 @@ Daily Orders Report
                                     </div>
                                 @endforeach
                             @endif
-                        </div> 
+                        </div>
                     </div>
 
                     <div class="row">
-                        <label class="col-sm-2 mt-4 pt-1">Order Type</label>
+                        <label class="col-sm-2 mt-4 pt-1">{{ __('message.Order Type') }}</label>
                         <div class="col-sm-10 mt-4 checkbox-radios">
                             @foreach($orderTypes as $type)
                                 <div class="form-check form-check-inline">
@@ -120,7 +120,7 @@ Daily Orders Report
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-fill btn-rose">Submit</button>
+                    <button type="submit" class="btn btn-fill btn-rose">{{ __('message.Submit') }}</button>
                 </form>
             </div>
         </div>
@@ -134,44 +134,24 @@ Daily Orders Report
                     <table id="orders-table" class="table table-striped table-hover table-responsive" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Number</th>
-                                <th>Daily Number</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Order Type</th>
-                                <th>Branch</th>
-                                <th>Floor</th>
-                                <th>Table</th>
-                                <th>Customer</th>
-                                <th>Added By</th>
-                                <th>Payment Type</th>
-                                <th>Notes</th>
-                                <th>Extra</th>
-                                <th>Discount</th>
-                                <th>Tax</th>
-                                <th>Total</th>
+                                <th>{{ __('message.Number') }}</th>
+                                <th>{{ __('message.Daily Number') }}</th>
+                                <th>{{ __('message.Date') }}</th>
+                                <th>{{ __('message.Time') }}</th>
+                                <th>{{ __('message.Order Type') }}</th>
+                                <th>{{ __('message.Branch') }}</th>
+                                <th>{{ __('message.Floor') }}</th>
+                                <th>{{ __('message.Table') }}</th>
+                                <th>{{ __('message.Customer') }}</th>
+                                <th>{{ __('message.Added By') }}</th>
+                                <th>{{ __('message.Payment Type') }}</th>
+                                <th>{{ __('message.Notes') }}</th>
+                                <th>{{ __('message.Extra') }}</th>
+                                <th>{{ __('message.Discount') }}</th>
+                                <th>{{ __('message.Tax') }}</th>
+                                <th>{{ __('message.Total') }}</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Number</th>
-                                <th>Daily Number</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Order Type</th>
-                                <th>Branch</th>
-                                <th>Floor</th>
-                                <th>Table</th>
-                                <th>Customer</th>
-                                <th>Added By</th>
-                                <th>Payment Type</th>
-                                <th>Notes</th>
-                                <th>Extra</th>
-                                <th>Discount</th>
-                                <th>Tax</th>
-                                <th>Total</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
@@ -212,7 +192,7 @@ Daily Orders Report
                     handleFloorChange();
                 }
             })
-            
+
             $('.payment_type').click(function() {
                 checked = $("input[name='payment_types[]']:checked").length;
                 if(!checked) {
@@ -244,7 +224,7 @@ Daily Orders Report
                     search: "_INPUT_",
                 searchPlaceholder: "Search",
                 }
-            });  
+            });
         });
 
 
@@ -263,7 +243,7 @@ Daily Orders Report
             $('#table').append('<option value="all">All</option>')
             $('#employee').empty()
             $('#employee').append('<option value="all">All</option>')
-            var selectedBranch = $("#branch option:selected").val() 
+            var selectedBranch = $("#branch option:selected").val()
             if(selectedBranch != 0) {
                 $.ajax({
                     url: 'branches/' + selectedBranch + '/floors',

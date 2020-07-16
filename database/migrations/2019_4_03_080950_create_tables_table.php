@@ -19,7 +19,7 @@ class CreateTablesTable extends Migration
             $table->integer('number')->nullable('null');
             $table->integer('chairsNumber')->nullable('null');
             $table->integer('maxChairsNumber')->nullable('null');
-            $table->integer('status')->defualt(0);
+            $table->integer('status')->default(0);
 
             $table->uuid('floor_id');
             $table->foreign('floor_id')->references('id')->on('floors');

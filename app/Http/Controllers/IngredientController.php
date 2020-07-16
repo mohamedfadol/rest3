@@ -79,7 +79,7 @@ class IngredientController extends Controller
         $ingredient->sku = str_slug('3-'.$Udatesku->code.'-'.$request->input('sku')) ;
         $ingredient->update();
 
-        return  redirect()->route('ingredient.home')->withSuccessMessage('success','Inserted Was Done');
+        return  redirect()->route('ingredient.index')->withSuccessMessage('success','Inserted Was Done');
     }
 
     /**
@@ -90,7 +90,7 @@ class IngredientController extends Controller
      */
     public function show(Ingredient $ingredient)
     {
-        //
+        //return $ingredient =  Ingredient::findOrFail($ingredient->id);
     }
 
     /**
@@ -118,9 +118,11 @@ class IngredientController extends Controller
         $this->validate($request,[
             'nameAr'  => 'required|string',
             'nameEn'  => 'nullable|string',
+            'sku'     => 'required',
             'price'   => 'required',
             'note'    => 'nullable',
-            'unit'    => 'nullable' 
+            'unit'    => 'nullable'
+            
         ]);
 
         // create instance for model 
@@ -139,7 +141,7 @@ class IngredientController extends Controller
         $ingredient->sku = str_slug('3-'.$Udatesku->code.'-'.$request->input('sku')) ;
         $ingredient->update();
         
-        return  redirect()->route('ingredient.home')->withSuccessMessage('Updated Was Done');
+        return  redirect()->route('ingredient.index')->withSuccessMessage('Updated Was Done');
     }
 
     /**
@@ -153,6 +155,6 @@ class IngredientController extends Controller
         $ingredient =  Ingredient::findOrFail($ingredient->id);
         $ingredient->products()->detach();
         $ingredient->delete();
-        return redirect()->route('ingredient.home')->withSuccessMessage(['Deleted Has Been  Done']);
+        return redirect()->route('ingredient.index')->withSuccessMessage(['Deleted Has Been  Done']);
     }
 }

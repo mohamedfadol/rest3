@@ -25,14 +25,16 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('heading'); ?>
-Add a Permission
+
+<?php echo e(__('message.Add a Permission')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
 
 <div class='col-lg-4 col-lg-offset-4'>
 
-    <h1><i class='fa fa-key'></i> Add Permission</h1>
+    <h3><i class='fa fa-key'></i> <?php echo e(__('message.Add a Permission')); ?></h3>
     <br>
 
     <?php echo e(Form::open(array('route' => 'permissions.store'))); ?>

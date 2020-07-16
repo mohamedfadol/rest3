@@ -13,7 +13,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('heading'); ?>
-Add a Branch
+<?php echo e(__('message.Edit a Branch')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -24,7 +25,7 @@ Add a Branch
                 <div class="card-icon">
                     <i class="material-icons">perm_identity</i>
                 </div>
-                <h4 class="card-title">Add a Branch</h4>
+                <h4 class="card-title"><?php echo e(__('message.Edit a Branch')); ?></h4>
             </div>
             <div class="card-body ">
                     <?php if(count($errors) > 0): ?>
@@ -42,19 +43,20 @@ Add a Branch
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Branch name</label>
+                            <label class="bmd-label-floating" for="name"><?php echo e(__('message.Branch Name')); ?></label>
                             <input 
                                 type="text" 
                                     name="name" 
                                         class="form-control" 
                                             id="name"
                                                 value="<?php echo e($branch->name); ?>" 
+                                                     
                             >
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="bmd-label-floating" for="address_address">Address</label>
+                        <label class="bmd-label-floating" for="address_address"><?php echo e(__('message.Address')); ?></label>
                         <input 
                             type="text" 
                                 id="address-input" 
@@ -62,21 +64,21 @@ Add a Branch
                                         class="form-control map-input"
                                             value="<?php echo e($branch->address_address); ?>"
                         >
-                        <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
-                        <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+<!--                         <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
+                        <input type="hidden" name="address_longitude" id="address-longitude" value="0" /> -->
                     </div>
-                    <div id="address-map-container" style="width:100%;height:400px; ">
+<!--                     <div id="address-map-container" style="width:100%;height:400px; ">
                         <div style="width: 100%; height: 100%" id="address-map"></div>
-                    </div>
+                    </div> -->
 
-                    <div>Opening time:</div>
+                    <div><?php echo e(__('message.Opening Time')); ?>:</div>
 
                     
                     <div class="row">
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <div class="col-md-3 pt-1 mt-2 pb-0">Monday</div>
-                                <label for="monday_from" class="col-form-label col-md-4">From</label>
+                                <div class="col-md-3 pt-1 mt-2 pb-0"><?php echo e(__('message.Monday')); ?></div>
+                                <label for="monday_from" class="col-form-label col-md-4"><?php echo e(__('message.From')); ?></label>
                                 <input 
                                     type="text"
                                         name="monday_from" 
@@ -87,7 +89,7 @@ Add a Branch
                         </div>
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="monday_to" class="col-form-label col-md-4">To</label>
+                                <label for="monday_to" class="col-form-label col-md-4"><?php echo e(__('message.To')); ?></label>
                                 <input 
                                     type="text" 
                                         name="monday_to" 
@@ -103,8 +105,8 @@ Add a Branch
                     <div class="row">
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <div class="col-md-3 pt-1 mt-2 pb-0">Tuesday</div>
-                                <label for="tuesday_from" class="col-form-label col-md-4">From</label>
+                                <div class="col-md-3 pt-1 mt-2 pb-0"><?php echo e(__('message.Tuesday')); ?></div>
+                                <label for="tuesday_from" class="col-form-label col-md-4"><?php echo e(__('message.From')); ?></label>
                                 <input 
                                     type="text" 
                                         name="tuesday_from" 
@@ -115,7 +117,7 @@ Add a Branch
                         </div>
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="tuesday_to" class="col-form-label col-md-4">To</label>
+                                <label for="tuesday_to" class="col-form-label col-md-4"><?php echo e(__('message.To')); ?></label>
                                 <input type="text" name="tuesday_to" class="form-control timepicker col-md-4" value="<?php echo e($branch->tuesday_to); ?>"
                                 >
                             </div>
@@ -127,15 +129,15 @@ Add a Branch
                     <div class="row">
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <div class="col-md-3 pt-1 mt-2 pb-0">Wednesday</div>
-                                <label for="wednesday_from" class="col-form-label col-md-4">From</label>
+                                <div class="col-md-3 pt-1 mt-2 pb-0"><?php echo e(__('message.Wednesday')); ?></div>
+                                <label for="wednesday_from" class="col-form-label col-md-4"><?php echo e(__('message.From')); ?></label>
                                 <input type="text" name="wednesday_from" class="form-control timepicker col-md-4" value="<?php echo e($branch->wednesday_from); ?>"
                                 >
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="wednesday_to" class="col-form-label col-md-4">To</label>
+                                <label for="wednesday_to" class="col-form-label col-md-4"><?php echo e(__('message.To')); ?></label>
                                 <input type="text" name="wednesday_to" class="form-control timepicker col-md-4" value="<?php echo e($branch->wednesday_to); ?>"
                                 >
                             </div>
@@ -147,15 +149,15 @@ Add a Branch
                     <div class="row">
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <div class="col-md-3 pt-1 mt-2 pb-0">Thursday</div>
-                                <label for="thursday_from" class="col-form-label col-md-4">From</label>
+                                <div class="col-md-3 pt-1 mt-2 pb-0"><?php echo e(__('message.Thursday')); ?></div>
+                                <label for="thursday_from" class="col-form-label col-md-4"><?php echo e(__('message.From')); ?></label>
                                 <input type="text" name="thursday_from" class="form-control timepicker col-md-4" value="<?php echo e($branch->thursday_from); ?>"
                                 >
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="thursday_to" class="col-form-label col-md-4">To</label>
+                                <label for="thursday_to" class="col-form-label col-md-4"><?php echo e(__('message.To')); ?></label>
                                 <input type="text" name="thursday_to" class="form-control timepicker col-md-4" 
                                 value="<?php echo e($branch->thursday_to); ?>"
                                 >
@@ -169,15 +171,15 @@ Add a Branch
                     <div class="row">
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <div class="col-md-3 pt-1 mt-2 pb-0">Friday</div>
-                                <label for="friday_from" class="col-form-label col-md-4">From</label>
+                                <div class="col-md-3 pt-1 mt-2 pb-0"><?php echo e(__('message.Friday')); ?></div>
+                                <label for="friday_from" class="col-form-label col-md-4"><?php echo e(__('message.From')); ?></label>
                                 <input type="text" name="friday_from" class="form-control timepicker col-md-4" value="<?php echo e($branch->friday_from); ?>" 
                                 >
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="friday_to" class="col-form-label col-md-4">To</label>
+                                <label for="friday_to" class="col-form-label col-md-4"><?php echo e(__('message.To')); ?></label>
                                 <input type="text" name="friday_to" class="form-control timepicker col-md-4" value="<?php echo e($branch->friday_to); ?>" >
                             </div>
                         </div>
@@ -188,14 +190,14 @@ Add a Branch
                     <div class="row">
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <div class="col-md-3 pt-1 mt-2 pb-0">Saturday</div>
-                                <label for="saturday_from" class="col-form-label col-md-4">From</label>
+                                <div class="col-md-3 pt-1 mt-2 pb-0"><?php echo e(__('message.Saturday')); ?></div>
+                                <label for="saturday_from" class="col-form-label col-md-4"><?php echo e(__('message.From')); ?></label>
                                 <input type="text" name="saturday_from" class="form-control timepicker col-md-4" value="<?php echo e($branch->saturday_from); ?>">
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="saturday_to" class="col-form-label col-md-4">To</label>
+                                <label for="saturday_to" class="col-form-label col-md-4"><?php echo e(__('message.To')); ?></label>
                                 <input type="text" name="saturday_to" class="form-control timepicker col-md-4" value="<?php echo e($branch->saturday_to); ?>">
                             </div>
                         </div>
@@ -206,14 +208,14 @@ Add a Branch
                     <div class="row">
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <div class="col-md-3 pt-1 mt-2 pb-0">Sunday</div>
-                                <label for="sunday_from" class="col-form-label col-md-4">From</label>
+                                <div class="col-md-3 pt-1 mt-2 pb-0"><?php echo e(__('message.Sunday')); ?></div>
+                                <label for="sunday_from" class="col-form-label col-md-4"><?php echo e(__('message.From')); ?></label>
                                 <input type="text" name="sunday_from" class="form-control timepicker col-md-4" value="<?php echo e($branch->sunday_from); ?>">
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <div class="row">
-                                <label for="sunday_to" class="col-form-label col-md-4">To</label>
+                                <label for="sunday_to" class="col-form-label col-md-4"><?php echo e(__('message.To')); ?></label>
                                 <input type="text" name="sunday_to" class="form-control timepicker col-md-4" value="<?php echo e($branch->sunday_to); ?>">
                             </div>
                         </div>
@@ -221,13 +223,13 @@ Add a Branch
                     
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="phone">Phone</label>
+                            <label class="bmd-label-floating" for="phone"><?php echo e(__('message.Phone')); ?></label>
                             <input type="text" name="phone" class="form-control" id="phone" value="<?php echo e($branch->phone); ?>">
                         </div>
                     </div>
 
                     <div class="row">
-                        <label class="col-sm-2 col-form-label label-checkbox">Delivery Price</label>
+                        <label class="col-sm-2 col-form-label label-checkbox"><?php echo e(__('message.Delivery Price')); ?></label>
                         <div class="col-sm-10 checkbox-radios">
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -237,7 +239,8 @@ Add a Branch
                                                 value="dinamic" 
                                                     <?php echo e($branch->delivery_price == 'dinamic'? 'checked':''); ?>
 
-                                                        > Open
+                                                        > <?php echo e(__('message.Open')); ?>
+
                                         <span class="circle">
                                     <span class="check"></span>
                                     </span>
@@ -251,7 +254,8 @@ Add a Branch
                                                 value="static"
                                                     <?php echo e($branch->delivery_price == 'static'? 'checked':''); ?>
 
-                                                        > Pre
+                                                        > <?php echo e(__('message.Pre')); ?>
+
                                     <span class="circle">
                                         <span class="check"></span>
                                     </span>
@@ -269,9 +273,9 @@ Add a Branch
 
                    <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="phone">TAX</label>
+                            <label class="bmd-label-floating" for="phone"><?php echo e(__('message.Tax')); ?></label>
                             <input 
-                                type="text" 
+                                type="number" 
                                     name="tax" 
                                         class="form-control" 
                                             id="tax" 
@@ -280,8 +284,7 @@ Add a Branch
                         </div>
                     </div>
                         <div class="card-footer ">
-                            <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                            <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                            <button type="submit" class="btn btn-fill btn-rose"><?php echo e(__('message.Update')); ?></button>
                         </div>
 
                 </form>

@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             
             $table->string('note')->nullable('null'); 
+            $table->string('image')->nullable('null'); 
             $table->string('businessName')->nullable('null'); 
             $table->string('type')->default('web');
 

@@ -3,18 +3,17 @@
 namespace App;
 
 use App\Traits\Uuids;
-use Laravel\Passport\HasApiTokens;
-use App\Traits\MultipleInsertByUserId;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Employee extends Authenticatable
+
+class Employee extends Authenticatable 
 {
-    use Uuids , HasApiTokens ,LogsActivity;
-    //use MultipleInsertByUserId ;
+    use HasApiTokens, Uuids ,LogsActivity;
     use Notifiable;
     use HasRoles;  
 
@@ -37,5 +36,9 @@ class Employee extends Authenticatable
     public function owner(){return $this->belongsTo(User::class , 'addByUserId');}
     public function branch(){return $this->belongsTo(Branch::class , 'branch_id');}
     public function floor(){return $this->belongsTo(Floor::class , 'floor_id');}
+    
+    
+
+
 
 }

@@ -27,7 +27,7 @@
 @endsection
 
 @section('heading')
-Add a Printer
+{{ __('message.Add New Printer') }}
 @endsection
 
 @section('content')
@@ -36,9 +36,9 @@ Add a Printer
         <div class="card ">
             <div class="card-header card-header-rose card-header-icon">
                 <div class="card-icon">
-                    <i class="material-icons">perm_identity</i>
+                    <i class="material-icons">perm_identity</i> 
                 </div>
-                <h4 class="card-title">Add a Printer</h4>
+                <h4 class="card-title">{{ __('message.Add New Printer') }}</h4>
             </div>
             <div class="card-body ">
                     @if (count($errors) > 0)
@@ -50,11 +50,11 @@ Add a Printer
                             </ul>
                         </div>
                     @endif
-                <form method="POST" action="{{ route('printer.create') }}">
+                <form method="POST" action="{{ route('printer.store') }}">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Arabic Name</label>
+                            <label class="bmd-label-floating" for="name">{{ __('message.Printer Arabic Name') }}</label>
                             <input type="text" 
                                         name="name" 
                                             class="form-control" 
@@ -66,19 +66,19 @@ Add a Printer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="enName">English Name</label>
+                            <label class="bmd-label-floating" for="enName">{{ __('message.Printer English Name') }}</label>
                             <input type="text" 
                                         class="form-control" 
                                             name="enName" 
                                                 id="enName" 
-                                                    required
+                                                    
                                                     >
                         </div>
                     </div>   
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="printer">Printer</label>
+                            <label class="bmd-label-floating" for="printer">{{ __('message.Printer') }}</label>
                             <input type="text" 
                                         name="printer" 
                                             class="form-control" 
@@ -90,70 +90,63 @@ Add a Printer
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="printerName">Printer Name</label>
+                            <label class="bmd-label-floating" for="printerName">{{ __('message.Printer Name') }}</label>
                             <input type="text" 
                                         name="printerName" 
                                             class="form-control" 
                                                 id="printerName" 
-                                                    required
+                                                    
                                                     >
                         </div>
                     </div> 
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="printerIndex">Printer Index</label>
+                            <label class="bmd-label-floating" for="printerIndex">{{ __('message.Printer Index') }}</label>
                             <input type="number" 
                                         name="printerIndex" 
                                             class="form-control" 
                                                 id="printerIndex" 
-                                                    required
+                                                    
                                                     >
                         </div>
                     </div> 
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="copiesNumber">Copies Number Times</label>
+                            <label class="bmd-label-floating" for="copiesNumber">{{ __('message.Copies Number') }}</label>
                             <input type="number" 
                                         name="copiesNumber" 
                                             class="form-control" 
-                                                id="copiesNumber" 
-                                                    required
                                                     >
                         </div>
                     </div> 
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="note">Notes</label>
+                            <label class="bmd-label-floating" for="note">{{ __('message.Notes') }}</label>
                             <input type="text" 
                                         name="note" 
                                             class="form-control" 
-                                                id="note" 
-                                                    required
-                                                    >
+                                                id="note" >
                         </div>
                     </div> 
                     <div class="row">
                         <div class="form-group col-md-6 mt-6"> 
-                            <label class="bmd-label-floating" for="branch">Branch</label>
-                            <select id="branch" class="custom-select" name="branch_id" data-style="select-with-transition" title="Branch" data-size="7">
+                            <label class="bmd-label-floating" for="branch">{{ __('message.Branch') }}</label>
+                            <select id="branch" class="custom-select" name="branch_id" data-style="select-with-transition" title="Branch" data-size="7" required>
                                 <option value=""> Choose ... Branch</option>
                                 @if(count($branches) > 0)
                                 @foreach($branches as $branch)
                                 <option value="{{$branch->id}}">{{$branch->name}}</option>
                                 @endforeach
-                                @else
-                                <option value="">Ther's No Branch To Add</option>
                                 @endif
                             </select>
                         </div>
                     </div>
 
                         <div class="card-footer ">
-                            <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                            <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                            <button type="submit" class="btn btn-fill btn-rose">{{ __('message.Submit') }}</button>
                         </div>
                 </form>
             </div>

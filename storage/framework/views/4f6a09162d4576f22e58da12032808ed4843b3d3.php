@@ -1,5 +1,6 @@
 <?php $__env->startSection('heading'); ?>
-Branches
+<?php echo e(__('message.Branches')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('head'); ?>
@@ -14,7 +15,10 @@ Branches
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="<?php echo e(route('branch.create')); ?>"><i class="material-icons">add</i> Add New Branch</a>
+        <a class="btn btn-primary" href="<?php echo e(route('branch.create')); ?>">
+            <i class="material-icons">add</i> <?php echo e(__('message.Add New Branch')); ?>
+
+        </a>
     </div>
 </div>
 <div class="row">
@@ -24,7 +28,7 @@ Branches
                 <div class="card-icon">
                     <i class="material-icons">restaurant</i>
                 </div>
-                <h4 class="card-title">Branches</h4>
+                <h4 class="card-title"><?php echo e(__('message.Branches')); ?></h4>
             </div>
         
             <div class="card-body ">
@@ -32,15 +36,15 @@ Branches
                     <table id="branches-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Location</th>
-                                <th>Phone</th>
-                                <th>Delivery Price</th>
-                                <th>Tax</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th><?php echo e(__('message.Name')); ?></th>
+                                <th><?php echo e(__('message.Location')); ?></th>
+                                <th><?php echo e(__('message.Phone')); ?></th>
+                                <th><?php echo e(__('message.Delivery Price')); ?></th>
+                                <th><?php echo e(__('message.Tax')); ?></th>
+                                <th class="disabled-sorting text-right"><?php echo e(__('message.Actions')); ?></th>
                             </tr>
                         </thead>
-                        <?php if(isset($branches)): ?>
+                        <?php if(isset($branches)): ?> 
                         <tbody>
                             <?php $__currentLoopData = $branches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $branch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
@@ -51,10 +55,16 @@ Branches
                                <td><?php echo e($branch->tax); ?></td>
 
                                 <td class="text-right">
-                                    <a href="<?php echo e(route('branch.edit' , $branch->id)); ?>" class="btn btn-link btn-info btn-just-icon  edit"><i class="material-icons">edit</i>
+                                    <a href="<?php echo e(route('branch.edit' , $branch->id)); ?>" 
+                                        class="btn btn-success btn-sm  edit">
+                                            <?php echo e(__('message.edit')); ?> 
                                     </a>
-                                    
-                                    <a href="<?php echo e(route('branch.destroy' , $branch->id)); ?>" class="btn btn-link btn-danger btn-just-icon disabled remove"><i class="material-icons">delete</i></a>
+                                    <form action="<?php echo e(route('branch.destroy' ,$branch->id)); ?>" 
+                                                method="POST">
+                                        <?php echo method_field('DELETE'); ?>
+                                        <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-danger btn-sm"><?php echo e(__('message.delete')); ?></button>
+                                    </form>
                                 </td>
                             </tr>
                             

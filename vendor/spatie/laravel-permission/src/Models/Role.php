@@ -2,8 +2,6 @@
 
 namespace Spatie\Permission\Models;
 
-use App\Traits\Uuids;
-use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Guard;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasPermissions;
@@ -17,14 +15,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model implements RoleContract
 {
-    use Uuids , HasApiTokens ;
     use HasPermissions;
     use RefreshesPermissionCache;
+
     protected $guarded = ['id'];
-    protected $primaryKey = 'id'; 
-    public $incrementing = false;
-    protected $casts = ['id' => 'string']; 
-    protected $guard_name = 'web';
 
     public function __construct(array $attributes = [])
     {

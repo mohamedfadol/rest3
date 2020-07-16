@@ -72,7 +72,7 @@ class DiscountController extends Controller
         $discount->product_id  = $request->input('product_id');
         $discount->addByUserId = Auth::user()->id;
         $discount->save();   
-        return redirect()->route('discount.home')->withSuccessMessage(['Inserted Has Been  Done']);
+        return redirect()->route('discount.index')->withSuccessMessage(['Inserted Has Been  Done']);
 
     }
 
@@ -124,7 +124,7 @@ class DiscountController extends Controller
         $discount->product_id  = $request->input('product_id');
         $discount->addByUserId = Auth::user()->id;
         $discount->save();   
-        return redirect()->route('discount.home')->withSuccessMessage(['Updated Has Been  Done']);
+        return redirect()->route('discount.index')->withSuccessMessage(['Updated Has Been  Done']);
     }
 
     /**
@@ -137,7 +137,7 @@ class DiscountController extends Controller
     {
         $discount  = Discount::findOrFail($discount->id);
         $discount->delete();
-        return redirect()->route('discount.home')->withSuccessMessage(['Deleted Has Been  Done']);
+        return redirect()->route('discount.index')->withSuccessMessage(['Deleted Has Been  Done']);
 
     }
 }

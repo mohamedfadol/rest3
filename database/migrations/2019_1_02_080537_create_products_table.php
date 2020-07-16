@@ -14,7 +14,6 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            
             $table->uuid('id')->primary(); 
             $table->string('nameAr')->nullable('null');
             $table->string('descriptionAr')->nullable('null');
@@ -27,21 +26,14 @@ class CreateProductsTable extends Migration
             $table->float('tax')->nullable('null');
             $table->string('timedEventFrom')->nullable('null');
             $table->string('timedEventTo')->nullable('null');
-            $table->integer('active')->defualt(0);
-
-            // $table->uuid('class_id')->nullable();
-            // $table->foreign('class_id')->references('id')->on('class_products');
-
+            $table->integer('active')->default(0);
+            $table->longText('image')->nullable('null');
             $table->uuid('printer_id');
             $table->foreign('printer_id')->references('id')->on('printers');
-
             $table->uuid('class_id');
             $table->foreign('class_id')->references('id')->on('class_products');
-
             $table->uuid('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
- 
-
             $table->uuid('addByUserId');
             $table->foreign('addByUserId')->references('id')->on('users');
             $table->timestamps();

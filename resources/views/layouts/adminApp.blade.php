@@ -18,13 +18,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light  shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Aurages Dashboard') }}
+                    <img src="{{asset('theme/img/back-g/back-g.png')}}" id="aurages-img" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -44,9 +45,9 @@
                                 <a class="nav-link" href="{{ route('admin.login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('admin.register'))
-                                <li class="nav-item">
+<!--                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.register') }}">{{ __('Register') }}</a>
-                                </li>
+                                </li> -->
                             @endif
                         @else
                             <li class="nav-item dropdown">
@@ -78,11 +79,7 @@
                 </div>
             </div>
             @endif
-            <div class="row">
-                <div class="col-md-8 col->md-offset-2">
-                     
-                </div>
-            </div>
+
         <main class="py-4">
             @yield('content')
         </main>

@@ -42,17 +42,20 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
+            'driver' => 'passport',
+            'provider' => 'employees',   
         ],
+        
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        
         'admin-api' => [
             'driver' => 'token',
             'provider' => 'admins',
         ],
+        
     ],
 
     /*
@@ -77,9 +80,15 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
+        ],
+
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Employee::class,
         ],
 
         // 'users' => [

@@ -15,13 +15,13 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('OrderNumber')->nullable('null');
-            $table->integer('Qty')->nullable('null');
-            $table->float('price')->nullable('null');
-            $table->string('note')->nullable('null');
-            $table->integer('printed')->nullable('null');
-            $table->string('date')->nullable('null');
-            $table->string('delivaryDate')->nullable('null');
+            $table->integer('OrderNumber')->nullable();
+            $table->integer('Qty')->nullable();
+            $table->float('price')->nullable();
+            $table->string('note')->nullable();
+            $table->integer('printed')->nullable();
+            $table->string('date')->nullable();
+            $table->string('delivaryDate')->nullable();
 
             $table->uuid('order_id');
             $table->foreign('order_id')->references('id')->on('orders');

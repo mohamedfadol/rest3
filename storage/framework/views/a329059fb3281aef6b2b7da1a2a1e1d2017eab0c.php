@@ -1,12 +1,13 @@
 <?php $__env->startSection('heading'); ?>
-Customers
+<?php echo e(__('message.Customers')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('head'); ?> 
 <style>
     .table thead tr th {
         font-size: 0.8rem;
-    }
+    } 
 </style>
 <?php $__env->stopSection(); ?>
 
@@ -14,7 +15,8 @@ Customers
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="<?php echo e(route('customer.create')); ?>"><i class="material-icons">add</i> Add New Customer</a>
+        <a class="btn btn-primary" href="<?php echo e(route('customer.create')); ?>"><i class="material-icons">add</i> 
+        <?php echo e(__('message.Add New Customer')); ?></a>
     </div>
 </div>
 <div class="row">
@@ -24,7 +26,7 @@ Customers
                 <div class="card-icon">
                     <i class="material-icons">local_cafe</i>
                 </div>
-                <h4 class="card-title">Customers</h4>
+                <h4 class="card-title"><?php echo e(__('message.Customers')); ?></h4>
             </div>
         
             <div class="card-body ">
@@ -32,20 +34,21 @@ Customers
                     <table id="customers-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Nationality</th>
-                                <th>E-mail</th>
-                                <th>Phone</th>
-                                <th>Country</th>
-                                <th>State</th>
-                                <th>City</th>
-                                <th>Area</th>
-                                <th>Street</th>
-                                <th>CreditCard</th>
-                                <th>Note</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th><?php echo e(__('message.Customer Name')); ?></th>
+                                <th><?php echo e(__('message.Nationality')); ?></th>
+                                <th><?php echo e(__('message.E-mail')); ?></th>
+                                <th><?php echo e(__('message.Phone')); ?></th>
+                                <th><?php echo e(__('message.Country')); ?></th>
+                                <th><?php echo e(__('message.State')); ?></th>
+                                <th><?php echo e(__('message.City')); ?></th>
+                                <th><?php echo e(__('message.Area')); ?></th>
+                                <th><?php echo e(__('message.Street')); ?></th>
+                                <th><?php echo e(__('message.CreditCard')); ?></th>
+                                <th><?php echo e(__('message.Discount')); ?></th>
+                                <th><?php echo e(__('message.Note')); ?></th>
+                                <th><?php echo e(__('message.Created At')); ?></th>
+                                <th><?php echo e(__('message.Updated At')); ?></th>
+                                <th class="disabled-sorting text-right"><?php echo e(__('message.Actions')); ?></th>
                             </tr>
                         </thead>
                     <?php if(count($customers) > 0): ?>
@@ -62,12 +65,19 @@ Customers
                                 <td><?php echo e($customer->area); ?></td>
                                 <td><?php echo e($customer->street); ?></td>
                                 <td><?php echo e($customer->creditCard); ?></td>
+                                <td><?php echo e($customer->discount); ?></td>
                                 <td><?php echo e($customer->note); ?></td>
                                 <td><?php echo e($customer->created_at->diffForHumans()); ?></td>
                                 <td><?php echo e($customer->updated_at->diffForHumans()); ?></td>
                                 <td class="text-right">
-                                    <a href="<?php echo e(route('customer.edit',$customer->id)); ?>" class="btn btn-link btn-info btn-just-icon edit"><i class="material-icons">edit</i></a>
-                                    <a href="<?php echo e(route('customer.destroy',$customer->id)); ?>" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">delete</i></a>
+                                    <a href="<?php echo e(route('customer.edit',$customer->id)); ?>" 
+                                        class="btn btn-success btn-sm edit"><?php echo e(__('message.edit')); ?></a>
+                                    <form action="<?php echo e(route('customer.destroy' ,$customer->id)); ?>" 
+                                                method="POST">
+                                        <?php echo method_field('DELETE'); ?>
+                                        <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-danger btn-sm"><?php echo e(__('message.delete')); ?></button>
+                                    </form>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -89,6 +99,8 @@ Customers
 <script>
     $(document).ready(function() {
         $('#customers-table').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['print'],
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [10, 25, 50, -1],

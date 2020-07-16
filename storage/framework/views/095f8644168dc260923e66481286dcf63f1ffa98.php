@@ -1,12 +1,14 @@
 <?php $__env->startSection('heading'); ?>
-Categories
+<?php echo e(__('message.Categories')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="<?php echo e(route('category.create')); ?>"><i class="material-icons">add</i> Add New Category</a>
+        <a class="btn btn-primary" href="<?php echo e(route('category.create')); ?>">
+                <i class="material-icons">add</i><?php echo e(__('message.Add New Category')); ?> </a>
     </div>
 </div>
 <div class="row">
@@ -16,7 +18,7 @@ Categories
                 <div class="card-icon">
                     <i class="material-icons">category</i>
                 </div>
-                <h4 class="card-title">Categories</h4>
+                <h4 class="card-title"><th><?php echo e(__('message.Categories')); ?></th></h4>
             </div>
         
             <div class="card-body ">
@@ -24,22 +26,22 @@ Categories
                     <table id="categories-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Icon</th>
-                                <th>Name</th>
-                                <th>SKU</th>
-                                <th>Parent Category</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Active</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th><?php echo e(__('message.Icon')); ?></th>
+                                <th><?php echo e(__('message.Category Name')); ?></th>
+                                <th><?php echo e(__('message.SKU')); ?></th>
+                                <th><?php echo e(__('message.Parent Category')); ?></th>
+                                <th><?php echo e(__('message.From')); ?></th>
+                                <th><?php echo e(__('message.To')); ?></th>
+                                <th><?php echo e(__('message.Active')); ?></th>
+                                <th class="disabled-sorting text-right"><?php echo e(__('message.Actions')); ?></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <tbody> 
+                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
                                 <tr>
-                                    <td>
-                                    <img class="img-fluid" 
-                                        src="data:image/jpg;base64,<?php echo $category->image->image; ?>">
+                                    <td width="9%">
+                                    <img class="img-thumbnail" 
+                                        src="<?php echo e(URL::asset('/storage/'.$branchname.'/category/'.$category->image)); ?>">
                                     </td>
                                     <td><?php echo e($category->name); ?></td>
                                     <td><?php echo e($category->sku); ?></td>
@@ -52,8 +54,15 @@ Categories
                                     <td><?php echo e($category->timedEventTo); ?></td>
                                     <td><?php echo e($category->active ? 'Active' : 'Not Active'); ?></td>
                                     <td class="text-right">
-                                        <a href="<?php echo e(route('category.edit' ,$category->id)); ?>" class="btn btn-link btn-info btn-just-icon edit"><i class="material-icons">edit</i></a>
-                                        <a href="<?php echo e(route('category.destroy' ,$category->id)); ?>" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">delete</i></a>
+                                        <a href="<?php echo e(route('category.edit' ,$category->id)); ?>" 
+                                                class="btn btn-success btn-sm edit">
+                                            <?php echo e(__('message.edit')); ?></a>
+                                    <form action="<?php echo e(route('category.destroy' ,$category->id)); ?>" 
+                                                method="POST">
+                                        <?php echo method_field('DELETE'); ?>
+                                        <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-danger btn-sm"><?php echo e(__('message.delete')); ?></button>
+                                    </form>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -70,6 +79,8 @@ Categories
 <script>
     $(document).ready(function() {
         $('#categories-table').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['print'],
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [10, 25, 50, -1],

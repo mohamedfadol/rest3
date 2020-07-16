@@ -1,7 +1,7 @@
 @extends('theme.default')
 
 @section('heading')
-ingredients
+{{ __('message.Ingredients') }}
 @endsection
 
 @section('head')
@@ -16,7 +16,8 @@ ingredients
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="{{ route('ingredient.create') }}"><i class="material-icons">add</i> Add New ingredient</a>
+        <a class="btn btn-primary" href="{{ route('ingredient.create') }}">
+            <i class="material-icons">add</i>{{ __('message.Add New ingredient') }} </a>
     </div>
 </div>
 <div class="row">
@@ -26,7 +27,7 @@ ingredients
                 <div class="card-icon">
                     <i class="material-icons">kitchen</i>
                 </div>
-                <h4 class="card-title">ingredients</h4>
+                <h4 class="card-title">{{ __('message.Ingredients') }}</h4>
             </div>
         
             <div class="card-body ">
@@ -34,13 +35,13 @@ ingredients
                     <table id="ingredients-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Arabic Name</th> 
-                                <th>English Name</th>
-                                <th>Note</th>
-                                <th>Sku</th>
-                                <th>Unit</th>
-                                <th>Price</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th>{{ __('message.ingredient Arabic Name') }}</th> 
+                                <th>{{ __('message.ingredient English Name') }}</th>
+                                <th>{{ __('message.Note') }}</th>
+                                <th>{{ __('message.SKU') }}</th>
+                                <th>{{ __('message.Unit') }}</th>
+                                <th>{{ __('message.Price') }}</th>
+                                <th class="disabled-sorting text-right">{{ __('message.Actions') }}</th>
                             </tr>
                         </thead>
                         @if(count($ingredients) > 0 )
@@ -56,14 +57,15 @@ ingredients
                                 <td class="text-right">
                                     <a 
                                         href="{{route('ingredient.edit',$ingredient->id)}}" 
-                                            class
-                                            ="btn btn-link btn-info btn-just-icon edit">
-                                            <i class="material-icons">edit</i></a>
-                                    <a 
-                                        href="{{route('ingredient.destroy',$ingredient->id)}}" 
-                                            class
-                                            ="btn btn-link btn-danger btn-just-icon remove">
-                                            <i class="material-icons">delete</i></a>
+                                            class="btn btn-success btn-sm  edit">
+                                            {{ __('message.edit') }}</a>
+
+                                    <form action="{{ route('ingredient.destroy', $ingredient->id) }}" 
+                                                method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm">{{ __('message.delete') }}</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -81,6 +83,8 @@ ingredients
 <script>
     $(document).ready(function() {
         $('#ingredients-table').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['print'],
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [10, 25, 50, -1],

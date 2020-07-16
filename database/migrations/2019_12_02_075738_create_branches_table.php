@@ -16,6 +16,7 @@ class CreateBranchesTable extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name')->unique();
+            $table->string('slugable')->nullable('null');
             $table->string('delivery_price')->nullable('null');
             $table->string('address_address')->nullable('null');
             $table->string('monday_from')->nullable('null');

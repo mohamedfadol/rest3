@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BillKind;
+use App\Order;
 use Illuminate\Http\Request;
 use Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -71,7 +72,7 @@ class BillKindController extends Controller
         $billKind->addByUserId         =  Auth::user()->id;
         $billKind->save();
 
-        return  redirect()->route('billKind.home')->withSuccessMessage('Inserted Was Done');
+        return  redirect()->route('billKind.index')->withSuccessMessage('Inserted Was Done');
     }
 
     /**
@@ -121,7 +122,7 @@ class BillKindController extends Controller
         // $BillKind->addByUserId         =  Auth::user()->id;
         $billKind->save();
 
-        return  redirect()->route('billKind.home')->withSuccessMessage('Updated Was Done');
+        return  redirect()->route('billKind.index')->withSuccessMessage('Updated Was Done');
     }
 
     /**
@@ -139,7 +140,7 @@ class BillKindController extends Controller
                     return redirect()->back()->withWarningMessage(['Can Not Delete Has Parent']);
                 }
         $billKind->delete();
-        return redirect()->route('billKind.home')->withSuccessMessage(['Deleted Has Been  Done']);
+        return redirect()->route('billKind.index')->withSuccessMessage(['Deleted Has Been  Done']);
 
     }
 }

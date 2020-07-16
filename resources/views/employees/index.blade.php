@@ -1,7 +1,7 @@
 @extends('theme.default')
 
 @section('heading')
-Employees
+{{ __('message.Employees') }}
 @endsection
 
 @section('head')
@@ -15,19 +15,19 @@ Employees
 @section('content')
 
 <div class="col-lg-12 col-lg-offset-1">
-    <h1><i class="fa fa-users"></i> User Administration <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">Roles</a>
-    <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">Permissions</a></h1>
+    <h3><i class="fa fa-users"></i>{{ __('message.User Administration') }}  <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">{{ __('message.Roles') }}</a>
+    <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">{{ __('message.Permissions') }}</a></h3>
     <hr>
     <div class="material-datatables">
         <table id="users-table" class="table table-bordered table-hover" cellspacing="1" style="width:100%">
 
             <thead>
                 <tr> 
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Date/Time Added</th>
-                    <th>User Roles</th>
-                    <th>Operations</th>
+                    <th>{{ __('message.First Name') }}</th>
+                    <th>{{ __('message.Last Name') }}</th>
+                    <th>{{ __('message.Date/Time Added') }}</th>
+                    <th>{{ __('message.User Roles') }}</th>
+                    <th>{{ __('message.Actions') }}</th>
                 </tr>
             </thead>
 
@@ -53,7 +53,7 @@ Employees
         </table>
     </div>
 
-    <a href="{{ route('employees.create') }}" class="btn btn-success">Add User</a>
+    <a href="{{ route('employees.create') }}" class="btn btn-success">{{ __('message.Submit') }}</a>
 
 </div>
 

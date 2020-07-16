@@ -1,7 +1,7 @@
 @extends('theme.default')
 
 @section('heading')
-modifires
+{{ __('message.modifires') }}
 @endsection
 
 @section('head')
@@ -16,7 +16,8 @@ modifires
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-3">
-        <a class="btn btn-primary" href="{{ route('modifire.create') }}"><i class="material-icons">add</i> Add New modifire</a>
+        <a class="btn btn-primary" href="{{ route('modifire.create') }}">
+            <i class="material-icons">add</i> {{ __('message.Add New modifire') }}</a>
     </div>
 </div>
 <div class="row">
@@ -26,7 +27,7 @@ modifires
                 <div class="card-icon">
                     <i class="material-icons">power</i>
                 </div>
-                <h4 class="card-title">Modifires</h4>
+                <h4 class="card-title">{{ __('message.modifires') }}</h4>
             </div>
         
             <div class="card-body ">
@@ -34,14 +35,14 @@ modifires
                     <table id="modifires-table" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Arabic Name</th>
-                                <th>English Name</th>
-                                <th>SKU</th>
-                                <th>Cost</th>
-                                <th>tax</th>
-                                <th>Price</th>
-                                <th>Unit</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+                                <th>{{ __('message.modifire Arabic Name') }}</th>
+                                <th>{{ __('message.modifire English Name') }}</th>
+                                <th>{{ __('message.SKU') }}</th>
+                                <th>{{ __('message.Cost') }}</th>
+                                <th>{{ __('message.Tax') }}</th>
+                                <th>{{ __('message.Price') }}</th>
+                                <th>{{ __('message.Unit') }}</th>
+                                <th class="disabled-sorting text-right">{{ __('message.Actions') }}</th>
                             </tr>
                         </thead>
                         @if(count($modifires) > 0)
@@ -59,13 +60,14 @@ modifires
                                     <a 
                                         href="{{route('modifire.edit',$modifire->id)}}" 
                                             class
-                                            ="btn btn-link btn-info btn-just-icon edit">
-                                            <i class="material-icons">edit</i></a>
-                                    <a 
-                                        href="{{route('modifire.destroy',$modifire->id)}}" 
-                                            class
-                                            ="btn btn-link btn-danger btn-just-icon remove">
-                                            <i class="material-icons">delete</i></a>
+                                            ="btn btn-success btn-sm edit">
+                                            {{ __('message.edit') }}</a>
+                                    <form action="{{route('modifire.destroy' ,$modifire->id)}}" 
+                                                method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm">{{ __('message.delete') }}</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -83,6 +85,8 @@ modifires
 <script>
     $(document).ready(function() {
         $('#modifires-table').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['print'],
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [10, 25, 50, -1],

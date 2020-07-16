@@ -20,7 +20,7 @@ class OrderDetailsTableSeeder extends Seeder
      */  
     public function run()
     {
-        for ($i=0; $i < 200; $i++) { 
+        for ($i=0; $i < 30; $i++) { 
             $od = new OrderDetail;
             
             $od->id = Str::random(36);

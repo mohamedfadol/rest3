@@ -62,7 +62,7 @@ class MenuController extends Controller
             //dd($request->all()); 
         $this->validate($request,[
             'name'          => 'required|string',
-            'description'   => 'required|string'
+            'description'   => 'nullable|string'
         ]);
 
         $menu = new Menu;
@@ -77,7 +77,7 @@ class MenuController extends Controller
 
                 $menu->categories()->sync(array()); 
         }
-        return redirect()->route('menu.home')->withSuccessMessage(['Inserted Has Been  Done']);
+        return redirect()->route('menu.index')->withSuccessMessage(['Inserted Has Been  Done']);
     } 
 
     /**
@@ -117,7 +117,7 @@ class MenuController extends Controller
             //dd($request->all()); 
         $this->validate($request,[
             'name'          => 'required|string|unique:floors',
-            'description'   => 'required|string'
+            'description'   => 'nullable|string'
         ]);
 
         $menu = Menu::findOrFail($menu->id);
@@ -131,7 +131,7 @@ class MenuController extends Controller
             $menu->categories()->sync(array()); 
         }
         
-        return redirect()->route('menu.home')->with(['Updated Has Been  Done']);
+        return redirect()->route('menu.index')->with(['Updated Has Been  Done']);
     }  
 
     /**
@@ -150,6 +150,6 @@ class MenuController extends Controller
             }
         $menu->categories()->detach();
         $menu->delete();
-        return redirect()->route('menu.home')->with(['Deleted Has Been  Done']);
+        return redirect()->route('menu.index')->with(['Deleted Has Been  Done']);
     }
 }

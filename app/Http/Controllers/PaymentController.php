@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Payment;
+use App\Order;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Auth;
@@ -77,7 +78,7 @@ class PaymentController extends Controller
         $payment->addByUserId  = Auth::user()->id;
         $payment->save();  
 
-        return  redirect()->route('payment.home')->withSuccessMessage('Inserted Was Done');
+        return  redirect()->route('payment.index')->withSuccessMessage('Inserted Was Done');
     }
 
     /**
@@ -134,7 +135,7 @@ class PaymentController extends Controller
         $payment->addByUserId  = Auth::user()->id;
         $payment->save();  
 
-        return  redirect()->route('payment.home')->withSuccessMessage('Updated Was Done');
+        return  redirect()->route('payment.index')->withSuccessMessage('Updated Was Done');
     }
 
     /**
@@ -146,8 +147,15 @@ class PaymentController extends Controller
     public function destroy(Payment $payment)
     {
         $payment = Payment::findOrFail($payment->id);
+
+        $Orders = Order::where('paymentType' , '=' , $payment->id)->get();
+            foreach ($Orders as $Order) {
+            if($Order->paymentType == $payment->id)
+                return redirect()->back()->withWarningMessage(['Can Not Delete Has Parent']);
+        }
+
         $payment->delete();
-        return  redirect()->route('payment.home')->withSuccessMessage('Deleted Was Done');
+        return  redirect()->route('payment.index')->withSuccessMessage('Deleted Was Done');
 
     }
 }

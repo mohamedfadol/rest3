@@ -13,7 +13,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('heading'); ?>
-Add a Table
+<?php echo e(__('message.Add New Table')); ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -24,7 +25,7 @@ Add a Table
                 <div class="card-icon">
                     <i class="material-icons">local_cafe</i>
                 </div>
-                <h4 class="card-title">Add a Table</h4>
+                <h4 class="card-title"><?php echo e(__('message.Add New Table')); ?></h4>
             </div>
             <div class="card-body ">
                     <?php if(count($errors) > 0): ?>
@@ -36,47 +37,48 @@ Add a Table
                             </ul>
                         </div>
                     <?php endif; ?>
-                <form method="POST" action="<?php echo e(route('table.create')); ?>">
+                <form method="POST" action="<?php echo e(route('table.store')); ?>">
                     <?php echo csrf_field(); ?>
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="name">Name</label>
+                            <label class="bmd-label-floating" for="name"><?php echo e(__('message.Table Name')); ?></label>
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="number">Number</label>
-                            <input class="form-control" id="number" name="number" required/>
+                            <label class="bmd-label-floating" for="number"><?php echo e(__('message.Number')); ?></label>
+                            <input class="form-control" id="number" name="number" type="number" required/>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="chairsNumber">Chairs Number</label>
-                            <input class="form-control" id="chairsNumber" name="chairsNumber" required/>
+                            <label class="bmd-label-floating" for="chairsNumber"><?php echo e(__('message.Chairs Number')); ?></label>
+                            <input class="form-control" id="chairsNumber" type="number" name="chairsNumber" required/>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="maxChairsNumber">Max Chairs Number</label>
-                            <input class="form-control" id="maxChairsNumber" name="maxChairsNumber" required/>
+                            <label class="bmd-label-floating" for="maxChairsNumber"><?php echo e(__('message.Max Chairs Number')); ?></label>
+                            <input class="form-control" id="maxChairsNumber" type="number" name="maxChairsNumber" required/>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="status">Status</label>
-                            <input class="form-control" id="status" name="status" required/>
+                            <label class="bmd-label-floating" for="status"><?php echo e(__('message.Status')); ?></label>
+                            <input class="form-control" id="status" type="number" name="status" required/>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-6">
-                            <label class="bmd-label-floating" for="branch">Branch</label>
-                            <select id="branch" class="custom-select" name="branch_id" data-style="select-with-transition" title="Branch Name" data-size="7">
+                            <label class="bmd-label-floating" for="branch"><?php echo e(__('message.Branch')); ?></label>
+                            <select id="branch" class="custom-select"
+                                name="branch_id" data-style="select-with-transition" title="Branch Name" data-size="7" required>
                                 <?php if(isset($branches)): ?>
                                 <option value="">Choose ...</option>
                                     <?php $__currentLoopData = $branches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $branch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -89,8 +91,9 @@ Add a Table
                     
                     <div class="row">
                         <div class="form-group col-md-6 mt-6">
-                            <label class="bmd-label-floating" for="floor">Floor</label>
-                            <select id="floor" class="custom-select" name="floor_id" data-style="select-with-transition" title="Floor Nmae" data-size="7">
+                            <label class="bmd-label-floating" for="floor"><?php echo e(__('message.Floor')); ?></label>
+                            <select id="floor" class="custom-select" 
+                                name="floor_id" data-style="select-with-transition" title="Floor Nmae" data-size="7" required>
                                 <?php if(isset($floors)): ?>
                                 <option value="">Choose ...</option>
                                     <?php $__currentLoopData = $floors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $floor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -101,8 +104,7 @@ Add a Table
                         </div>
                     </div>
                             <div class="card-footer ">
-                                <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                                <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                                <button type="submit" class="btn btn-fill btn-rose"><?php echo e(__('message.Submit')); ?></button>
                             </div>
 
                 </form>

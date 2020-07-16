@@ -15,7 +15,7 @@
 @endsection
 
 @section('heading')
-Add a Modifire
+{{ __('message.Edit Modifire') }} 
 @endsection
 
 @section('content')
@@ -26,7 +26,7 @@ Add a Modifire
                 <div class="card-icon">
                     <i class="material-icons">power</i>
                 </div>
-                <h4 class="card-title">Add a Modifire</h4>
+                <h4 class="card-title">{{ __('message.Edit Modifire') }}</h4>
             </div>
             <div class="card-body ">
                     @if (count($errors) > 0)
@@ -43,48 +43,48 @@ Add a Modifire
                     {{ method_field('PUT') }}
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nameAr">Arabic Name</label>
+                            <label class="bmd-label-floating" for="nameAr">{{ __('message.modifire Arabic Name') }}</label>
                             <input value="{{$modifire->nameAr}}" type="text" class="form-control" id="nameAr" name="nameAr">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="nameEn">English Name</label>
+                            <label class="bmd-label-floating" for="nameEn">{{ __('message.modifire English Name') }}</label>
                             <input value="{{$modifire->nameEn}}" type="text" class="form-control" id="nameEn" name="nameEn">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="sku">SKU</label>
+                            <label class="bmd-label-floating" for="sku">{{ __('message.SKU') }}</label>
                             <input value="{{$modifire->sku}}" type="text" class="form-control" id="sku" name="sku">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="cost">Cost</label>
+                            <label class="bmd-label-floating" for="cost">{{ __('message.Cost') }}</label>
                             <input value="{{$modifire->cost}}" type="number" class="form-control" id="cost" name="cost">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-6">
-                            <label class="bmd-label-floating" for="tax">Tax</label>
+                            <label class="bmd-label-floating" for="tax">{{ __('message.Tax') }}</label>
                             <input value="{{$modifire->tax}}" type="number" class="form-control" id="tax" name="tax">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6 mt-4">
-                            <label class="bmd-label-floating" for="price">Price</label>
+                            <label class="bmd-label-floating" for="price">{{ __('message.Price') }}</label>
                             <input value="{{$modifire->price}}" type="number" class="form-control" id="price" name="price">
                         </div>
                     </div>
 
                     <div class="row mt-4">
-                        <label class="col-sm-2 col-form-label label-checkbox">Unit</label>
+                        <label class="col-sm-2 col-form-label label-checkbox">{{ __('message.Unit') }}</label>
                         <div class="col-sm-10 checkbox-radios">
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -118,8 +118,7 @@ Add a Modifire
                     </div>
                     
                     <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-                        <button type="submit" class="btn btn-fill btn-rose">Submit and new</button>
+                        <button type="submit" class="btn btn-fill btn-rose">{{ __('message.Submit') }}</button>
                     </div>
                 </form>
             </div>
@@ -130,7 +129,6 @@ Add a Modifire
 
 @section('script')
     @parent
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
     <script src="{!! asset('js/mapInput.js') !!}"></script>
     <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
     <script src="{!! asset('theme/js/plugins/bootstrap-datetimepicker.min.js') !!}"></script>

@@ -47,15 +47,17 @@
       19 => 'Illuminate\\Translation\\TranslationServiceProvider',
       20 => 'Illuminate\\Validation\\ValidationServiceProvider',
       21 => 'Illuminate\\View\\ViewServiceProvider',
-      22 => 'App\\Providers\\AppServiceProvider',
-      23 => 'App\\Providers\\AuthServiceProvider',
-      24 => 'App\\Providers\\EventServiceProvider',
-      25 => 'App\\Providers\\RouteServiceProvider',
-      26 => 'Collective\\Html\\HtmlServiceProvider',
-      27 => 'Spatie\\Permission\\PermissionServiceProvider',
-      28 => 'Laravel\\Passport\\PassportServiceProvider',
-      29 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
-      30 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+      22 => 'Laravel\\Passport\\PassportServiceProvider',
+      23 => 'App\\Providers\\AppServiceProvider',
+      24 => 'App\\Providers\\AuthServiceProvider',
+      25 => 'App\\Providers\\BroadcastServiceProvider',
+      26 => 'App\\Providers\\EventServiceProvider',
+      27 => 'App\\Providers\\RouteServiceProvider',
+      28 => 'Collective\\Html\\HtmlServiceProvider',
+      29 => 'Spatie\\Permission\\PermissionServiceProvider',
+      30 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
+      31 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+      32 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
     ),
     'aliases' => 
     array (
@@ -117,8 +119,8 @@
       ),
       'api' => 
       array (
-        'driver' => 'token',
-        'provider' => 'users',
+        'driver' => 'passport',
+        'provider' => 'employees',
       ),
       'admin' => 
       array (
@@ -142,6 +144,11 @@
       array (
         'driver' => 'eloquent',
         'model' => 'App\\Admin',
+      ),
+      'employees' => 
+      array (
+        'driver' => 'eloquent',
+        'model' => 'App\\Employee',
       ),
     ),
     'passwords' => 
@@ -272,14 +279,14 @@
       array (
         'driver' => 'mysql',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
         'database' => 'report',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
-        'charset' => 'utf8mb4',
-        'collation' => 'utf8mb4_unicode_ci',
+        'charset' => 'utf8',
+        'collation' => 'utf8_unicode_ci',
         'prefix' => '',
         'prefix_indexes' => true,
         'strict' => true,
@@ -292,7 +299,7 @@
       array (
         'driver' => 'pgsql',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
         'database' => 'report',
         'username' => 'root',
@@ -307,7 +314,7 @@
       array (
         'driver' => 'sqlsrv',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
         'database' => 'report',
         'username' => 'root',
@@ -437,6 +444,75 @@
       'time' => 2,
     ),
   ),
+  'jwt' => 
+  array (
+    'secret' => 'KgEwdqDBeAdpxA0FpbKbgoE2fA7yo8WSU7mIQXO6bJIJ8XsrVy82vwqBcdsHiQnV',
+    'keys' => 
+    array (
+      'public' => NULL,
+      'private' => NULL,
+      'passphrase' => NULL,
+    ),
+    'ttl' => 60,
+    'refresh_ttl' => 20160,
+    'algo' => 'HS256',
+    'required_claims' => 
+    array (
+      0 => 'iss',
+      1 => 'iat',
+      2 => 'exp',
+      3 => 'nbf',
+      4 => 'sub',
+      5 => 'jti',
+    ),
+    'persistent_claims' => 
+    array (
+    ),
+    'lock_subject' => true,
+    'leeway' => 0,
+    'blacklist_enabled' => true,
+    'blacklist_grace_period' => 0,
+    'decrypt_cookies' => false,
+    'providers' => 
+    array (
+      'jwt' => 'Tymon\\JWTAuth\\Providers\\JWT\\Lcobucci',
+      'auth' => 'Tymon\\JWTAuth\\Providers\\Auth\\Illuminate',
+      'storage' => 'Tymon\\JWTAuth\\Providers\\Storage\\Illuminate',
+    ),
+  ),
+  'laravellocalization' => 
+  array (
+    'supportedLocales' => 
+    array (
+      'en' => 
+      array (
+        'name' => 'English',
+        'script' => 'Latn',
+        'native' => 'English',
+        'regional' => 'en_GB',
+      ),
+      'ar' => 
+      array (
+        'name' => 'Arabic',
+        'script' => 'Arab',
+        'native' => 'العربية',
+        'regional' => 'ar_AE',
+      ),
+    ),
+    'useAcceptLanguageHeader' => true,
+    'hideDefaultLocaleInURL' => false,
+    'localesOrder' => 
+    array (
+    ),
+    'localesMapping' => 
+    array (
+    ),
+    'utf8suffix' => '.UTF-8',
+    'urlsIgnored' => 
+    array (
+      0 => '/skipped',
+    ),
+  ),
   'logging' => 
   array (
     'default' => 'stack',
@@ -554,6 +630,7 @@
       'model_morph_key' => 'model_uuid',
     ),
     'display_permission_in_exception' => false,
+    'display_role_in_exception' => false,
     'enable_wildcard_permission' => false,
     'cache' => 
     array (
@@ -693,6 +770,22 @@
       'alert_auto_close' => 5000,
       'auto_display_error_messages' => false,
     ),
+    'customClass' => 
+    array (
+      'container' => NULL,
+      'popup' => NULL,
+      'header' => NULL,
+      'title' => NULL,
+      'closeButton' => NULL,
+      'icon' => NULL,
+      'image' => NULL,
+      'content' => NULL,
+      'input' => NULL,
+      'actions' => NULL,
+      'confirmButton' => NULL,
+      'cancelButton' => NULL,
+      'footer' => NULL,
+    ),
   ),
   'view' => 
   array (
@@ -725,6 +818,7 @@
     'register_commands' => false,
     'ignored_solution_providers' => 
     array (
+      0 => 'Facade\\Ignition\\SolutionProviders\\MissingPackageSolutionProvider',
     ),
     'enable_runnable_solutions' => NULL,
     'remote_sites_path' => '',
@@ -735,6 +829,19 @@
   array (
     'private_key' => NULL,
     'public_key' => NULL,
+    'client_uuids' => false,
+    'personal_access_client' => 
+    array (
+      'id' => NULL,
+      'secret' => NULL,
+    ),
+    'storage' => 
+    array (
+      'database' => 
+      array (
+        'connection' => 'mysql',
+      ),
+    ),
   ),
   'excel' => 
   array (
@@ -798,7 +905,7 @@
     ),
     'temporary_files' => 
     array (
-      'local_path' => 'C:\\Users\\Mohamed\\AppData\\Local\\Temp',
+      'local_path' => 'C:\\Users\\user\\AppData\\Local\\Temp',
       'remote_disk' => NULL,
       'remote_prefix' => NULL,
     ),
