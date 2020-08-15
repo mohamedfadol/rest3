@@ -144,7 +144,7 @@ class PermissionTableSeeder extends Seeder
           'Snapshots',
           'View Snapshots',
           'View Summary Screen'
-        );
+        ); 
         
         $key = array_keys($permissions);
         for ($i=0; $i < count($permissions); $i++) { 

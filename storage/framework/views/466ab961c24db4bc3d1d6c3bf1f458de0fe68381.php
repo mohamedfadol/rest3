@@ -70,6 +70,12 @@
                                 <span class="sidebar-normal"><?php echo e(__('message.Modifiers')); ?>  </span>
                             </a>
                         </li>
+                        <li class="nav-item <?php echo e(request()->is('orders*') ? 'active' : ''); ?>">
+                            <a class="nav-link" href="<?php echo e(route('orders.index')); ?>">
+                                <span class="sidebar-mini"><i class="material-icons">power</i></span>
+                                <span class="sidebar-normal"><?php echo e(__('message.Orders')); ?>  </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

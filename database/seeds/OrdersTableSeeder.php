@@ -6,6 +6,7 @@ use App\Table;
 use App\Branch;
 use App\Customer;
 use App\BillKind;
+use App\Employee;
 use App\Payment;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -15,7 +16,7 @@ class OrdersTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
+     * @return void 
      */
     public function run()  
     {
@@ -29,7 +30,7 @@ class OrdersTableSeeder extends Seeder
             $order->table_id = Table::all()->random()->id;
             $order->paymentType = Payment::all()->random()->id;
             $order->bill_id = BillKind::all()->random()->id;
-            $order->addByUserId = User::all()->random()->id;
+            $order->addByUserId = Employee::all()->random()->id;
             $order->total = rand(50, 300);
             $order->created_at = Carbon::now()->subdays(rand(0, 30));
             $order->updated_at = $order->created_at;

@@ -13,7 +13,6 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/helpers": "^1.2",
-        "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
         "laravelcollective/html": "^6.0",
         "mcamara/laravel-localization": "^1.5",
@@ -25,6 +24,7 @@
         "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.3",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
         "laravel/ui": "^1.1",

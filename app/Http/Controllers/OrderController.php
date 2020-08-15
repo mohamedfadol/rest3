@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use Auth;
 
 class OrderController extends Controller
 {
@@ -14,7 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $employeesOrders = Auth::user()->employees;
+        return view('orders.index',compact('employeesOrders'));
     }
 
     /**

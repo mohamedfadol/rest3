@@ -161,7 +161,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
 
 
 
@@ -246,6 +247,8 @@ return [
         'Uuid' => Webpatser\Uuid\Uuid::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
 
 
 

@@ -29,7 +29,7 @@ class OrderDetail extends Model
     }
 
 
- 	public function order()
+ 	public function order() 
  	{
  		return $this->belongsTo(Order::class , 'order_id');
  	}
@@ -39,9 +39,9 @@ class OrderDetail extends Model
  		return $this->belongsTo(Product::class , 'product_id');
  	}
 
- 	public function user()
+ 	public function employee()
  	{
- 		return $this->belongsTo(User::class , 'addByUserId');
+ 		return $this->belongsTo(Employee::class , 'addByUserId');
  	}
  	
 }

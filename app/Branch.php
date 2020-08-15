@@ -32,8 +32,7 @@ class Branch extends Model
                        'thursday_from', 'thursday_to',
                        'friday_from', 'friday_to',
                        'saturday_from', 'saturday_to',
-                       'sunday_from', 'sunday_to',
-                       'tuesday_from', 'tuesday_to',
+                       'sunday_from', 'sunday_to','tuesday_to'
                     ]; 
 
     public function getDescriptionForEvent(string $eventName): string

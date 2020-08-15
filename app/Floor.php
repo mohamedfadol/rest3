@@ -18,7 +18,7 @@ class Floor extends Model
     public $incrementing = false; 
     protected $table = 'floors';
     protected $guarded = [];
-    protected $casts = ['id' => 'string'];  
+    protected $casts = ['id' => 'string'];   
      
     protected static $logUnguarded = true; 
     protected static $logAttributes = ['*'];
@@ -30,9 +30,7 @@ class Floor extends Model
     }
 
 
-    public function orders(){return $this->hasManyThrough(Order::class, Table::class);}
-
-    public function employees(){return $this->hasMany(User::class , 'floor_id');}
+    public function orders(){return $this->hasManyThrough(Order::class, Table::class);} 
 
     public function branch(){return $this->belongsTo(Branch::class ,'branch_id');} 
 
@@ -40,7 +38,7 @@ class Floor extends Model
 
     public function tables(){return $this->hasMany(Table::class , 'floor_id');} 
     
-    public function employee(){return $this->hasMany(User::class ,'floor_id');}
+    public function employees(){return $this->hasMany(Employee::class ,'floor_id');}
     
     public function menu(){return $this->belongsTo(Menu::class ,'menu_id');}
 

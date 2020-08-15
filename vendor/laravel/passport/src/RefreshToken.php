@@ -65,7 +65,7 @@ class RefreshToken extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function accessToken()
-    {
+    { 
         return $this->belongsTo(Passport::tokenModel());
     }
 

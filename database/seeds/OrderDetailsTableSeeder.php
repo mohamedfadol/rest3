@@ -7,6 +7,7 @@ use App\Branch;
 use App\Customer;
 use App\BillKind;
 use App\Product;
+use App\Employee;
 use Carbon\Carbon; 
 use App\OrderDetail;
 use Illuminate\Database\Seeder;  
@@ -29,7 +30,7 @@ class OrderDetailsTableSeeder extends Seeder
             $od->price = rand(50,2000);
             $od->order_id = Order::all()->random()->id;
             $od->product_id = Product::all()->random()->id;
-            $od->addByUserId = User::all()->random()->id;
+            $od->addByUserId = Employee::all()->random()->id;
             $od->created_at = Carbon::now()->subdays(rand(0, 30));
             $od->updated_at = $od->created_at;
             $od->save();

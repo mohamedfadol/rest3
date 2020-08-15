@@ -34,7 +34,7 @@ class OrderDetailsController extends Controller
                     'printed'      => 'required',
                     'date'         => 'required',
                     'delivaryDate' => 'required',
-                    'order_id'     => 'required',
+                    'order_id'     => 'required', 
                     'product_id'   => 'required'
                 ];
         $validator = Validator::make($request->all() , $rules);

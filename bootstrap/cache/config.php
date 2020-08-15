@@ -47,7 +47,7 @@
       19 => 'Illuminate\\Translation\\TranslationServiceProvider',
       20 => 'Illuminate\\Validation\\ValidationServiceProvider',
       21 => 'Illuminate\\View\\ViewServiceProvider',
-      22 => 'Laravel\\Passport\\PassportServiceProvider',
+      22 => 'Barryvdh\\Debugbar\\ServiceProvider',
       23 => 'App\\Providers\\AppServiceProvider',
       24 => 'App\\Providers\\AuthServiceProvider',
       25 => 'App\\Providers\\BroadcastServiceProvider',
@@ -101,6 +101,7 @@
       'Uuid' => 'Webpatser\\Uuid\\Uuid',
       'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
       'Alert' => 'RealRashid\\SweetAlert\\Facades\\Alert',
+      'Debugbar' => 'Barryvdh\\Debugbar\\Facade',
     ),
   ),
   'auth' => 
@@ -794,6 +795,97 @@
       0 => 'C:\\xampp\\htdocs\\report\\resources\\views',
     ),
     'compiled' => 'C:\\xampp\\htdocs\\report\\storage\\framework\\views',
+  ),
+  'debugbar' => 
+  array (
+    'enabled' => NULL,
+    'except' => 
+    array (
+      0 => 'telescope*',
+    ),
+    'storage' => 
+    array (
+      'enabled' => true,
+      'driver' => 'file',
+      'path' => 'C:\\xampp\\htdocs\\report\\storage\\debugbar',
+      'connection' => NULL,
+      'provider' => '',
+    ),
+    'include_vendors' => true,
+    'capture_ajax' => true,
+    'add_ajax_timing' => false,
+    'error_handler' => false,
+    'clockwork' => false,
+    'collectors' => 
+    array (
+      'phpinfo' => true,
+      'messages' => true,
+      'time' => true,
+      'memory' => true,
+      'exceptions' => true,
+      'log' => true,
+      'db' => true,
+      'views' => true,
+      'route' => true,
+      'auth' => false,
+      'gate' => true,
+      'session' => true,
+      'symfony_request' => true,
+      'mail' => true,
+      'laravel' => false,
+      'events' => false,
+      'default_request' => false,
+      'logs' => false,
+      'files' => false,
+      'config' => false,
+      'cache' => false,
+      'models' => true,
+    ),
+    'options' => 
+    array (
+      'auth' => 
+      array (
+        'show_name' => true,
+      ),
+      'db' => 
+      array (
+        'with_params' => true,
+        'backtrace' => true,
+        'timeline' => false,
+        'explain' => 
+        array (
+          'enabled' => false,
+          'types' => 
+          array (
+            0 => 'SELECT',
+          ),
+        ),
+        'hints' => true,
+      ),
+      'mail' => 
+      array (
+        'full_log' => false,
+      ),
+      'views' => 
+      array (
+        'data' => false,
+      ),
+      'route' => 
+      array (
+        'label' => true,
+      ),
+      'logs' => 
+      array (
+        'file' => NULL,
+      ),
+      'cache' => 
+      array (
+        'values' => true,
+      ),
+    ),
+    'inject' => true,
+    'route_prefix' => '_debugbar',
+    'route_domain' => NULL,
   ),
   'flare' => 
   array (

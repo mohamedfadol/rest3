@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
- 
+
 
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
@@ -20,7 +20,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 //Enables us to output flash messaging
 use Session;
-  
+
 
 class EmployeeController extends Controller
 {
@@ -28,13 +28,13 @@ class EmployeeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware(function($request , $next){ 
+        $this->middleware(function($request , $next){
 
             if (session('success_message')) {
                 Alert::success('Success !!' , session('success_message'));
             }elseif (session('warning_message')) {
 
-                alert()->warning('WarningAlert !!',session('warning_message'));                
+                alert()->warning('WarningAlert !!',session('warning_message'));
             }
 
              return $next($request);
@@ -50,7 +50,8 @@ class EmployeeController extends Controller
     public function index()
     {
     //Get all users and pass it to the view
-        $employees = Auth::user()->employees; 
+        $employees = Auth::user()->employees;
+
         return view('employees.index')->with('employees', $employees);
     }
 
@@ -78,24 +79,24 @@ class EmployeeController extends Controller
     {
         //dd($request->all());
     //Validate name, email and password fields
-        $this->validate($request, [ 
+        $this->validate($request, [
             'firstName'     =>'required|max:255|unique:employees,firstName',
             'LastName'    =>'required',
             'binCode' =>'required|max:4|unique:employees,binCode',
             'branch_id'=>'required|uuid' ,
-            'floor_id' =>'nullable|uuid' 
+            'floor_id' =>'nullable|uuid'
         ]);
 
         $employee = new Employee();
 
             $employee->firstName   = $request->firstName;
             $employee->LastName    = $request->LastName;
-            $employee->binCode     = Hash::make($request->binCode);
+            $employee->binCode     = $request->binCode;
             $employee->branch_id   = $request->branch_id;
             $employee->floor_id    = $request->floor_id == null ? 'null' : $request->input('floor_id');
             $employee->addByUserId = Auth::user()->id;
              //dd($employee);
-            $employee->save(); 
+            $employee->save();
          //Retrieving only the email and password data
 
         $roles = $request['roles']; //Retrieving the roles field
@@ -103,10 +104,10 @@ class EmployeeController extends Controller
         if (isset($roles)) {
 
             foreach ($roles as $role) {
-            $role_r = Role::where('id', '=', $role)->firstOrFail();            
+            $role_r = Role::where('id', '=', $role)->firstOrFail();
             $employee->assignRole($role_r); //Assigning role to user
             }
-        }        
+        }
     //Redirect to the users.index view and display message
         return redirect()->route('employees.index')
             ->withSuccessMessage('User successfully added.');
@@ -148,8 +149,8 @@ class EmployeeController extends Controller
     public function update(Request $request, Employee $employee)
     {
         $employee = Employee::findOrFail($employee->id); //Get role specified by id
-        
-    //Validate name, email and password fields    
+
+    //Validate name, email and password fields
         $this->validate($request, [
             'firstName'      =>'required|max:255|unique:employees,firstName,'.$employee->id,
             'LastName'     =>'required',
@@ -162,9 +163,9 @@ class EmployeeController extends Controller
         //dd($user->fill($input));
         $employee->fill($input)->save();
 
-        if (isset($roles)) {        
-            $employee->roles()->sync($roles);  //If one or more role is selected associate employee to roles          
-        }        
+        if (isset($roles)) {
+            $employee->roles()->sync($roles);  //If one or more role is selected associate employee to roles
+        }
         else {
             $employee->roles()->detach(); //If no role is selected remove exisiting role associated to a employee
         }
@@ -182,7 +183,7 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
     //Find a user with a given id and delete
-        $employee = Employee::findOrFail($employee->id); 
+        $employee = Employee::findOrFail($employee->id);
             $branches = Branch::where('addByUserId' , $employee->id)->get();
             foreach ($branches as $branch) {
             if($branch->addByUserId == $employee->id)
@@ -195,7 +196,7 @@ class EmployeeController extends Controller
             }
 
         $employee->delete();
-        return redirect()->route('employees.index')  
+        return redirect()->route('employees.index')
             ->withSuccessMessage('User successfully deleted.');
     }
 }

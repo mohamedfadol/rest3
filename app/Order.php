@@ -14,11 +14,11 @@ class Order extends Model
 
     protected $primaryKey = 'id';
     public $incrementing = false;
-    protected $table = 'orders'; 
+    protected $table = 'orders';
     protected $guarded = [];
-    protected $casts = ['id' => 'string']; 
-    
-    protected static $logUnguarded = true; 
+    protected $casts = ['id' => 'string'];
+
+    protected static $logUnguarded = true;
     protected static $logAttributes = ['*'];
     protected static $recordEvents = ['deleted','created','updated'];
     protected static $logName = 'orders';
@@ -29,12 +29,12 @@ class Order extends Model
 
 
     public function products(){return $this->belongsToMany(Product::class, 'order_details')->withPivot('Qty');}
-    
+
     public function orderDetails(){return $this->hasMany(OrderDetail::class , 'order_id');}
 
     public function customer(){return $this->belongsTo(Customer::class , 'customer_id');}
 
-    public function employee(){return $this->belongsTo(User::class , 'addByUserId');}
+    public function employee(){return $this->belongsTo(Employee::class , 'addByUserId');}
 
     public function billKind(){return $this->belongsTo(BillKind::class , 'bill_id');}
 
@@ -44,9 +44,4 @@ class Order extends Model
 
     public function payment(){return $this->belongsTo(Payment::class ,'paymentType');}
 
-
-
-
-
-    
 }

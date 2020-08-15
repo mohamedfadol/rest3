@@ -12,14 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome'); 
+    return view('welcome');
 
 //         Artisan::call('config:cache');
 //         Artisan::call('cache:clear');
 //   return "Cache is cleared";
-}); 
+});
 
-Auth::routes();    
+Auth::routes();
 
 // Start LaravelLocalization Admin Route Group For Aurages Panel
     Route::group(
@@ -29,7 +29,7 @@ Auth::routes();
 
 // Start LaravelLocalization Admin Route Group For Aurages Panel
 
-Route::prefix('admin')->group(function() {  
+Route::prefix('admin')->group(function() {
     // Start Login Route For Aurages Panel
     Route::get('/login','Auth\adminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login','Auth\adminLoginController@login')->name('admin.login.submit');
@@ -41,14 +41,14 @@ Route::prefix('admin')->group(function() {
     // logout For Admin For Aurages Panel
     Route::post('/logout','Auth\adminLoginController@logoutAdmin')->name('admin.logout');
     // Admin Home Route For Aurages Panel to show all branches
-    Route::get('/','AdminController@index')->name('admin.dashboard'); 
-    // Admin Control Route For Control Branch setting 
+    Route::get('/','AdminController@index')->name('admin.dashboard');
+    // Admin Control Route For Control Branch setting
     Route::get('/control','AdminController@controlBranch')->name('admin.control');
-    // Admin Control Route For Set Owner Payment for the Branch setting 
+    // Admin Control Route For Set Owner Payment for the Branch setting
     Route::get('/payment/{user}','AdminController@payment')->name('admin.branch.payment');
-    // Admin Control Route For Set Owner Active for the Branch setting 
+    // Admin Control Route For Set Owner Active for the Branch setting
     Route::get('/active/{user}','AdminController@active')->name('admin.branch.active');
-    // Admin Control Route For Set Owner Enable for the Branch setting 
+    // Admin Control Route For Set Owner Enable for the Branch setting
     Route::get('/enable/{user}','AdminController@enable')->name('admin.branch.enable');
 
     // Start Branch Route For Aurages Panel
@@ -63,7 +63,7 @@ Route::prefix('admin')->group(function() {
 
     Route::get('/logout','Auth\LoginController@logout')->name('logout');
 
-// Start LaravelLocalization branch rourtes 
+// Start LaravelLocalization branch rourtes
 Route::group(
 [   'prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
@@ -77,36 +77,37 @@ Route::group(
     Route::resource('/product','ProductController');
     Route::resource('/class','ClassProductController');
     Route::resource('/modifire','ModifireController');
-    Route::resource('/ingredient','IngredientController'); 
+    Route::resource('/ingredient','IngredientController');
     Route::resource('/customer','CustomerController');
     Route::resource('/discount','DiscountController');
     Route::resource('/giftcard','GiftCardController');
-    Route::resource('/billKind','BillKindController'); 
+    Route::resource('/billKind','BillKindController');
     Route::resource('/table','TableController');
-    Route::resource('/tableReserve','TableReserveController'); 
+    Route::resource('/tableReserve','TableReserveController');
     Route::resource('/voidOrder','voidOrderController');
     Route::resource('/timeEvent','TimeEventController');
     Route::resource('/printer','PrinterController');
-    Route::resource('/payment','PaymentController'); 
+    Route::resource('/payment','PaymentController');
     Route::resource('/trans','TransController');
     Route::resource('/permissions', 'PermissionController');
     Route::resource('/employees', 'EmployeeController');
     Route::resource('/roles', 'RoleController');
     Route::resource('/delevery', 'DeleveryController');
-}); // end LaravelLocalization all branch panel rourtes 
+    Route::resource('/orders', 'OrderController');
+}); // end LaravelLocalization all branch panel rourtes
 
 
 
 
-// End delevery rourtes 
+// End delevery rourtes
 
-// Start LaravelLocalization branch rourtes 
+// Start LaravelLocalization branch rourtes
 Route::group(
 [   'prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
 ], function(){ //...
 
-// Starts reports rourtes 
+// Starts reports rourtes
 Route::prefix('/reports')->middleware('auth')->group(function () {
     Route::get('/daily-orders', 'ReportsController@dailyOrders')->name('reports.dailyOrders');
     Route::post('/daily-orders', 'ReportsController@dailyOrdersResponse')->name('reports.dailyOrdersResponse');
@@ -129,5 +130,5 @@ Route::prefix('/reports')->middleware('auth')->group(function () {
     Route::get('/categories/{id}/products', 'ReportsController@getProducts');
 });
 
-// End reports rourtes 
+// End reports rourtes
 });

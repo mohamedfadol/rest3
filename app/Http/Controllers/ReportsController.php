@@ -12,6 +12,7 @@ use App\Product;
 use App\BillKind;
 use App\Payment;
 use App\Category;
+use App\Employee;
 use Carbon\Carbon;
 use App\ActivityLog;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class ReportsController extends Controller
     {
         if($request->ajax()) {
             return response()->json([
-                'floors' => Branch::find($id)->floors
+                'floors' => Branch::findOrFail($id)->floors
             ]);
         }
     }
@@ -33,7 +34,7 @@ class ReportsController extends Controller
     {
         if($request->ajax()) {
             return response()->json([
-                'tables' => Floor::find($id)->tables
+                'tables' => Floor::findOrFail($id)->tables
             ]);
         }
     }
@@ -42,7 +43,7 @@ class ReportsController extends Controller
     {
         if($request->ajax()) {
             return response()->json([
-                'employees' => Branch::find($id)->employees
+                'employees' => Branch::findOrFail($id)->employees
             ]);
         }
     }
@@ -51,7 +52,7 @@ class ReportsController extends Controller
     {
         if($request->ajax()) {
             return response()->json([
-                'employees' => Floor::find($id)->employees
+                'employees' => Floor::findOrFail($id)->employees
             ]);
         }
     }
@@ -67,11 +68,11 @@ class ReportsController extends Controller
 
     public function fetchOrders(Request $request) {
         if ($request->table != "all") 
-            $orders = Table::find($request->table)->orders();
+            $orders = Table::findOrFail($request->table)->orders();
         elseif ($request->floor != "all") 
-            $orders = Floor::find($request->floor)->orders();
+            $orders = Floor::findOrFail($request->floor)->orders();
         elseif ($request->branch != "all") 
-            $orders = Branch::find($request->branch)->orders();
+            $orders = Branch::findOrFail($request->branch)->orders();
         else 
             $orders = Order::latest();
 
@@ -133,7 +134,7 @@ class ReportsController extends Controller
         } elseif ($request->category != 'all') {
             $category = $request->category;
             $products = $products->filter(function ($value, $key) use ($category) {
-                return Category::find($category)->products->contains('id', $key);
+                return Category::findOrFail($category)->products->contains('id', $key);
             });
         }
         
@@ -180,7 +181,7 @@ class ReportsController extends Controller
                 $product->put('totalQuantity', $product->sum('pivot.Qty'));
                 $total += $product->sum('pivot.Qty') * $product->first()->price;
             }
-            $category->put('category', Category::find($key));
+            $category->put('category', Category::findOrFail($key));
             $category->put('total', $total);
         }
 
@@ -238,7 +239,7 @@ class ReportsController extends Controller
 
         $products->each(function($product, $id) {
             $product->put('totalQuantity', $product->sum('pivot.Qty'));
-            $product->put('ingredients', Product::find($id)->ingredients);
+            $product->put('ingredients', Product::findOrFail($id)->ingredients);
             $product['ingredients']->each(function ($ingredient) use ($product) {
                 $ingredient->pivot->quantity *= $product['totalQuantity'];
             });
@@ -290,7 +291,7 @@ class ReportsController extends Controller
 
         return Datatables::of($activities->all())
             ->addColumn('name', function(ActivityLog $activity) {
-                return User::find($activity->causer_id)->name;
+                return User::findOrFail($activity->causer_id)->name;
             })
             ->addColumn('description', function(ActivityLog $activity) {
                 return $activity->description;

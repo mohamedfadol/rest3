@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\API;
-use App\User;
 use App\Employee;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,9 +10,6 @@ use Validator;
  
 class UserController extends Controller  
 {
-
-
-    public $successStatus = 200; 
 
     public function login(Request $request) {
         $user = Employee::where(['firstName' => request()->firstName])->first();
@@ -25,18 +21,15 @@ class UserController extends Controller
                 return response()->json(['error' => 'Unauthorized'], 401);
             }
             // log the user in (needed for future requests)
-            Auth::login($user);
+               // Auth::login($user);
+             $user = Auth::user();
             // get new token
-            // $success['token'] =  $user->createToken('AppName')->accessToken;
-            // return $user = Auth::user();
+             $success['token'] =  $user->createToken('AppName')->accessToken;
             // return token in json response
             return response()->json(['success' => true, 'user'=>$user] , 200);  
 
     }
 
-    // public $successStatus = 200;
-
- 
     // public function login(){ 
 
     //     if(Auth::attempt(['binCode' => request('binCode'), 'firstName' => request('firstName')])){ 
@@ -75,12 +68,12 @@ class UserController extends Controller
     //      $input['password'] = bcrypt($input['password']);
     //      $user = User::create($input); 
     //      $success['token'] =  $user->createToken('AppName')->accessToken;
-    //      return response()->json(['success'=>$success], $this->successStatus); 
+    //      return response()->json(['success'=>$success], 200); 
     // }
       
     public function getUser() { 
          $user = Auth::user();
-         return response()->json(['success' => $user], $this->successStatus); 
+         return response()->json(['success' => $user], 200); 
      }
 
 
