@@ -96,6 +96,12 @@ return [
 
     // List of     Delevery  translation interface
     'Delevery'  => "Delevery",
+    'Deliveries'  => "Deliveries",
+    'Add New Delivery'  => "Add New Delivery",
+    'delevery Name'  => "delevery Name",
+    'Phone'  => "Phone",
+    'Motor Type'  => "Motor Type",
+    'Card Number'  => "Card Number",
 
     // List of BillKinds  translation interface
     'BillKinds'  => "BillKinds",

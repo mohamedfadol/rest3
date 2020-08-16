@@ -41,15 +41,16 @@ class CreateOauthClientsTable extends Migration
     public function up()
     {
         $this->schema->create('oauth_clients', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('user_id')->index()->nullable();
+            $table->bigIncrements('id');
+            $table->string('user_id')->nullable()->index();
             $table->string('name');
-            $table->string('secret', 100);
+            $table->string('secret', 100)->nullable();
+            $table->string('provider')->nullable();
             $table->text('redirect');
             $table->boolean('personal_access_client');
             $table->boolean('password_client');
             $table->boolean('revoked');
-            $table->timestamps(); 
+            $table->timestamps();
         });
     }
 

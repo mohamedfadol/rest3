@@ -38,9 +38,9 @@
                                 <th>{{ __('message.Total') }}</th>
                             </tr>
                         </thead>
-                        @if(count($employeesOrders) > 0 )
+                        @if(count($employees) > 0 )
                             <tbody>
-                                    @foreach($employeesOrders as $employee)
+                                    @foreach($employees as $employee)
                                         @foreach($employee->orders as $order)
                                 <tr>
                                             <td>{{ $employee->firstName}}</td>
@@ -55,6 +55,8 @@
                                 </tr>
                                     @endforeach
                             </tbody>
+                            @else
+                            <div class="alert alert-info text-center">There Is No Orders To Show</div>
                         @endif
                     </table>
                 </div>

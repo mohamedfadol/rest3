@@ -92,6 +92,12 @@ return [
 
     // List of Delevery  translation
     'Delevery'  => "التوصيلات",
+    'Deliveries'  => "التوصيلات",
+    'Add New Delivery'  => "اضافة موصل جديد",
+    'delevery Name'  => "اسم الموصل",
+    'Phone'  => "الهاتف",
+    'Motor Type'  => "نوع الدراجة",
+    'Card Number'  => "رقم البطاقة",
 
     // List of BillKinds  translation
     'BillKinds'  => "الفواتير",

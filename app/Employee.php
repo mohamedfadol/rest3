@@ -36,7 +36,7 @@ class Employee extends Authenticatable
     public function owner(){return $this->belongsTo(User::class , 'addByUserId');}
     public function branch(){return $this->belongsTo(Branch::class , 'branch_id');}
     public function floor(){return $this->belongsTo(Floor::class , 'floor_id');}
-    public function orders(){return $this->hasMany(Order::class , 'addByUserId');}
+    public function orders(){return $this->hasMany(Order::class , 'employee_id');}
 
 
     }

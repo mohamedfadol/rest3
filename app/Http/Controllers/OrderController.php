@@ -15,8 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $employeesOrders = Auth::user()->employees;
-        return view('orders.index',compact('employeesOrders'));
+        $employees = Auth::user()->employees;
+        return view('orders.index',compact('employees'));
     }
 
     /**

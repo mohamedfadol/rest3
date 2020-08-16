@@ -20,26 +20,20 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            
-            $table->string('note')->nullable('null'); 
-            $table->string('image')->nullable('null'); 
-            $table->string('businessName')->nullable('null'); 
+            $table->string('note')->nullable('null');
+            $table->string('image')->nullable('null');
+            $table->string('businessName')->nullable('null');
             $table->string('type')->default('web');
-
             $table->integer('enable')->default(0);
             $table->integer('active')->default(0);
             $table->integer('payment')->default(0);
             $table->integer('activeStatus')->default(0);
             $table->integer('isAdmin')->default(0);
-
             $table->integer('subscrib')->default(0);
             $table->integer('agree')->default(0);
-
-
             $table->integer('RESTURANT')->default(1);
             $table->integer('ACCOUNTING')->default(2);
             $table->integer('HR')->default(3);
-
             $table->integer('branch_number')->nullable('null');
             $table->integer('user_number')->nullable('null');
             $table->string('phone')->nullable('null');

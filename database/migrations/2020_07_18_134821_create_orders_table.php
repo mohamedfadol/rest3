@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->uuid('id')->primary();
             $table->integer('number')->nullable();
             $table->integer('dailyNumber')->nullable();
-            $table->string('date')->nullable(); 
+            $table->string('date')->nullable();
             $table->string('billDate')->nullable();
             $table->string('delivaryDate')->nullable();
             $table->integer('billSatate')->nullable();
@@ -29,10 +29,7 @@ class CreateOrdersTable extends Migration
             $table->float('sevice')->nullable();
             $table->string('note')->nullable();
             $table->integer('printredCount')->nullable();
-            //$table->float('rePayment')->nullable();
-            //$table->string('curancyType')->nullable(); to  order repayment
-            $table->float('remain')->nullable(); 
-
+            $table->float('remain')->nullable();
 
             $table->uuid('branch_id');
             $table->foreign('branch_id')->references('id')->on('branches');
@@ -40,22 +37,18 @@ class CreateOrdersTable extends Migration
             $table->uuid('customer_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers');
 
-
             $table->uuid('table_id');
             $table->foreign('table_id')->references('id')->on('tables');
 
-            $table->uuid('paymentType'); 
-            $table->foreign('paymentType')->references('id')->on('payments')->change();
+            $table->uuid('paymentType');
+            $table->foreign('paymentType')->references('id')->on('payments');
 
-            // $table->uuid('floor_id');
-            // $table->foreign('floor_id')->references('id')->on('floors');
- 
             $table->uuid('bill_id');
             $table->foreign('bill_id')->references('id')->on('bill_kinds');
 
-            $table->uuid('addByUserId');
-            $table->foreign('addByUserId')->references('id')->on('employees');
-            
+            $table->uuid('employee_id');
+            $table->foreign('employee_id')->references('id')->on('employees');
+
             $table->timestamps();
         });
     }

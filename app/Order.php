@@ -27,14 +27,13 @@ class Order extends Model
         return "This model has been {$eventName}";
     }
 
-
     public function products(){return $this->belongsToMany(Product::class, 'order_details')->withPivot('Qty');}
 
     public function orderDetails(){return $this->hasMany(OrderDetail::class , 'order_id');}
 
     public function customer(){return $this->belongsTo(Customer::class , 'customer_id');}
 
-    public function employee(){return $this->belongsTo(Employee::class , 'addByUserId');}
+    public function employee(){return $this->belongsTo(Employee::class , 'employee_id');}
 
     public function billKind(){return $this->belongsTo(BillKind::class , 'bill_id');}
 
