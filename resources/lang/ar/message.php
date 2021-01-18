@@ -2,13 +2,13 @@
 
 return [
 
-	// login form translation
+    // login form translation
     'Login' => 'تسجيل دخول',
     'Logout' => 'تسجيل خرج',
     'Register' => 'تسجيل ',
 
 
-	// Registration  form translation
+    // Registration  form translation
     'Registration Form' => 'لوحة التسجيل ',
     'First Name' => 'الاسم الأول',
     'Last Name' => 'الاسم الأخير',
@@ -27,7 +27,7 @@ return [
     'Agree' => "موافق",
     'Registration' => "تسجيل",
 
-	// login admin form translation
+    // login admin form translation
     'Login Adminstration Form' => 'لوحة الدخول من الادارة',
     'E-Mail Address' => 'البريد الألكتروني',
     'Password' => 'كلمة السر',
@@ -45,7 +45,14 @@ return [
 
     // orders form translation
     'Orders List' => 'قائمة الطلبات',
-    'Order Number' => 'رقم الطلب',
+    'Daily Bills' => 'الفواتير اليومية',
+    'Bills Number' => 'أرقام الفواتير',
+    'Report Salses' => 'تقرير المبيعات',
+    'Materials Salses' => 'مبيعات المواد',
+    'Details Of Salses' => 'تفاصيل المبيعات',
+    'More Selses' => 'الأكثر مبيعا',
+    'Less Selses' => 'الأقل مبيعا',
+    'Materials Consuming' => 'تقرير استهلاك المواد الأولية',
     'Daily Number' => 'الرقم اليومي',
     'Date' => 'التاريخ',
     'Orders' => 'الطلبات',
@@ -53,7 +60,7 @@ return [
     'Total' => 'الأجمالي',
     'Bill Date' => 'تاريخ الفاتورة',
     'Delivary Date' => "تاريخ الوصول",
-    'Employee Name' => "الموظف",
+    'Net' => "الصافي",
 
 
     // Branches  form translation

@@ -1,1 +1,0 @@
-<?php /**PATH C:\xampp\htdocs\report\resources\views\trans\index.blade.php ENDPATH**/ ?>

@@ -57,7 +57,7 @@
                                         <option value="{{$branch->id}}" {{ $request ? ($request->branch == $branch->id ? 'selected' : '') : '' }}>{{$branch->name}}</option>
                                     @endforeach
                                 @else
-                                    <option value="">Ther's No branches To Add</option>
+                                    <option value="">Thers No branches To Add</option>
                                 @endif
                             </select>
                         </div>

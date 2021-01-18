@@ -2,27 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use DateTime;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+public function index(Request $request)
     {
-        $this->middleware('auth');
+        return view('POS.index');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
-    }
-}
+}// end class HomeController

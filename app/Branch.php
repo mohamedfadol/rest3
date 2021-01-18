@@ -2,61 +2,89 @@
 
 namespace App;
 
-use App\Traits\Uuids;
-use App\Traits\MultipleInsertByUserId; 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
 
-class Branch extends Model
+class branch extends Model
 {
-
-    use Uuids  ,LogsActivity;
     
-    //use MultipleInsertByUserId;
+    protected $table = 'branch';
+    protected $primaryKey = 'branch_id';
+    // public $table 'created_at' = false;
+    // public $table 'updated_at' = false;
 
-    protected $primaryKey = 'id'; 
-    public $incrementing = false; 
-    protected $table = 'branches';
-    protected $guarded = [];
-    protected $casts = ['id' => 'string'];   
-    
-    protected static $logUnguarded = true; 
-    protected static $logAttributes = ['*'];
-    protected static $recordEvents = ['deleted','created','updated'];
-    protected static $logName = 'branches';
-
-    public $hidden =[ 'monday_from', 'monday_to',
-                       'tuesday_from', 'tuesday_to',
-                       'wednesday_from', 'Wednesdayto',
-                       'wednesday_to', 'Wednesdayfrom',
-                       'thursday_from', 'thursday_to',
-                       'friday_from', 'friday_to',
-                       'saturday_from', 'saturday_to',
-                       'sunday_from', 'sunday_to','tuesday_to'
-                    ]; 
-
-    public function getDescriptionForEvent(string $eventName): string
+    public function orders()
     {
-        return "This model has been {$eventName}";
+        return $this->hasMany('App\orders', 'branch_id');
     }
 
-	public function owner(){return $this->belongsTo(User::class ,'addByUserId');}
-
-    public function floors(){return $this->hasMany(Floor::class , 'branch_id'); }
-
-    public function tables(){return $this->hasMany(Table::class , 'branch_id');}
-
-    public function timeEvent(){return $this->hasMany(TimeEvent::class ,'branch_id');}
-
-    public function orders(){return $this->hasMany(Order::class,'branch_id');}
+    public function Billkind()
+    {
+        return $this->hasMany('App\Billkind', 'Billkind');
+    }
     
-    public function printers(){return $this->hasMany(Printer::class ,'branch_id');}
-    
-    public function employees(){return $this->hasMany(Employee::class ,'branch_id');}
-
-    public function deliveries(){return $this->hasMany(Delivery::class ,'branch_id');}
-
+    public function ordersBetween($startDate, $endDate)
+    { 
+        return $this->orders()->whereBetween('Date', [$startDate, $endDate])->get();
+    }
 
 
+    public function ordersSum($startDate, $endDate)
+    {
+        $totalSum = 0;
+        $orders = $this->ordersBetween($startDate, $endDate);
+        foreach($orders as $order) {
+            $totalSum += $order->Total + $order->Tax + $order->Extra - $order->Discount;
+        }
 
-}
+        return $totalSum;
+    }
+
+    public function ordersSumByType($startDate, $endDate) 
+    {
+        $totalInSum = 0;
+        $totalOutSum = 0;
+        $totalPresentSum = 0;
+        $totalDeliverySendSum = 0;
+        $totalDeliveryComesSum = 0;
+        $totalCarSum = 0;
+        $orders = $this->ordersBetween($startDate, $endDate);
+        foreach($orders as $order) {
+            switch ($order->Billkind->BillKindNameEnglish) {
+                case 'In':
+                    $totalInSum += $order->Total + $order->Tax + $order->Extra - $order->Discount;
+                    break;
+                case 'Out':
+                    $totalOutSum += $order->Total + $order->Tax + $order->Extra - $order->Discount;
+                    break;
+                case 'Present':
+                    $totalPresentSum += $order->Total + $order->Tax + $order->Extra - $order->Discount;
+                    break;
+                case 'Delivery Send':
+                    $totalDeliverySendSum += $order->Total + $order->Tax + $order->Extra - $order->Discount;
+                    break;
+                case 'Delivery Comes':
+                    $totalDeliveryComesSum += $order->Total + $order->Tax + $order->Extra - $order->Discount;
+                    break;
+                case 'Car':
+                    $totalCarSum += $order->Total + $order->Tax + $order->Extra - $order->Discount;
+                    break;
+                
+                default:
+                    
+                    break;
+            }
+            
+        }
+
+        $result = array('in' => $totalInSum,
+                        'out' => $totalOutSum,
+                        'present' => $totalPresentSum,
+                        'delivery-send' => $totalDeliverySendSum ,
+                        'delivery-comes' => $totalDeliveryComesSum,
+                        'car' => $totalCarSum );
+
+        return $result;
+    }
+
+
+} // End class of Branch

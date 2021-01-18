@@ -2,7 +2,7 @@
 
 return [
 
-	// login form translation
+    // login form translation
     'Login' => 'Login',
     'Logout' => 'Logout',
     'E-Mail Address' => 'E-Mail Address',
@@ -10,7 +10,7 @@ return [
     'Remember Me' => 'Remember Me',
     'Forgot Your Password?' => "Forgot Your Password?",
 
-	// Registration  form for user translation
+    // Registration  form for user translation
     'Registration Form' => 'Registration Form',
     'First Name' => 'First Name',
     'Last Name' => 'Last Name',
@@ -30,7 +30,7 @@ return [
     'Registration' => "Registration",
     'Register' => "Register",
 
-	// login admin form translation interface
+    // login admin form translation interface
     'Login Adminstration Form' => 'Login Adminstration Form',
 
     // Registration  form translation
@@ -39,7 +39,17 @@ return [
 
     // orders form translation
     'Orders List' => 'Orders List',
+    'Bill Number' => 'Bill Number',
+    'Daily Bills' => 'Daily Bills',
     'Order Number' => 'Order Number',
+    'Daily Bills' => 'Daily Bills',
+    'Bills Number' => 'Bills Number',
+    'Report Salses' => 'Report Salses',
+    'Materials Salses' => 'Materials Salses',
+    'Details Of Salses' => 'Details Of Salses',
+    'More Selses' => 'More Selses',
+    'Less Selses' => 'Less Selses',
+    'Materials Consuming' => 'Materials Consuming',
     'Daily Number' => 'Daily Number',
     'Date' => 'Date',
     'Orders' => 'Orders',
@@ -48,6 +58,8 @@ return [
     'Bill Date' => 'Bill Date',
     'Delivary Date' => "Delivary Date",
     'Employee Name' => "Employee Name",
+    'Net' => "Net",
+
 
     // Gift Cards translation
     'Gift Cards' => 'Gift Cards',
@@ -331,5 +343,3 @@ return [
     'Settings'  => "Settings",
     'Ingredients Sales Report'  => "Ingredients Sales Report",
 ];
-
-
