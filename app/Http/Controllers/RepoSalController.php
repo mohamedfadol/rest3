@@ -24,8 +24,8 @@ class RepoSalController extends Controller
     public function show(Request $request)
     {
         $this->validate($request, [
-            'datenew' => 'required',
-            'endtime' => 'required'
+            'datenew' => 'nullable',
+            'endtime' => 'nullable'
         ]);
 
         $branches = branch::all();

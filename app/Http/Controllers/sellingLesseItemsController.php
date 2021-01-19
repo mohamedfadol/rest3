@@ -29,8 +29,8 @@ class sellingLesseItemsController extends Controller
     public function show(Request $request)
     {
         $this->validate($request, [
-            'datenew' => 'required',
-            'endtime' => 'required'
+            'datenew' => 'nullable',
+            'endtime' => 'nullable'
         ]);
 
         $startDate = Carbon::parse($request->datenew)->startOfDay()->toDateTimeString();

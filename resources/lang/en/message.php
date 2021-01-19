@@ -342,4 +342,18 @@ return [
     'Unit'  => "Unit",
     'Settings'  => "Settings",
     'Ingredients Sales Report'  => "Ingredients Sales Report",
+    'Consuming materials Sales'  => "Consuming materials Sales",
+    'Less Sales'  => "Less Sales",
+    'Less Item Sales'  => "Less Item Sales",
+    'More Sales'  => "More Sales",
+    'More Item Sales'  => "More Item Sales",
+    'Details Sales'  => "Details Sales",
+    'Materials Sales'  => "Materials Sales",
+    'Report Sales'  => "Report Sales",
+    'Bills Number'  => "Report Sales",
+    'Daily Bills'  => "Daily Bills",
+    'Daily Bills Report'  => "Daily Bills Report",
+    'Report Of Sales Branch'  => "Report Of Sales Branch",
+    'Mats Element Consuming'  => "Mats Element Consuming",
+
 ];

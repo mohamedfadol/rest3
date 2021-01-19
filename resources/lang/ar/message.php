@@ -269,7 +269,7 @@ return [
     'Date' => "التاريخ",
     'Properties' => "الخصائص",
 
-    // List of Sidebar  translation
+    // List of Sidebar  translation 
     'Menu'   => 'القائمة',
     'Menu Display' => 'عرض القائمة',
     'Categories'     => 'التصنيفات',
@@ -341,6 +341,21 @@ return [
     'Ingredient'  => "المكون",
     'Unit'  => "الوحده",
     'Settings'  => "الضبط",
+    'Consuming materials Sales'  => "تقرير استهلاك المواد الأولية",
+    'Less Sales'  => "الأقل مبيعا",
+    'More Sales'  => "الأكثر مبيعا",
+    'More Item Sales'  => "تقرير الأكثر مبيعا",
+    'Less Item Sales'  => "تقرير الأقل بيع",
+    'Details Sales'  => "تفاصيل المبيعات",
+    'Materials Sales'  => "مبيعات المواد",
+    'Report Sales'  => "تقرير المبيعات",
+    'Bills Number'  => "أرقام الفواتير",
+    'Daily Bills'  => "الفواتير اليومية",
+    'Daily Bills Report'  => "تقريرالفواتير اليومية ",
+    'Report Of Sales Branch'  => "تقرير المبيعات حسب الفرع",
+    'Mats Element Consuming'  => "تقرير استهلاك المواد الأولية",
+
+
 
 
 

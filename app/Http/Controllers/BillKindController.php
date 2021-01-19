@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\branch;
-use App\orders;
+use Illuminate\Http\Request;
 
 class billKindController extends Controller
 {
@@ -17,24 +16,24 @@ class billKindController extends Controller
     {
         $branch = branch::all();
         // return dd('n');
-        // $branch = branch::all();
+        $branch = branch::all();
+
         return view('POS.billsNumber', compact($branch, 'branch'));
     }
 
     public function show(Request $request)
     {
-
         $this->validate($request, [
-            'datenew' => 'required',
-            'endtime' => 'required'
+            'datenew' => 'nullable',
+            'endtime' => 'nullable',
         ]);
 
         $branches = branch::all();
 
         return view('POS.billsNumber')->with([
-            'branches'  => $branches,
+            'branches' => $branches,
             'startDate' => $request->input('datenew'),
-            'endDate'   => $request->input('endtime')
+            'endDate' => $request->input('endtime'),
         ]);
     }
 }

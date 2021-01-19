@@ -1,83 +1,70 @@
 @extends('theme.default')
 
-    @section('content')
+@section('head')
+<style>
+    .table thead tr th {
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+</style>
+@endsection
 
-<!-- page content -->
-<div class="right_col" role="main">
-    <div class="row">
-        <div class="col-md-12 col-sm-12 ">
-            <div class="x_panel">
-                        <div class="x_title">
-                            <h2> تقرير الأقل بيع  </h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <br />
-                            @include('layouts.messages')
-                        <form id="demo-form2" action="{{route('showsellingLesseItems')}}" method="POST" 
-                        data-parsley-validate class="form-horizontal  form-label-left">
-                        @csrf
-                        <div class="item form-group">
-                                <label class="col-form-label 
-                                        col-md-3 col-sm-3 label-align" 
-                                            for="first-name">
-                                                من تاريخ  <span>*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="date" 
-                                        name="datenew" 
-                                             class="form-control"
-                                                value="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
-                                            >
-                                    @if ($errors->has('datenew'))
-                                        <span class="invalid-feedback text-danger" role="alert">
-                                            <strong>{{ $errors->first('datenew') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                        </div>
-                                                    <div class="item form-group">
-                                <label class="col-form-label 
-                                        col-md-3 col-sm-3 label-align" 
-                                            for="first-name">
-                                               الى تاريخ  <span>*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="date" 
-                                        name="endtime" 
-                                             class="form-control"
-                                                value="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
-                                            >
-                                    @if ($errors->has('endtime'))
-                                        <span class="invalid-feedback text-danger" role="alert">
-                                            <strong>{{ $errors->first('endtime') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                        </div>
-                        <div class="item form-group">
-                            <div class="col-md-6 col-sm-6 offset-md-3">
-                                <button class="btn btn-primary" type="reset">Reset</button>
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                    </div>
+@section('heading')
+{{ __('message.Less Item Sales') }}
+@endsection
+
+@section('content')
+<div class="row">
+    <div class="col-md-12">
+        <div class="card ">
+            <div class="card-header card-header-rose card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">list</i>
                 </div>
+                <h4 class="card-title">{{ __('message.Less Item Sales') }}</h4>
+            </div>
+            <div class="card-body ">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger py-2">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form method="POST" action="{{ route('showsellingLesseItems') }}">
+                    @csrf
+                    <div class="row">
+                        <div class="form-group col-md-6 mt-4">
+                            <label class="bmd-label" for="startdate">{{ __('message.From') }}</label>
+                            <input type="date" class="form-control mt-2" id="startdate" name="startdate" value="{{Carbon\Carbon::now()->subMonth()->format('Y-m-d')  }}" >
+                        </div>
+
+                        <div class="form-group col-md-6 mt-4">
+                            <label class="bmd-label" for="enddate">{{ __('message.To') }}</label>
+                            <input type="date" class="form-control mt-2" id="enddate" name="enddate" value="{{Carbon\Carbon::now()->format('Y-m-d') }}" >
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-fill btn-rose">{{ __('message.Submit') }}</button>
+                </form>
             </div>
         </div>
-        @if(isset($x))
-    <div class="row">
-    <div class="table-responsive">
-        <table id="example" class="table table-striped jambo_table bulk_action display"  style="width:100%">
-            <thead>
-            <tr class="text-center">
-                <th>Name</th>
-                @foreach ($branches as $branch)
+            @if(isset($x))
+            <div id="results" class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                    <h4 class="card-title">Results</h4>
+                </div>
+                <div class="card-body ">
+                    <table id="lessItem-table" class="table table-striped table-hover" cellspacing="0" width="100%" style="width:100%">
+                    <thead>
+                <tr class="text-center">
+                    <th>Name</th>
+                    @foreach ($branches as $branch)
                     <th>{{ $branch->branch_name }}</th>
-                @endforeach
-                <th> Total </th> 
-            </tr>
+                    @endforeach
+                    <th> Total </th> 
+                </tr>
             </thead>
             <tbody>
                 @foreach($materials as $material)
@@ -94,26 +81,38 @@
                     </tr>
                 @endforeach
             </tbody>
-        </table>
-    </div>
-        @endif
+                    </table>
+                </div>
+            </div>
+            @endif
     </div>
 </div>
 @endsection
-<script>
-    $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy',
-            'excel',
-            'pdf',
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5',
-            'pdfHtml5'
-        ]
-    } );
-} );
-</script>      
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+ 
+            $('#lessItem-table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                'excel',
+                'pdf',
+                'print'
+                ],
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50 , 'all']
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                searchPlaceholder: "Search",
+                }
+            });  
+        });
+
+    </script>
+@endsection
+

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\branch;
-use App\BillKind;
 
 class DetSalController extends Controller
 {
@@ -24,8 +23,8 @@ class DetSalController extends Controller
     public function show(Request $request)
     {
         $this->validate($request, [
-            'datenew' => 'required',
-            'endtime' => 'required'
+            'datenew' => 'nullable',
+            'endtime' => 'nullable'
         ]);
 
         $branches = branch::all();

@@ -41,43 +41,43 @@
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('BillsNumForEachBranch') }}">
                     <span class="sidebar-mini"><i class="material-icons">bar_chart</i></span>
-                    <span class="sidebar-normal">{{ __('message.Products Sales') }}  </span>
+                    <span class="sidebar-normal">{{ __('message.Bills Number') }}  </span>
                 </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('ReportsSales') }}">
                     <span class="sidebar-mini"><i class="material-icons">bar_chart</i></span>
-                    <span class="sidebar-normal"> {{ __('message.Categories Sales') }} </span>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{ route('DetailesSalse') }}">
-                    <span class="sidebar-mini"><i class="material-icons">bar_chart</i></span>
-                    <span class="sidebar-normal">{{ __('message.Total Sales') }}  </span>
+                    <span class="sidebar-normal"> {{ __('message.Report Sales') }} </span>
                 </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('RepSalMats') }}">
                     <span class="sidebar-mini"><i class="material-icons">bar_chart</i></span>
-                    <span class="sidebar-normal"> {{ __('message.Ingredients Sales') }} </span>
+                    <span class="sidebar-normal">{{ __('message.Materials Sales') }}  </span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('DetailesSalse') }}">
+                    <span class="sidebar-mini"><i class="material-icons">bar_chart</i></span>
+                    <span class="sidebar-normal"> {{ __('message.Details Sales') }} </span>
                 </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('sellingMoreItems') }}">
                     <span class="sidebar-mini"><i class="material-icons">bar_chart</i></span>
-                    <span class="sidebar-normal"> {{ __('message.Ingredients Sales') }} </span>
+                    <span class="sidebar-normal"> {{ __('message.More Sales') }} </span>
                 </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('sellingLesseItems') }}">
                     <span class="sidebar-mini"><i class="material-icons">bar_chart</i></span>
-                    <span class="sidebar-normal"> {{ __('message.Ingredients Sales') }} </span>
+                    <span class="sidebar-normal"> {{ __('message.Less Sales') }} </span>
                 </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('matsElementConsuming') }}">
                     <span class="sidebar-mini"><i class="material-icons">bar_chart</i></span>
-                    <span class="sidebar-normal"> {{ __('message.Ingredients Sales') }} </span>
+                    <span class="sidebar-normal"> {{ __('message.Consuming materials Sales') }} </span>
                 </a>
             </li>
 
