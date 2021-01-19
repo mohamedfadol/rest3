@@ -29,10 +29,10 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="<?php echo asset('theme/css/material-dashboard.css?v=2.1.0'); ?>" rel="stylesheet" />    
+    <link href="<?php echo asset('theme/css/material-dashboard.css?v=2.1.0'); ?>" rel="stylesheet" />
     <link href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.jqueryui.min.css" rel="stylesheet" />
-    
+
     <link href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.bootstrap.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.bootstrap4.css" rel="stylesheet" />
@@ -47,7 +47,7 @@
     <link href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.semanticui.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/buttons/1.6.0/css/common.scss" rel="stylesheet" />
     <link href="https://cdn.datatables.net/buttons/1.6.0/css/mixins.scss" rel="stylesheet" />
-    
+
     <?php echo $__env->yieldContent('head'); ?>
 </head>
 
@@ -63,9 +63,8 @@
                 <div class="container-fluid">
                     <?php echo $__env->yieldContent('content'); ?>
                 </div>
+                <?php echo $__env->make('theme.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </div>
-
-            <?php echo $__env->make('theme.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
     </div>
 
@@ -102,7 +101,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <!-- Library for adding dinamically elements -->
     <script src="<?php echo asset('theme/js/plugins/arrive.min.js'); ?>"></script>
-    <!--  Google Maps Plugin    
+    <!--  Google Maps Plugin
     <script src=" https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"> </script>  Chartist JS -->
         <script src="<?php echo asset('theme/js/plugins/chartist.min.js'); ?>">
     </script>
@@ -110,7 +109,7 @@
     <script src="<?php echo asset('theme/js/plugins/bootstrap-notify.js'); ?>"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="<?php echo asset('theme/js/material-dashboard.js?v=2.1.0" type="text/javascript'); ?>"></script>
-    
+
     <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.bootstrap4.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.js"></script>
@@ -132,10 +131,10 @@
     <script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    
-    
+
+
     <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    
+
     <?php echo $__env->yieldContent('script'); ?>
 
 

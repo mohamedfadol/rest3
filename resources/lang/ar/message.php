@@ -269,7 +269,7 @@ return [
     'Date' => "التاريخ",
     'Properties' => "الخصائص",
 
-    // List of Sidebar  translation 
+    // List of Sidebar  translation
     'Menu'   => 'القائمة',
     'Menu Display' => 'عرض القائمة',
     'Categories'     => 'التصنيفات',
@@ -354,6 +354,10 @@ return [
     'Daily Bills Report'  => "تقريرالفواتير اليومية ",
     'Report Of Sales Branch'  => "تقرير المبيعات حسب الفرع",
     'Mats Element Consuming'  => "تقرير استهلاك المواد الأولية",
+    'Report Of Materials Sales' => "تقاربر المبيعات للمواد",
+    'Mat'  => "المادة",
+    'Code'  => "الرمز",
+
 
 
 

@@ -1,180 +1,155 @@
+<?php $__env->startSection('head'); ?>
+<style>
+    .table thead tr th {
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+</style>
+<?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('heading'); ?>
+<?php echo e(__('message.Report Of Materials Sales')); ?>
 
-    <?php $__env->startSection('content'); ?>
+<?php $__env->stopSection(); ?>
 
-<!-- page content -->
-<div class="right_col" role="main">
-    <div class="row">
-        <div class="col-md-12 col-sm-12 ">
-            <div class="x_panel">
-                        <div class="x_title">
-                            <h2> تقاربر المبيعات  للمواد </h2>
-                            <div class="clearfix"></div>
+<?php $__env->startSection('content'); ?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card ">
+            <div class="card-header card-header-rose card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">list</i>
+                </div>
+                <h4 class="card-title"><?php echo e(__('message.Report Of Materials Sales')); ?></h4>
+            </div>
+            <div class="card-body ">
+                <?php if(count($errors) > 0): ?>
+                    <div class="alert alert-danger py-2">
+                        <ul>
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+                <form method="POST" action="<?php echo e(route('showRepSalMats')); ?>">
+                    <?php echo csrf_field(); ?>
+                    <div class="row">
+                        <div class="form-group col-md-6 mt-4">
+                            <label class="bmd-label" for="startdate"><?php echo e(__('message.From')); ?></label>
+                            <input type="date" class="form-control mt-2" id="startdate" name="startdate" value="<?php echo e(Carbon\Carbon::now()->subMonth()->format('Y-m-d')); ?>" >
                         </div>
-                        <div class="x_content">
-                            <br />
-                    <form id="demo-form2" action="<?php echo e(route('showRepSalMats')); ?>" method="post" 
-                        data-parsley-validate class="form-horizontal  form-label-left">
-                        <?php echo csrf_field(); ?>
-                        <div class="item form-group">
-                                <label class="col-form-label 
-                                        col-md-3 col-sm-3 label-align" 
-                                            for="datenew">
-                                            من تاريخ  <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="date" 
-                                        name="datenew" 
-                                            required class="form-control"
-                                                value="<?php echo e(Carbon\Carbon::now()->format('Y-m-d')); ?>"
-                                            >
-                                    <?php if($errors->has('datenew')): ?>
-                                        <span class="invalid-feedback text-danger" role="alert">
-                                            <strong><?php echo e($errors->first('datenew')); ?></strong>
-                                        </span>
-                                    <?php endif; ?>
-                                </div>
-                        </div>
-                        <div class="item form-group">
-                                <label class="col-form-label 
-                                        col-md-3 col-sm-3 label-align" 
-                                            for="endtime">
-                                                الى تاريخ  <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="date" 
-                                        name="endtime" 
-                                            required class="form-control"
-                                                value="<?php echo e(Carbon\Carbon::now()->format('Y-m-d')); ?>"
-                                            >
-                                    <?php if($errors->has('endtime')): ?>
-                                        <span class="invalid-feedback text-danger" role="alert">
-                                            <strong><?php echo e($errors->first('endtime')); ?></strong>
-                                        </span>
-                                    <?php endif; ?>
-                                </div>
-                        </div>
-                         <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" 
-                                        for="last-name">
-                                             الفرع  
-                                </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <select name="branch" id="heard" class="form-control">
-                                    <option value="">Choose One Branch..</option>
-                                    <?php if(isset($branch)): ?>
-                                        <?php $__currentLoopData = $branch; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bra): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($bra->branch_id); ?>"> 
-                                                <?php echo e($bra->branch_name); ?>
 
-                                            </option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    <?php else: ?>
-                                        <?php $__currentLoopData = $branch; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bra): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($bra->branch_id); ?>"> 
-                                                <?php echo e($bra->branch_name); ?>
+                        <div class="form-group col-md-6 mt-4">
+                            <label class="bmd-label" for="enddate"><?php echo e(__('message.To')); ?></label>
+                            <input type="date" class="form-control mt-2" id="enddate" name="enddate" value="<?php echo e(Carbon\Carbon::now()->format('Y-m-d')); ?>" >
+                        </div>
+                    </div>
 
-                                            </option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    <?php endif; ?> 
-                                </select>
-                                <?php if($errors->has('branch')): ?>
-                                    <span class="invalid-feedback text-danger" role="alert">
-                                        <strong><?php echo e($errors->first('branch')); ?></strong>
-                                    </span>
+                    <div class="row">
+                        <div class="form-group col-md-4 mt-4">
+                            <label class="bmd-label" for="branch"><?php echo e(__('message.Branch')); ?></label>
+                            <select id="branch" class="custom-select" name="branch" required>
+                                <option value="all">Choose An Branch..</option>
+                                <?php if(isset($branches)): ?>
+                                    <?php $__currentLoopData = $branches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $branch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($branch->branch_id); ?>"><?php echo e($branch->branch_name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php else: ?>
+                                    <?php $__currentLoopData = $branches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $branch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($branch->branch_id); ?>"><?php echo e($branch->branch_name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <?php endif; ?>
-                            </div>
+                            </select>
                         </div>
-                         <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" 
-                                        for="last-name">
-                                             المستخدم  
-                                </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <select name="users" id="heard" class="form-control">
-                                    <option value="">Choose One User..</option>
+
+                        <div class="form-group col-md-4 mt-4">
+                            <label class="bmd-label-floating" for="employee"><?php echo e(__('message.Added By')); ?></label>
+                            <select id="users" class="custom-select" name="users" required>
+                                <option value="">Choose One User..</option>
                                     <?php if(isset($users)): ?>
                                         <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($user->Guid); ?>"> 
+                                            <option value="<?php echo e($user->Guid); ?>">
                                                 <?php echo e($user->Name); ?>
 
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     <?php else: ?>
                                         <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($user->Guid); ?>"> 
+                                            <option value="<?php echo e($user->id); ?>">
                                                 <?php echo e($user->Name); ?>
 
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    <?php endif; ?> 
-                                </select>
-                                <?php if($errors->has('users')): ?>
-                                    <span class="invalid-feedback text-danger" role="alert">
-                                        <strong><?php echo e($errors->first('users')); ?></strong>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
+                                    <?php endif; ?>
+                            </select>
                         </div>
-                        <div class="item form-group">
-                            <div class="col-md-6 col-sm-6 offset-md-3">
-                                <button class="btn btn-primary" type="reset">Reset</button>
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-
-                <?php if(isset($materials)): ?>  
-                <div class="row">
-                <div class="table-responsive">
-                    <table id="example" class="table table-striped jambo_table bulk_action display"  style="width:100%">
+                    </div>
+                    <button type="submit" class="btn btn-fill btn-rose"><?php echo e(__('message.Submit')); ?></button>
+                </form>
+            </div>
+        </div>
+            <?php if(isset($materials)): ?>
+            <div id="results" class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                    <h4 class="card-title">Results</h4>
+                </div>
+                <div class="card-body ">
+                    <table id="repoSalesMats-table" class="table table-striped table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
-                              <tr class="headings">
-                                    <th>الرمز</th>                                        
-                                    <th>المادة</th>                                      
-                                    <th>الكمية</th>
-                                    <th>السعر</th>
-                                    <th>المجموع</th>
-                              </tr>
+                            <tr class="headings">
+                                <th><?php echo e(__('message.Code')); ?></th>
+                                <th><?php echo e(__('message.Mat')); ?></th>
+                                <th><?php echo e(__('message.Quantitiy')); ?></th>
+                                <th><?php echo e(__('message.Price')); ?></th>
+                                <th><?php echo e(__('message.Total')); ?></th>
+                            </tr>
                         </thead>
                         <tbody>
-                       
                             <?php $__currentLoopData = $materials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $material): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                <td><?php echo e($material->Code); ?></td>
-                                <td><?php echo e($material->Name1); ?></td>
-                                <td><?php echo e(number_format($material->Qty,2)); ?></td>
-                                <td><?php echo e(number_format($material->Price,2)); ?></td>
-                                <td><?php echo e(number_format($material->Qty * $material->Price,2)); ?></td>
+                                    <td><?php echo e($material->Code); ?></td>
+                                    <td><?php echo e($material->Name1); ?></td>
+                                    <td><?php echo e(number_format($material->Qty,2)); ?></td>
+                                    <td><?php echo e(number_format($material->Price,2)); ?></td>
+                                    <td><?php echo e(number_format($material->Qty * $material->Price,2)); ?></td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>
-                <div class="lead muted text-right m-4">المجموع: <?php echo e(number_format($materials->sum('Qty') *  $materials->sum('Price'),2)); ?></div>
-                <?php endif; ?>
-                </div>                        
-              </div>
             </div>
-        </div>
+                <div class="lead muted text-right m-4">المجموع: <?php echo e(number_format($materials->sum('Qty') *  $materials->sum('Price'),2)); ?></div>
+            <?php endif; ?>
     </div>
 </div>
 <?php $__env->stopSection(); ?>
-<script>
-    $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy',
-            'excel',
-            'pdf',
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
-        ]
-    } );
-} );
-</script>  
+
+<?php $__env->startSection('script'); ?>
+    <script>
+        $(document).ready(function () {
+
+            $('#repoSalesMats-table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                'excel',
+                'pdf',
+                'print'
+                ],
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50 , 'all']
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                searchPlaceholder: "Search",
+                }
+            });
+        });
+
+    </script>
+<?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('theme.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\rest3\resources\views/POS/RepoMatSal.blade.php ENDPATH**/ ?>

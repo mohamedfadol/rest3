@@ -355,5 +355,8 @@ return [
     'Daily Bills Report'  => "Daily Bills Report",
     'Report Of Sales Branch'  => "Report Of Sales Branch",
     'Mats Element Consuming'  => "Mats Element Consuming",
+    'Code'  => "Code",
+    'Mat'  => "Mat",
+    'Report Of Materials Sales'  => "Report Of Materials Sales",
 
 ];
